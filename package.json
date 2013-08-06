@@ -1,0 +1,29 @@
+{
+  "author": {
+    "name":               "Franklin van de Meent",
+    "email":              "fr@nkl.in",
+    "url":                "http://frankl.in"
+  },
+  "name":                 "geoip2ws",
+  "description":          "Unofficial module for Maxmind GeoIP2 Web Services",
+  "version":              "1.0.0",
+  "repository": {
+    "type":               "git",
+    "url":                "git://github.com/fvdm/nodejs-geoip2ws.git"
+  },
+  "bugs": {
+    "url":                "https://github.com/fvdm/nodejs-geoip2ws/issues"
+  },
+  "main":                 "geoip2ws.js",
+  "dependencies":         {}
+  "devDependencies":      {},
+  "optionalDependencies": {},
+  "engines": {
+    "node":               "*"
+  },
+  "keywords":             ["maxmind", "geoip", "geoip2", "api"],
+  "license": {
+    "type":               "Public Domain",
+    "url":                "https://github.com/fvdm/nodejs-geoip2ws/raw/master/LICENSE"
+  }
+}
