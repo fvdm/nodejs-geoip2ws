@@ -7,7 +7,8 @@ Unofficial Node.js module for the Maxmind GeoIP2 Web Services.
 Installation
 ------------
 
-You need a Maxmind license key with enough credits for one of their GeoIP *web* services.
+You need a Maxmind account ID and license key with enough credits for one of their GeoIP *web*
+services. You can find both [*here*](https://www.maxmind.com/en/my_license_key).
 
 
 ### From npm
