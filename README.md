@@ -22,7 +22,7 @@ The version on [npm](https://npmjs.org/package/geoip2ws) is always the latest st
 
 The version on Github is the most recent code, but may be unstable.
 
-	npm install https://github.com/fvdm/nodejs-geoip2ws
+	npm install git+https://github.com/fvdm/nodejs-geoip2ws
 
 
 Usage
