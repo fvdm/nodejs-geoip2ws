@@ -18,7 +18,7 @@ var app = {
 
 module.exports = function( userId, licenseKey, service ) {
 	if( userId === undefined || licenseKey === undefined ) {
-		return new Error('No userId or licenseKey')
+		return new Error('no userId or licenseKey')
 	}
 	
 	app.userId = userId
@@ -100,14 +100,14 @@ module.exports = function( userId, licenseKey, service ) {
 			
 			// connection dropped
 			response.on( 'close', function() {
-				doCallback( new Error('request closed') )
+				doCallback( new Error('request dropped') )
 			})
 		})
 		
 		// request error
 		request.on( 'error', function( error ) {
 			var err = new Error('request failed')
-			err.details = error
+			err.error = error
 			doCallback( err )
 		})
 		
