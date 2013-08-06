@@ -18,20 +18,14 @@ Usage
 There are multiple ways to load and set up this module. All communication is done over HTTPS.
 
 
-### One line
-
 ```js
 require('geoip2ws')( userId, licenseKey )( ip, callback )
 ```
-
-### Two lines
 
 ```js
 var geo = require('geoip2ws')( userId, licenseKey )
 geo( ip, callback )
 ```
-
-### Three lines
 
 ```js
 var geo = require('geoip2ws')
