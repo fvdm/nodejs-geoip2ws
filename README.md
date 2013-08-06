@@ -50,12 +50,20 @@ The _first function_ is the setup and takes these arguments:
 	service      optional   The service you'd like to use:
 	                          omni, country, city, city_isp_org (default)
 
+```js
+var geo = require('geoip2ws')( 1234, 'abc', 'country' )
+```
+
 
 The _second function_ does the IP-address lookup and takes these arguments:
 
 	service      optional   The service, same as above
 	ip           required   The IPv4 or IPv6 address to lookup
 	callback     required   Your callback `function` to receive the data
+
+```js
+geo( 'city', '145.53.252.135', myCallback )
+```
 
 
 Callback
