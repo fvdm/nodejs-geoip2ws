@@ -90,6 +90,9 @@ function myCallback( err, data ) {
 }
 ```
 
+Response data: <http://dev.maxmind.com/geoip/geoip2/web-services/#Response_Body>
+
+
 ### Errors
 
 	no userId or licenseKey   You did not set your credentials.
@@ -98,6 +101,8 @@ function myCallback( err, data ) {
 	no data                   API response was empty.
 	not json                  API response was not in JSON.
 	API error                 API error occured, see `err.code` and `err.error`.
+
+API errors: <http://dev.maxmind.com/geoip/geoip2/web-services/#Errors>
 
 
 License
