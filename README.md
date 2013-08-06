@@ -9,6 +9,18 @@ Installation
 
 You need a Maxmind license key with enough credits for one of their GeoIP *web* services.
 
+
+### From npm
+
+The version on [npm](https://npmjs.org/package/geoip2ws) is always the latest stable release.
+
+	npm install geoip2ws
+	
+
+### From source
+
+The version on Github is the most recent code, but may be unstable.
+
 	npm install https://github.com/fvdm/nodejs-geoip2ws
 
 
