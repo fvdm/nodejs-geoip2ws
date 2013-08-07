@@ -7,7 +7,6 @@ License:        Public Domain / Unlicense
 */
 
 var https = require('https')
-var querystring = require('querystring')
 
 // setup
 var app = {
