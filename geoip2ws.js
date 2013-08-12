@@ -10,7 +10,6 @@ This product includes GeoLite2 data created by MaxMind, available from
 */
 
 var https = require('https')
-var querystring = require('querystring')
 
 // setup
 var app = {
