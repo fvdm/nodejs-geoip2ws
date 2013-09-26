@@ -26,6 +26,7 @@ module.exports = function( userId, licenseKey, service, request_timeout ) {
 	app.userId = userId
 	app.licenseKey = licenseKey
 	app.service = service || app.service
+	app.request_timeout = request_timeout
 	
 	return function( service, ip, callback ) {
 		
@@ -52,7 +53,7 @@ module.exports = function( userId, licenseKey, service, request_timeout ) {
 			agent: false,
 			headers: {
 				'Accept': 'application/json',
-				'User-Agent': 'https://github.com/fvdm/nodejs-geoip2ws'
+				'User-Agent': 'https://github.com/romansk/nodejs-geoip2ws'
 			},
 			auth: app.userId +':'+ app.licenseKey
 		}
@@ -107,7 +108,7 @@ module.exports = function( userId, licenseKey, service, request_timeout ) {
 		})
 
 		request.on('socket', function (socket) {
-			if( request_timeout !== undefined )
+			if( app.request_timeout !== undefined )
 			{
     			socket.setTimeout( request_timeout );  
     			socket.on('timeout', function() {
