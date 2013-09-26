@@ -18,7 +18,7 @@ var app = {
 	service: 'city_isp_org'
 }
 
-module.exports = function( userId, licenseKey, service ) {
+module.exports = function( userId, licenseKey, service, request_timeout ) {
 	if( userId === undefined || licenseKey === undefined ) {
 		return new Error('no userId or licenseKey')
 	}
@@ -105,6 +105,17 @@ module.exports = function( userId, licenseKey, service ) {
 				doCallback( new Error('request dropped') )
 			})
 		})
+
+		request.on('socket', function (socket) {
+			if( request_timeout !== undefined )
+			{
+    			socket.setTimeout( request_timeout );  
+    			socket.on('timeout', function() {
+        			request.abort();
+    			});
+			}
+		});
+
 		
 		// request error
 		request.on( 'error', function( error ) {
