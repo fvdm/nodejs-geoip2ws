@@ -82,7 +82,8 @@ module.exports = function( userId, licenseKey, service ) {
 					}
 					
 					data = data.toString('utf8').trim()
-					if( data.match( /^\{.*\}$/ ) ) {
+					
+					try {
 						data = JSON.parse( data )
 						
 						if( data.error !== undefined ) {
@@ -90,7 +91,7 @@ module.exports = function( userId, licenseKey, service ) {
 							err.code = data.code
 							err.error = data.error
 						}
-					} else {
+					} catch {
 						err = new Error('not json')
 					}
 				} else {
