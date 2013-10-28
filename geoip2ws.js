@@ -92,7 +92,7 @@ module.exports = function( userId, licenseKey, service ) {
 							err.code = data.code
 							err.error = data.error
 						}
-					} catch {
+					} catch(e) {
 						err = new Error('not json')
 					}
 				} else {
