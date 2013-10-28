@@ -121,7 +121,7 @@ module.exports = function( userId, licenseKey, service, requestTimeout ) {
         			request.abort();
     			});
 			if( app.requestTimeout !== undefined ) {
-				socket.setTimeout( requestTimeout )
+				socket.setTimeout( app.requestTimeout )
 			}
 		});
 
