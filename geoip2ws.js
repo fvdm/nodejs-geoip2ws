@@ -26,8 +26,13 @@ module.exports = function( userId, licenseKey, service, requestTimeout ) {
 	
 	app.userId = userId
 	app.licenseKey = licenseKey
-	app.service = service || app.service
-	app.requestTimeout = requestTimeout
+	
+	if( typeof service === 'number' ) {
+		app.requestTimeout = requestTimeout
+	} else {
+		app.service = service
+		app.requestTimeout = requestTimeout || app.requestTimeout
+	}
 	
 	return function( service, ip, callback ) {
 		
