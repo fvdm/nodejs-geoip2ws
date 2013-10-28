@@ -56,9 +56,10 @@ The _first function_ is the setup and takes these arguments:
 	licenseKey   required   Your Maxmind account license key
 	service      optional   The service you'd like to use:
 	                          omni, country, city, city_isp_org (default)
+	request_timeout	optional	Socket read timeout for in millisec to wait for reply from MaxMind
 
 ```js
-var geo = require('geoip2ws')( 1234, 'abc', 'country' )
+var geo = require('geoip2ws')( 1234, 'abc', 'country', 2000 )
 ```
 
 
