@@ -86,7 +86,7 @@ module.exports = function( userId, licenseKey, service, requestTimeout ) {
 					
 					for( var d in data ) {
 						data[d].copy( buf, pos )
-						pos += data[i].length
+						pos += data[d].length
 					}
 					
 					data = data.toString('utf8').trim()
@@ -99,7 +99,7 @@ module.exports = function( userId, licenseKey, service, requestTimeout ) {
 							err.code = data.code
 							err.error = data.error
 						}
-					} catch {
+					} catch(e) {
 						err = new Error('not json')
 					}
 				} else {
