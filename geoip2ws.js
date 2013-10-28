@@ -122,6 +122,7 @@ module.exports = function( userId, licenseKey, service, requestTimeout ) {
     			});
 			if( app.requestTimeout !== undefined ) {
 				socket.setTimeout( app.requestTimeout )
+					doCallback( new Error('request timeout') )
 			}
 		});
 
