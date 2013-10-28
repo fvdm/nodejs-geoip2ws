@@ -15,7 +15,8 @@ var https = require('https')
 var app = {
 	userId: null,
 	licenseKey: null,
-	service: 'city_isp_org'
+	service: 'city_isp_org',
+	requestTimeout: 5000
 }
 
 module.exports = function( userId, licenseKey, service, request_timeout ) {
