@@ -52,11 +52,12 @@ The functions
 
 The _first function_ is the setup and takes these arguments:
 
-	userId       required   Your Maxmind account user ID
-	licenseKey   required   Your Maxmind account license key
-	service      optional   The service you'd like to use:
-	                          omni, country, city, city_isp_org (default)
-	request_timeout	optional	Socket read timeout for in millisec to wait for reply from MaxMind
+	userId          required   Your Maxmind account user ID
+	licenseKey      required   Your Maxmind account license key
+	service         optional   The service you'd like to use:
+	                             omni, country, city, city_isp_org (default)
+	requestTimeout  optional   Socket read timeout in milliseconds to wait for
+	                           reply from MaxMind
 
 ```js
 var geo = require('geoip2ws')( 1234, 'abc', 'country', 2000 )
@@ -98,6 +99,7 @@ Response data: <http://dev.maxmind.com/geoip/geoip2/web-services/#Response_Body>
 
 	no userId or licenseKey   You did not set your credentials.
 	request failed            A request error occured, see `err.error`.
+	request timeout           Request took too long, see `requestTimeout` above.
 	request dropped           API cancelled the request.
 	no data                   API response was empty.
 	not json                  API response was not in JSON.
