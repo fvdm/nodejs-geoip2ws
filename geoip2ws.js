@@ -114,18 +114,16 @@ module.exports = function( userId, licenseKey, service, requestTimeout ) {
 				doCallback( new Error('request dropped') )
 			})
 		})
-
-		request.on('socket', function (socket) {
-			{
-    			socket.on('timeout', function() {
-        			request.abort();
-    			});
+		
+		request.on( 'socket', function( socket ) {
 			if( app.requestTimeout !== undefined ) {
 				socket.setTimeout( app.requestTimeout )
+				socket.on( 'timeout', function() {
+					request.abort()
 					doCallback( new Error('request timeout') )
+				})
 			}
-		});
-
+		})
 		
 		// request error
 		request.on( 'error', function( error ) {
