@@ -79,7 +79,7 @@ module.exports = function( userId, licenseKey, service ) {
 					
 					for( var d in data ) {
 						data[d].copy( buf, pos )
-						pos += data[i].length
+						pos += data[d].length
 					}
 					
 					data = data.toString('utf8').trim()
