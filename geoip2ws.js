@@ -19,7 +19,7 @@ var app = {
 	requestTimeout: 5000
 }
 
-module.exports = function( userId, licenseKey, service, request_timeout ) {
+module.exports = function( userId, licenseKey, service, requestTimeout ) {
 	if( userId === undefined || licenseKey === undefined ) {
 		return new Error('no userId or licenseKey')
 	}
@@ -27,7 +27,7 @@ module.exports = function( userId, licenseKey, service, request_timeout ) {
 	app.userId = userId
 	app.licenseKey = licenseKey
 	app.service = service || app.service
-	app.request_timeout = request_timeout
+	app.requestTimeout = requestTimeout
 	
 	return function( service, ip, callback ) {
 		
@@ -111,12 +111,12 @@ module.exports = function( userId, licenseKey, service, request_timeout ) {
 		})
 
 		request.on('socket', function (socket) {
-			if( app.request_timeout !== undefined )
 			{
-    			socket.setTimeout( request_timeout );  
     			socket.on('timeout', function() {
         			request.abort();
     			});
+			if( app.requestTimeout !== undefined ) {
+				socket.setTimeout( requestTimeout )
 			}
 		});
 
