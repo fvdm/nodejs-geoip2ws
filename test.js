@@ -84,7 +84,7 @@ queue.push( function() {
 queue.push( function() {
   geo('74.125.206.100', function(err, data) {
     doTest( err, 'lookup', [
-      ['city name', data && typeof data.city.names.en === 'string']
+      ['city name', !err && data && typeof data.city.names.en === 'string']
     ])
   })
 })
