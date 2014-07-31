@@ -55,7 +55,7 @@ The _first function_ is the setup and takes these arguments:
 	userId          required   Your Maxmind account user ID
 	licenseKey      required   Your Maxmind account license key
 	service         optional   The service you'd like to use:
-	                             omni, country, city, city_isp_org (default)
+	                             insights, country, city (default)
 	requestTimeout  optional   Socket read timeout in milliseconds to wait for
 	                           reply from MaxMind
 
