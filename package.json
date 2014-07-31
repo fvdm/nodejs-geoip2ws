@@ -21,6 +21,9 @@
   "engines": {
     "node":               "*"
   },
+  "scripts": {
+    "test":               "node test.js"
+  },
   "keywords":             ["maxmind", "geoip", "geoip2", "api"],
   "license": {
     "type":               "Public Domain",
