@@ -4,9 +4,9 @@ var util = require('util')
 // set env GEOIP2WS_USERID and GEOIP2WS_LICENSE (Travis CI)
 // or user cli arguments: npm test --app_userid=1234 --app_license=abc123
 var geo = require('./')(
-  process.env.npm_config_app_userid || process.env.geoip2ws_userid || null,
-  process.env.npm_config_app_license || process.env.geoip2ws_license || null,
-  process.env.npm_config_app_service || process.env.geoip2ws_service || 'city'
+  process.env.npm_config_app_userid || process.env.GEOIP2WS_USERID || null,
+  process.env.npm_config_app_license || process.env.GEOIP2WS_LICENSE || null,
+  process.env.npm_config_app_service || process.env.GEOIP2WS_SERVICE || 'city'
 )
 
 
