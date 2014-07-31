@@ -15,7 +15,7 @@ var https = require('https')
 var app = {
 	userId: null,
 	licenseKey: null,
-	service: 'city_isp_org',
+	service: 'city',
 	requestTimeout: 5000
 }
 
@@ -55,7 +55,7 @@ module.exports = function( userId, licenseKey, service, requestTimeout ) {
 		// build request
 		var options = {
 			hostname: 'geoip.maxmind.com',
-			path: '/geoip/v2.0/'+ service +'/'+ ip,
+			path: '/geoip/v2.1/'+ service +'/'+ ip,
 			agent: false,
 			headers: {
 				'Accept': 'application/json',
