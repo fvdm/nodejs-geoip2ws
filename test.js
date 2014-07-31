@@ -6,7 +6,7 @@ var util = require('util')
 var geo = require('./')(
   process.env.npm_config_app_userid || process.env.geoip2ws_userid || null,
   process.env.npm_config_app_license || process.env.geoip2ws_license || null,
-  'city'
+  process.env.npm_config_app_service || process.env.geoip2ws_service || 'city'
 )
 
 
