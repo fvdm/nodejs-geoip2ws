@@ -3,7 +3,3 @@ node_js:
 - '0.11'
 - '0.10'
 - '0.8'
-env:
-  global:
-    - GEOIP2WS_SERVICE=insights
-    - secure: FUQQ6xvmldyIqMBmlGuwRGI02rORMrtW5RXpoXJQ3YmE1IdPWW+gG/57zt7rL/9+ZqZ/qCMUcPbqzrm06QF/oI09/DPmSqOmy3+ac+JKJ4Vi4ram4CpAM2pt0Izyhclht7Z6FzIrkjVcTRn7va93gtm1cLwglhMQPfKNqRGroz0=
