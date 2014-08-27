@@ -84,9 +84,9 @@ module.exports = function( userId, licenseKey, service, requestTimeout ) {
 					var buf = new Buffer( size )
 					var pos = 0
 					
-					for( var d in data ) {
-						data[d].copy( buf, pos )
-						pos += data[d].length
+					for( var i=0; i<data.length; i++ ) {
+						data[i].copy( buf, pos )
+						pos += data[i].length
 					}
 					
 					data = data.toString('utf8').trim()
