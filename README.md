@@ -13,14 +13,14 @@ You need a Maxmind account ID and license key with enough credits for one of the
 services. You can find both [*here*](https://www.maxmind.com/en/my_license_key).
 
 
-### From npm
+#### From npm
 
 The version on [npm](https://npmjs.org/package/geoip2ws) is always the latest stable release.
 
 `npm install geoip2ws`
 
 
-### From source
+#### From source
 
 The version on Github is the most recent code, but may be unstable.
 
