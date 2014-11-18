@@ -17,14 +17,14 @@ services. You can find both [*here*](https://www.maxmind.com/en/my_license_key).
 
 The version on [npm](https://npmjs.org/package/geoip2ws) is always the latest stable release.
 
-	npm install geoip2ws
+`npm install geoip2ws`
 	
 
 ### From source
 
 The version on Github is the most recent code, but may be unstable.
 
-	npm install git+https://github.com/fvdm/nodejs-geoip2ws
+`npm install git+https://github.com/fvdm/nodejs-geoip2ws`
 
 
 Usage
@@ -126,8 +126,8 @@ API error               | API error occured                | `err.code` and `err
 API errors: <http://dev.maxmind.com/geoip/geoip2/web-services/#Errors>
 
 
-License
--------
+Unlicense
+---------
 
 This is free and unencumbered software released into the public domain.
 
@@ -156,3 +156,11 @@ For more information, please refer to <http://unlicense.org/>
 
 This product includes GeoLite2 data created by MaxMind, available from
 <http://www.maxmind.com>.
+
+
+Author
+------
+
+Franklin van de Meent
+| [Website](https://frankl.in/)
+| [Github](https://github.com/fvdm)
