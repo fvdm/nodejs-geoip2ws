@@ -73,9 +73,11 @@ function doTest( err, label, tests ) {
 }
 
 // METHOD
-queue.push( function() { doTest( null, 'module', [
-  ['function type', typeof geo === 'function']
-])})
+queue.push( function() {
+  doTest( null, 'module', [
+    ['function type', typeof geo === 'function']
+  ])
+})
 
 // Test error
 queue.push( function() {
