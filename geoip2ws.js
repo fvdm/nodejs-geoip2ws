@@ -81,14 +81,7 @@ module.exports = function( userId, licenseKey, service, requestTimeout ) {
       // process data
       response.on( 'end', function() {
         if( data.length >= 1 ) {
-          var buf = new Buffer( size )
-          var pos = 0
-
-          for( var i=0; i<data.length; i++ ) {
-            data[i].copy( buf, pos )
-            pos += data[i].length
-          }
-
+          data = new Buffer.concat( data, size )
           data = data.toString('utf8').trim()
 
           try {
