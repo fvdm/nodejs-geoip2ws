@@ -119,8 +119,8 @@ module.exports = function( userId, licenseKey, service, requestTimeout ) {
       if( app.requestTimeout !== undefined ) {
         socket.setTimeout( app.requestTimeout )
         socket.on( 'timeout', function() {
-          request.abort()
           doCallback( new Error('request timeout') )
+          request.abort()
         })
       }
     })
