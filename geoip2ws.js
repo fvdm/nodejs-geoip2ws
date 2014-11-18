@@ -10,6 +10,7 @@ This product includes GeoLite2 data created by MaxMind, available from
 */
 
 var https = require('https')
+var net = require('net')
 
 // setup
 var app = {
@@ -35,9 +36,10 @@ module.exports = function( userId, licenseKey, service, requestTimeout ) {
   }
 
   return function( service, ip, callback ) {
+    serviceRegexp = new RegExp(/^(country|city|insights)$/)
 
     // service is optional
-    if( typeof service === 'string' && ! service.match(/^(country|city|insights)$/) ) {
+    if( typeof service === 'string' && ! service.match( serviceRegexp ) ) {
       var callback = ip
       var ip = service
       var service = app.service
@@ -52,6 +54,17 @@ module.exports = function( userId, licenseKey, service, requestTimeout ) {
       }
     }
 
+    // check input
+    if( ! service.match( serviceRegexp ) ) {
+      doCallback( new Error('invalid service') )
+      return
+    }
+    
+    if( ! net.isIP( ip ) ) {
+      doCallback( new Error('invalid ip') )
+      return
+    }
+    
     // build request
     var options = {
       hostname: 'geoip.maxmind.com',
