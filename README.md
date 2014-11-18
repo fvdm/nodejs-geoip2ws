@@ -65,12 +65,12 @@ The functions
 
 The _first function_ is the setup and takes these arguments:
 
-	userId          required   Your Maxmind account user ID
-	licenseKey      required   Your Maxmind account license key
-	service         optional   The service you'd like to use:
-	                             insights, country, city (default)
-	requestTimeout  optional   Socket read timeout in milliseconds to wait for
-	                           reply from MaxMind
+parameter      | required | description
+-------------- | -------- | --------------------------------
+userId         | yes      | Your Maxmind account user ID
+licenseKey     | yes      | Your Maxmind account license key
+service        | no       | The service you'd like to use: `insights`, `country`, `city` (default)
+requestTimeout | no       | Socket read timeout in milliseconds to wait for reply from MaxMind
 
 ```js
 var geo = require('geoip2ws')( 1234, 'abc', 'country', 2000 )
@@ -79,9 +79,11 @@ var geo = require('geoip2ws')( 1234, 'abc', 'country', 2000 )
 
 The _second function_ does the IP-address lookup and takes these arguments:
 
-	service      optional   The service, same as above
-	ip           required   The IPv4 or IPv6 address to lookup
-	callback     required   Your callback `function` to receive the data
+parameter | required | description
+--------- | -------- | --------------------------------------------
+service   | no       | The service, same as above
+ip        | yes      | The IPv4 or IPv6 address to lookup
+callback  | yes      | Your callback `function` to receive the data
 
 ```js
 geo( 'city', '145.53.252.135', myCallback )
@@ -110,13 +112,16 @@ Response data: <http://dev.maxmind.com/geoip/geoip2/web-services/#Response_Body>
 
 ### Errors
 
-	no userId or licenseKey   You did not set your credentials.
-	request failed            A request error occured, see `err.error`.
-	request timeout           Request took too long, see `requestTimeout` above.
-	request dropped           API cancelled the request.
-	no data                   API response was empty.
-	not json                  API response was not in JSON.
-	API error                 API error occured, see `err.code` and `err.error`.
+error message           | description                      | additional
+----------------------- | -------------------------------- | --------------------
+no userId or licenseKey | You did not set your credentials |
+request failed          | A request error occured          | `err.error`
+request timeout         | Request took too long            |
+request dropped         | API cancelled the request        |
+no data                 | API response was empty           |
+not json                | API response was not in JSON     |
+API error               | API error occured                | `err.code` and `err.error`
+
 
 API errors: <http://dev.maxmind.com/geoip/geoip2/web-services/#Errors>
 
