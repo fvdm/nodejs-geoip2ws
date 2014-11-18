@@ -32,20 +32,31 @@ Usage
 
 There are multiple ways to load and set up this module. All communication is done over HTTPS.
 
+#### One line
 
 ```js
 require('geoip2ws')( userId, licenseKey )( ip, callback )
 ```
 
-```js
-var geo = require('geoip2ws')( userId, licenseKey )
-geo( ip, callback )
-```
+#### Multiple calls, same account
 
 ```js
-var geo = require('geoip2ws')
-geo = geo( userId, licenseKey )
-geo( ip, callback )
+var geo = require('geoip2ws')( userId, licenseKey )
+geo( ip1, callback )
+geo( ip2, callback )
+```
+
+#### Mix products (or accounts)
+
+```js
+var insights = new require('geoip2ws')( userId, licenseKey, 'insights' )
+var country = new require('geoip2ws')( userId, licenseKey, 'country' )
+
+// precise lookup, higher cost
+insights( ip, callback )
+
+// vague lookup, lower cost
+country( ip, callback )
 ```
 
 
