@@ -37,7 +37,7 @@ module.exports = function( userId, licenseKey, service, requestTimeout ) {
   return function( service, ip, callback ) {
 
     // service is optional
-    if( arguments.length === 2 ) {
+    if( service && ip && !callback ) {
       var callback = ip
       var ip = service
       var service = app.service
