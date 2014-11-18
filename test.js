@@ -81,7 +81,7 @@ queue.push( function() {
 
 // Test error
 queue.push( function() {
-  geo('', function(err, data) {
+  geo('invalid input', function(err, data) {
     doTest( null, 'error', [
       ['err instanceof Error', err instanceof Error]
     ])
