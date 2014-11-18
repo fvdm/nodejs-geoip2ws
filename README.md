@@ -7,7 +7,7 @@ Unofficial Node.js module for the Maxmind GeoIP2 Web Services.
 Installation
 ------------
 
-[![Build Status](https://travis-ci.org/fvdm/nodejs-geoip2ws.svg)](https://travis-ci.org/fvdm/nodejs-geoip2ws)
+[![Build Status](https://travis-ci.org/fvdm/nodejs-geoip2ws.svg?branch=master)](https://travis-ci.org/fvdm/nodejs-geoip2ws)
 
 You need a Maxmind account ID and license key with enough credits for one of their GeoIP *web*
 services. You can find both [*here*](https://www.maxmind.com/en/my_license_key).
