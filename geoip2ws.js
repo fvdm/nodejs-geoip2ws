@@ -134,6 +134,5 @@ module.exports = function( userId, licenseKey, service, requestTimeout ) {
 
     // request finished
     request.end()
-
   }
 }
