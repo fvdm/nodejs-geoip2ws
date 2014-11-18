@@ -37,7 +37,7 @@ module.exports = function( userId, licenseKey, service, requestTimeout ) {
   return function( service, ip, callback ) {
 
     // service is optional
-    if( service && ip && !callback ) {
+    if( typeof service === 'string' && ! service.match(/^(country|city|insights)$/) ) {
       var callback = ip
       var ip = service
       var service = app.service
