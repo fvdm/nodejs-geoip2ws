@@ -83,7 +83,8 @@ queue.push( function() {
 queue.push( function() {
   geo('invalid input', function(err, data) {
     doTest( null, 'error', [
-      ['err instanceof Error', err instanceof Error]
+      ['type', err instanceof Error],
+      ['message', err.message === 'invalid ip']
     ])
   })
 })

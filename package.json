@@ -24,7 +24,7 @@
   "scripts": {
     "test":               "node test.js"
   },
-  "keywords":             ["maxmind", "geoip", "geoip2", "api"],
+  "keywords":             ["maxmind", "geoip", "geoip2", "api", "network", "location", "unlicense"],
   "license": {
     "type":               "Public Domain",
     "url":                "https://github.com/fvdm/nodejs-geoip2ws/raw/master/LICENSE"
