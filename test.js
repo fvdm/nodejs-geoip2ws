@@ -23,7 +23,13 @@ process.on( 'exit', function() {
 })
 
 // prevent errors from killing the process
-process.on( 'uncaughtException', function( err ) {} )
+process.on( 'uncaughtException', function( err ) {
+  console.log()
+  console.error( err.stack )
+  console.trace()
+  console.log()
+  errors++
+})
 
 // Queue to prevent flooding
 var queue = []
