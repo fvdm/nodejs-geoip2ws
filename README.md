@@ -18,7 +18,7 @@ services. You can find both [*here*](https://www.maxmind.com/en/my_license_key).
 The version on [npm](https://npmjs.org/package/geoip2ws) is always the latest stable release.
 
 `npm install geoip2ws`
-	
+
 
 ### From source
 
@@ -99,11 +99,11 @@ data JSON will be parsed to an object. When everything is ok `err` is `null` els
 
 ```js
 function myCallback( err, data ) {
-	if( err ) {
-		console.log( err, err.stack )
-	} else {
-		console.log( data.city.names.en )
-	}
+  if( err ) {
+    console.log( err, err.stack )
+  } else {
+    console.log( data.city.names.en )
+  }
 }
 ```
 
