@@ -59,7 +59,7 @@ module.exports = function( userId, licenseKey, service, requestTimeout ) {
       agent: false,
       headers: {
         'Accept': 'application/json',
-        'User-Agent': 'https://github.com/fvdm/nodejs-geoip2ws'
+        'User-Agent': 'geoip2ws.js'
       },
       auth: app.userId +':'+ app.licenseKey
     }
