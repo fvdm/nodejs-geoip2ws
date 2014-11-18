@@ -115,6 +115,8 @@ Response data: <http://dev.maxmind.com/geoip/geoip2/web-services/#Response_Body>
 error message           | description                      | additional
 ----------------------- | -------------------------------- | --------------------
 no userId or licenseKey | You did not set your credentials |
+invalid service         | The service name is invalid      | no credits used
+invalid ip              | The IP-address is invalid        | no credits used
 request failed          | A request error occured          | `err.error`
 request timeout         | Request took too long            |
 request dropped         | API cancelled the request        |
