@@ -11,9 +11,9 @@ var geo = require ('./') (
 
 
 // handle exits
-var errors = 0
+var errors = 0;
 process.on ('exit', function () {
-  if (errors == 0) {
+  if (errors === 0) {
     console.log ('\n\033[1mDONE, no errors.\033[0m\n');
     process.exit (0);
   } else {
@@ -62,7 +62,7 @@ function doTest (err, label, tests) {
       }
     });
 
-    if (testErrors.length == 0) {
+    if (testErrors.length === 0) {
       console.log (label +': \033[1m\033[32mok\033[0m');
     } else {
       console.error (label +': \033[1m\033[31mfailed\033[0m  ('+ testErrors.join (', ') +')');
@@ -81,7 +81,7 @@ queue.push (function () {
 
 // Test error
 queue.push (function () {
-  geo ('invalid input', function (err, data) {
+  geo ('invalid input', function (err) {
     doTest (null, 'error', [
       ['type', err instanceof Error],
       ['message', err.message === 'invalid ip']
