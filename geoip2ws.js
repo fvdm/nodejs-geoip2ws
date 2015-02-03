@@ -36,7 +36,7 @@ module.exports = function (userId, licenseKey, service, requestTimeout) {
   }
 
   return function (service, ip, callback) {
-    serviceRegexp = new RegExp (/^ (country|city|insights)$/);
+    serviceRegexp = new RegExp (/^(country|city|insights)$/);
 
     // service is optional
     if (typeof service === 'string' && ! service.match (serviceRegexp) ) {
