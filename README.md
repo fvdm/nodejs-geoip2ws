@@ -55,12 +55,12 @@ The functions
 
 The _first function_ is the setup and takes these arguments:
 
-parameter      | required | description
--------------- | -------- | --------------------------------
-userId         | yes      | Your Maxmind account user ID
-licenseKey     | yes      | Your Maxmind account license key
-service        | no       | The service you'd like to use: `insights`, `country`, `city` (default)
-requestTimeout | no       | Socket read timeout in milliseconds to wait for reply from MaxMind
+parameter      | type    | required | description
+-------------- | ------- | -------- | --------------------------------
+userId         | string  | yes      | Your Maxmind account user ID
+licenseKey     | string  | yes      | Your Maxmind account license key
+service        | string  | no       | The service you'd like to use: `insights`, `country`, `city` (default)
+requestTimeout | integer | no       | Socket read timeout in milliseconds to wait for reply from MaxMind
 
 ```js
 var geo = require('geoip2ws')( 1234, 'abc', 'country', 2000 )
@@ -69,11 +69,11 @@ var geo = require('geoip2ws')( 1234, 'abc', 'country', 2000 )
 
 The _second function_ does the IP-address lookup and takes these arguments:
 
-parameter | required | description
---------- | -------- | --------------------------------------------
-service   | no       | The service, same as above
-ip        | yes      | The IPv4 or IPv6 address to lookup
-callback  | yes      | Your callback `function` to receive the data
+parameter | type     | required | description
+--------- | -------- | -------- | ----------------------------------
+service   | string   | no       | The service, same as above
+ip        | string   | yes      | The IPv4 or IPv6 address to lookup
+callback  | function | yes      | Your callback `function` to receive the data
 
 ```js
 geo( 'city', '145.53.252.135', myCallback )
