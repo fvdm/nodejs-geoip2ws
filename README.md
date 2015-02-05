@@ -25,28 +25,28 @@ There are multiple ways to load and set up this module. All communication is don
 #### One line
 
 ```js
-require('geoip2ws')( userId, licenseKey )( ip, callback )
+require ('geoip2ws') (userId, licenseKey) (ip, callback);
 ```
 
 #### Multiple calls, same account
 
 ```js
-var geo = require('geoip2ws')( userId, licenseKey )
-geo( ip1, callback )
-geo( ip2, callback )
+var geo = require ('geoip2ws') (userId, licenseKey);
+geo (ip1, callback);
+geo (ip2, callback);
 ```
 
 #### Mix products (or accounts)
 
 ```js
-var insights = new require('geoip2ws')( userId, licenseKey, 'insights' )
-var country = new require('geoip2ws')( userId, licenseKey, 'country' )
+var insights = new require ('geoip2ws') (userId, licenseKey, 'insights');
+var country = new require ('geoip2ws') (userId, licenseKey, 'country');
 
 // precise lookup, higher cost
-insights( ip, callback )
+insights (ip, callback);
 
 // vague lookup, lower cost
-country( ip, callback )
+country (ip, callback);
 ```
 
 
@@ -63,7 +63,7 @@ service        | string  | no       | The service you'd like to use: `insights`,
 requestTimeout | integer | no       | Socket read timeout in milliseconds to wait for reply from MaxMind
 
 ```js
-var geo = require('geoip2ws')( 1234, 'abc', 'country', 2000 )
+var geo = require ('geoip2ws') (1234, 'abc', 'country', 2000);
 ```
 
 
@@ -76,7 +76,7 @@ ip        | string   | yes      | The IPv4 or IPv6 address to lookup
 callback  | function | yes      | Your callback `function` to receive the data
 
 ```js
-geo( 'city', '145.53.252.135', myCallback )
+geo ('city', '145.53.252.135', myCallback);
 ```
 
 
@@ -88,11 +88,11 @@ data JSON will be parsed to an object. When everything is ok `err` is `null` els
 `err` is an instance of `Error`. It also returns API errors this same way.
 
 ```js
-function myCallback( err, data ) {
-  if( err ) {
-    console.log( err, err.stack )
+function myCallback (err, data) {
+  if (err) {
+    console.log (err, err.stack);
   } else {
-    console.log( data.city.names.en )
+    console.log (data.city.names.en);
   }
 }
 ```
