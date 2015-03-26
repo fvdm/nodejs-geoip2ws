@@ -110,6 +110,25 @@ queue.push (function () {
 });
 
 
+queue.push (function () {
+  var tmp = app (
+    config.userId,
+    config.licenseKey,
+    config.service,
+    1
+  );
+
+  tmp ('74.125.206.100', function (err) {
+    doTest (null, 'Error: request timeout', [
+      ['type', err instanceof Error],
+      ['message', err.message === 'request timeout']
+    ]);
+  });
+
+  delete tmp;
+});
+
+
 // Test success
 queue.push (function () {
   geo ('74.125.206.100', function (err, data) {
