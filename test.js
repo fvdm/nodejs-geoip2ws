@@ -88,7 +88,8 @@ queue.push (function () {
   ]);
 });
 
-// Test error
+
+// Test errors
 queue.push (function () {
   geo ('invalid input', function (err) {
     doTest (null, 'Error: invalid ip', [
@@ -97,6 +98,17 @@ queue.push (function () {
     ]);
   });
 });
+
+
+queue.push (function () {
+  geo ('invalid service', '74.125.206.100', function (err) {
+    doTest (null, 'Error: invalid service', [
+      ['type': err instanceof Error],
+      ['message', err.message === 'invalid service']
+    ]);
+  });
+});
+
 
 // Test success
 queue.push (function () {
