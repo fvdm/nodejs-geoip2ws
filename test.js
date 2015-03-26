@@ -121,6 +121,16 @@ queue.push (function () {
 
 
 queue.push (function () {
+  geo ('0.0.0.0', function (err) {
+    doTest (null, 'Error: API error', [
+      ['type', err instanceof Error],
+      ['message', err.message === 'API error']
+    ]);
+  });
+});
+
+
+queue.push (function () {
   var tmp = app (
     config.userId,
     config.licenseKey,
