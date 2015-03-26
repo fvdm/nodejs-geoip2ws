@@ -123,7 +123,7 @@ module.exports = function (userId, licenseKey, service, requestTimeout) {
 
     request.on ('socket', function (socket) {
       if (app.requestTimeout) {
-        socket.setTimeout (app.requestTimeout);
+        socket.setTimeout (parseInt (app.requestTimeout));
         socket.on ('timeout', function () {
           doCallback (new Error ('request timeout'));
           request.abort ();
