@@ -36,10 +36,8 @@ module.exports = function (userId, licenseKey, service, requestTimeout) {
   }
 
   return function (service, ip, callback) {
-    var serviceRegexp = new RegExp (/^(country|city|insights)$/);
-
     // service is optional
-    if (typeof service === 'string' && ! service.match (serviceRegexp) ) {
+    if (typeof ip === 'function') {
       callback = ip;
       ip = service;
       service = app.service;
@@ -55,7 +53,7 @@ module.exports = function (userId, licenseKey, service, requestTimeout) {
     }
 
     // check input
-    if (! service.match (serviceRegexp) ) {
+    if (! /^(country|city|insights)$/.test (service)) {
       doCallback (new Error ('invalid service'));
       return;
     }
