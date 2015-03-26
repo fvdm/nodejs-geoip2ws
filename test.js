@@ -89,6 +89,16 @@ queue.push (function () {
 });
 
 
+// Test success
+queue.push (function () {
+  geo ('74.125.206.100', function (err, data) {
+    doTest (err, 'lookup', [
+      ['city name', !err && data && typeof data.city.names.en === 'string']
+    ]);
+  });
+});
+
+
 // Test errors
 queue.push (function () {
   geo ('invalid input', function (err) {
@@ -124,19 +134,8 @@ queue.push (function () {
       ['message', err.message === 'request timeout']
     ]);
   });
-
-  delete tmp;
 });
 
-
-// Test success
-queue.push (function () {
-  geo ('74.125.206.100', function (err, data) {
-    doTest (err, 'lookup', [
-      ['city name', !err && data && typeof data.city.names.en === 'string']
-    ]);
-  });
-});
 
 // Start the tests
 queue[0] ();
