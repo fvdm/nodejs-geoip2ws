@@ -103,7 +103,7 @@ queue.push (function () {
 queue.push (function () {
   geo ('invalid service', '74.125.206.100', function (err) {
     doTest (null, 'Error: invalid service', [
-      ['type': err instanceof Error],
+      ['type', err instanceof Error],
       ['message', err.message === 'invalid service']
     ]);
   });
