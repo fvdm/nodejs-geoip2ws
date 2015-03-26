@@ -7,3 +7,13 @@ node_js:
 - '0.11'
 - '0.10'
 - '0.8'
+deploy:
+  provider: npm
+  email:
+    secure: hpEYCVroCOwTO0k3vbwyB/QnYUfi/VJCzlikSQaeQIFSeuTlpuFyX++aol0yVvWVaSesW2//kZNYSuTVxUHXAROkNoHUxK37slC5Cm7li1XGUFrUwnDhzV2J1EFmHPDvhw5I+OSX0mEFyTEF3Ysg97EzY7RG1As0fZrjrKDC1v4=
+  api_key:
+    secure: pq6LMuYGYVzzbemcQetJBjt0RjN8MesEPD5qUwDNGRwaZHJUiU6oaAQNOWtaTyUJIAVrXfSM+uCqh633fjE5tLZNPxIR4CqeJpHdg80L31W7puniE1uKMTTZsT1IpYBXUaU/taRJfmz4bdOHuwHMfDEjp9CqPv0VnF7Wo1JCGuk=
+  on:
+    tags: true
+    repo: fvdm/nodejs-geoip2ws
+    branch: master
