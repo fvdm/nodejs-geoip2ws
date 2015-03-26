@@ -59,12 +59,12 @@ module.exports = function (userId, licenseKey, service, requestTimeout) {
       doCallback (new Error ('invalid service'));
       return;
     }
-    
+
     if (! net.isIP (ip) ) {
       doCallback (new Error ('invalid ip'));
       return;
     }
-    
+
     // build request
     var options = {
       hostname: 'geoip.maxmind.com',
@@ -95,7 +95,7 @@ module.exports = function (userId, licenseKey, service, requestTimeout) {
       response.on ('end', function () {
         if (data.length >= 1) {
           data = new Buffer.concat (data, size);
-          data = data.toString ('utf8').trim ();
+          data = data.toString ('utf8') .trim ();
 
           try {
             data = JSON.parse (data);
