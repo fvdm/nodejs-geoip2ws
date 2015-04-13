@@ -6,17 +6,6 @@ Unofficial Node.js module for the Maxmind GeoIP2 Web Services.
 [![Build Status](https://travis-ci.org/fvdm/nodejs-geoip2ws.svg?branch=master)](https://travis-ci.org/fvdm/nodejs-geoip2ws)
 
 
-Installation
-------------
-
-You need a Maxmind account ID and license key with enough credits for one of their GeoIP *web*
-services. You can find both [*here*](https://www.maxmind.com/en/my_license_key).
-
-Stable: `npm install geoip2ws`
-
-Develop: `npm install fvdm/nodejs-geoip2ws#develop`
-
-
 Usage
 -----
 
@@ -48,6 +37,17 @@ insights (ip, callback);
 // vague lookup, lower cost
 country (ip, callback);
 ```
+
+
+Installation
+------------
+
+You need a Maxmind account ID and license key with enough credits for one of their GeoIP *web*
+services. You can find both [*here*](https://www.maxmind.com/en/my_license_key).
+
+Stable: `npm install geoip2ws`
+
+Develop: `npm install fvdm/nodejs-geoip2ws#develop`
 
 
 The functions
