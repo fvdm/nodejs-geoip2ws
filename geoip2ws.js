@@ -64,7 +64,6 @@ module.exports = function (userId, licenseKey, service, requestTimeout) {
     var options = {
       hostname: 'geoip.maxmind.com',
       path: '/geoip/v2.1/'+ service +'/'+ ip,
-      agent: false,
       headers: {
         'Accept': 'application/vnd.maxmind.com-'+ service +'+json; charset=UTF-8; version=2.1',
         'User-Agent': 'geoip2ws.js'
