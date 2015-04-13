@@ -89,7 +89,7 @@ module.exports = function (userId, licenseKey, service, requestTimeout) {
       // process data
       response.on ('end', function () {
         if (data.length >= 1) {
-          data = new Buffer.concat (data, size);
+          data = Buffer.concat (data, size);
           data = data.toString ('utf8') .trim ();
 
           try {
