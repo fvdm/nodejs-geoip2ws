@@ -146,9 +146,6 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 For more information, please refer to <http://unlicense.org/>
 
-This product includes GeoLite2 data created by MaxMind, available from
-<http://www.maxmind.com>.
-
 
 Author
 ------
