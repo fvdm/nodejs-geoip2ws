@@ -1,5 +1,5 @@
-nodejs-geoip2ws
-===============
+geoip2ws
+========
 
 Unofficial Node.js module for the Maxmind GeoIP2 Web Services.
 
