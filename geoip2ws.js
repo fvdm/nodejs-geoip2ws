@@ -94,6 +94,12 @@ module.exports = function (userId, licenseKey, service, requestTimeout) {
           try {
             data = JSON.parse (data);
 
+            if (Array.isArray (data.subdivisions) && data.subdivisions.length) {
+              data.most_specific_subdivision = data.subdivisions [data.subdivisions.length -1];
+            } else {
+              data.subdivisions = [];
+            }
+
             if (data.error !== undefined) {
               err = new Error ('API error');
               err.code = data.code;
