@@ -72,7 +72,7 @@ The _second function_ does the IP-address lookup and takes these arguments:
 parameter | type     | required | description
 --------- | -------- | -------- | ----------------------------------
 service   | string   | no       | The service, same as above
-ip        | string   | yes      | The IPv4 or IPv6 address to lookup
+ip        | string   | yes      | The IPv4 or IPv6 address to lookup, or use the string 'me' for the current machine
 callback  | function | yes      | Your callback `function` to receive the data
 
 ```js
