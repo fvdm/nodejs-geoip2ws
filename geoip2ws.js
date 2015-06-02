@@ -6,15 +6,12 @@ Feedback:       https://github.com/fvdm/nodejs-geoip2ws/issues
 License:        Public Domain / Unlicense
 */
 
-var https = require ('https');
-var net = require ('net');
+var https = require('https');
+var net = require('net');
 
 // setup
 var app = {
-  userId: null,
-  licenseKey: null,
-  service: 'city',
-  requestTimeout: 5000
+  userId: null, licenseKey: null, service: 'city', requestTimeout: 5000
 };
 
 module.exports = function (userId, licenseKey, service, requestTimeout) {
@@ -43,59 +40,56 @@ module.exports = function (userId, licenseKey, service, requestTimeout) {
     // prevent multiple callbacks
     var complete = false;
     function doCallback (err, res) {
-      if (! complete) {
+      if (!complete) {
         complete = true;
-        callback (err, res);
+        callback(err, res);
       }
     }
 
     // check input
-    if (! /^(country|city|insights)$/.test (service)) {
-      doCallback (new Error ('invalid service'));
+    if (!/^(country|city|insights)$/.test(service)) {
+      doCallback(new Error ('invalid service'));
       return;
     }
 
-    if (! net.isIP (ip) ) {
-      doCallback (new Error ('invalid ip'));
+    // validate ip address, or allow usage of machine's ip for lookup
+    if (!net.isIP(ip) && ip !== 'me' ) {
+      doCallback(new Error ('invalid ip'));
       return;
     }
 
     // build request
     var options = {
-      hostname: 'geoip.maxmind.com',
-      path: '/geoip/v2.1/'+ service +'/'+ ip,
-      headers: {
-        'Accept': 'application/vnd.maxmind.com-'+ service +'+json; charset=UTF-8; version=2.1',
-        'User-Agent': 'geoip2ws.js'
-      },
-      auth: app.userId +':'+ app.licenseKey
+      hostname: 'geoip.maxmind.com', path: '/geoip/v2.1/' + service + '/' + ip, headers: {
+        'Accept': 'application/vnd.maxmind.com-' + service + '+json; charset=UTF-8; version=2.1', 'User-Agent': 'geoip2ws.js'
+      }, auth: app.userId + ':' + app.licenseKey
     };
 
-    var request = https.request (options);
+    var request = https.request(options);
 
     // request response
-    request.on ('response', function (response) {
+    request.on('response', function (response) {
       var data = [];
       var size = 0;
       var err = null;
 
       // collect data
-      response.on ('data', function (chunk) {
-        data.push (chunk);
+      response.on('data', function (chunk) {
+        data.push(chunk);
         size += chunk.length;
       });
 
       // process data
-      response.on ('end', function () {
+      response.on('end', function () {
         if (data.length >= 1) {
-          data = Buffer.concat (data, size);
-          data = data.toString ('utf8') .trim ();
+          data = Buffer.concat(data, size);
+          data = data.toString('utf8') .trim();
 
           try {
-            data = JSON.parse (data);
+            data = JSON.parse(data);
 
-            if (Array.isArray (data.subdivisions) && data.subdivisions.length) {
-              data.most_specific_subdivision = data.subdivisions [data.subdivisions.length -1];
+            if (Array.isArray(data.subdivisions) && data.subdivisions.length) {
+              data.most_specific_subdivision = data.subdivisions [data.subdivisions.length - 1];
             } else {
               data.subdivisions = [];
             }
@@ -112,33 +106,33 @@ module.exports = function (userId, licenseKey, service, requestTimeout) {
           err = new Error ('no data');
         }
 
-        doCallback (err, data);
+        doCallback(err, data);
       });
 
       // connection dropped
-      response.on ('close', function () {
-        doCallback (new Error ('request dropped'));
+      response.on('close', function () {
+        doCallback(new Error ('request dropped'));
       });
     });
 
-    request.on ('socket', function (socket) {
+    request.on('socket', function (socket) {
       if (app.requestTimeout) {
-        socket.setTimeout (parseInt (app.requestTimeout));
-        socket.on ('timeout', function () {
-          doCallback (new Error ('request timeout'));
-          request.abort ();
+        socket.setTimeout(parseInt(app.requestTimeout));
+        socket.on('timeout', function () {
+          doCallback(new Error ('request timeout'));
+          request.abort();
         });
       }
     });
 
     // request error
-    request.on ('error', function (error) {
+    request.on('error', function (error) {
       var err = new Error ('request failed');
       err.error = error;
-      doCallback (err);
+      doCallback(err);
     });
 
     // request finished
-    request.end ();
+    request.end();
   };
 };
