@@ -3,7 +3,7 @@ geoip2ws
 
 Unofficial Node.js module for the Maxmind GeoIP2 Web Services.
 
-[![Build Status](https://travis-ci.org/fvdm/nodejs-geoip2ws.svg?branch=master)](https://travis-ci.org/fvdm/nodejs-geoip2ws)
+[![Circle CI](https://circleci.com/gh/fvdm/nodejs-geoip2ws/tree/master.svg?style=svg)](https://circleci.com/gh/fvdm/nodejs-geoip2ws/tree/master)
 
 
 Usage
@@ -124,7 +124,7 @@ API errors: <http://dev.maxmind.com/geoip/geoip2/web-services/#Errors>
 Development
 -----------
 
-[![Build Status](https://travis-ci.org/fvdm/nodejs-geoip2ws.svg?branch=develop)](https://travis-ci.org/fvdm/nodejs-geoip2ws)
+[![Circle CI](https://circleci.com/gh/fvdm/nodejs-geoip2ws/tree/develop.svg?style=svg)](https://circleci.com/gh/fvdm/nodejs-geoip2ws/tree/develop)
 
 The source code repository has two main branches: `master` and `develop`.
 The `master` is exactly the same as the latest release on [npm](https://www.npmjs.com/package/geoip2ws),
