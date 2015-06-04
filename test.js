@@ -8,6 +8,7 @@ var config = {
   userId: process.env.GEOIP2WS_USERID || null,
   licenseKey: process.env.GEOIP2WS_LICENSE || null,
   service: process.env.GEOIP2WS_SERVICE || 'city',
+  endpoint: process.env.GEOIP2WS_ENDPOINT || 'https://geoip.maxmind.com/geoip/v2.1/',
   requestTimeout: process.env.GEOIP2WS_TIMEOUT || 5000
 }
 
