@@ -2,10 +2,10 @@
   "author": {
     "name":               "Franklin van de Meent",
     "email":              "fr@nkl.in",
-    "url":                "http://frankl.in"
+    "url":                "https://frankl.in"
   },
   "name":                 "geoip2ws",
-  "description":          "Unofficial module for Maxmind GeoIP2 Web Services",
+  "description":          "Maxmind GeoIP2 Web Services (unofficial)",
   "version":              "1.6.0",
   "repository": {
     "type":               "git",
