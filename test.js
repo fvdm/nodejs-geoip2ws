@@ -1,9 +1,16 @@
+/*
+Name:           geoip2ws - test.js
+Description:    Maxmind GeoIP2 Web Services for node.js
+Source & docs:  https://github.com/fvdm/nodejs-geoip2ws
+Feedback:       https://github.com/fvdm/nodejs-geoip2ws/issues
+License:        Unlicense (public domain)
+*/
+
 var util = require ('util');
 var app = require ('./');
 
 // Setup
-// set env GEOIP2WS_USERID and GEOIP2WS_LICENSE  (Travis CI)
-// or user cli arguments: npm test --app_userid=1234 --app_license=abc123
+// set env GEOIP2WS_USERID and GEOIP2WS_LICENSE  (CI tests)
 var config = {
   userId: process.env.GEOIP2WS_USERID || null,
   licenseKey: process.env.GEOIP2WS_LICENSE || null,
