@@ -10,7 +10,7 @@ var http = require ('httpreq');
 var net = require ('net');
 
 // setup
-var app = {
+var api = {
   userId: null,
   licenseKey: null,
   service: 'city',
@@ -20,9 +20,9 @@ var app = {
 
 module.exports = function (userId, licenseKey, service, requestTimeout) {
   if (userId instanceof Object) {
-    service = userId.service || app.service;
-    requestTimeout = userId.requestTimeout || app.requestTimeout;
-    app.endpoint = userId.endpoint || app.endpoint;
+    service = userId.service || api.service;
+    requestTimeout = userId.requestTimeout || api.requestTimeout;
+    api.endpoint = userId.endpoint || api.endpoint;
     licenseKey = userId.licenseKey || null;
     userId = userId.userId || null;
   }
@@ -31,14 +31,14 @@ module.exports = function (userId, licenseKey, service, requestTimeout) {
     return new Error ('no userId or licenseKey');
   }
 
-  app.userId = userId;
-  app.licenseKey = licenseKey;
+  api.userId = userId;
+  api.licenseKey = licenseKey;
 
   if (typeof service === 'number') {
-    app.requestTimeout = service;
+    api.requestTimeout = service;
   } else {
-    app.service = service || app.service;
-    app.requestTimeout = requestTimeout || app.requestTimeout;
+    api.service = service || api.service;
+    api.requestTimeout = requestTimeout || api.requestTimeout;
   }
 
   return function (service, ip, callback) {
@@ -51,7 +51,7 @@ module.exports = function (userId, licenseKey, service, requestTimeout) {
     if (typeof ip === 'function') {
       callback = ip;
       ip = service;
-      service = app.service;
+      service = api.service;
     }
 
     // check input
@@ -65,18 +65,18 @@ module.exports = function (userId, licenseKey, service, requestTimeout) {
 
     // build request
     http.get (
-      app.endpoint + service +'/'+ ip,
+      api.endpoint + service +'/'+ ip,
       {
         headers: {
           'Accept': 'application/vnd.maxmind.com-'+ service +'+json; charset=UTF-8; version=2.1',
           'User-Agent': 'geoip2ws.js'
         },
-        auth: app.userId +':'+ app.licenseKey,
-        timeout: app.requestTimeout
+        auth: api.userId +':'+ api.licenseKey,
+        timeout: api.requestTimeout
       },
       function (err, res) {
         var error = null;
-        var data = res && res.body ? res.body.trim() : null;
+        var data = res && res.body ? res.body.trim () : null;
 
         if (err) {
           error = new Error ('request failed');
