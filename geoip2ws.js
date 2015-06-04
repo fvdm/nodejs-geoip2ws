@@ -55,7 +55,7 @@ module.exports = function (userId, licenseKey, service, requestTimeout) {
       return;
     }
 
-    if (! net.isIP (ip) ) {
+    if (! net.isIP (ip) && ip !== 'me' ) {
       doCallback (new Error ('invalid ip'));
       return;
     }
