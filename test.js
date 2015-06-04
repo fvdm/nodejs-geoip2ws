@@ -12,6 +12,10 @@ var config = {
   requestTimeout: process.env.GEOIP2WS_TIMEOUT || 5000
 }
 
+if (!config.userId || !config.licenseKey) {
+  config.endpoint = 'https://frankl.in/u/ci_test.php?a=geoip2ws&b=';
+}
+
 var geo = app (config);
 
 
