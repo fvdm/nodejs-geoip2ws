@@ -12,12 +12,7 @@ var config = {
   requestTimeout: process.env.GEOIP2WS_TIMEOUT || 5000
 }
 
-var geo = app (
-  config.userId,
-  config.licenseKey,
-  config.service,
-  config.requestTimeout
-);
+var geo = app (config);
 
 
 // handle exits
