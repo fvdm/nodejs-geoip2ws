@@ -14,10 +14,19 @@ var app = {
   userId: null,
   licenseKey: null,
   service: 'city',
+  endpoint: 'https://geoip.maxmind.com/geoip/v2.1/',
   requestTimeout: 5000
 };
 
 module.exports = function (userId, licenseKey, service, requestTimeout) {
+  if (userId instanceof Object) {
+    service = userId.service || app.service;
+    requestTimeout = userId.requestTimeout || app.requestTimeout;
+    app.endpoint = userId.endpoint || app.endpoint;
+    licenseKey = userId.licenseKey || null;
+    userId = userId.userId || null;
+  }
+
   if (userId === undefined || licenseKey === undefined) {
     return new Error ('no userId or licenseKey');
   }
@@ -51,7 +60,7 @@ module.exports = function (userId, licenseKey, service, requestTimeout) {
 
     // build request
     http.get (
-      'https://geoip.maxmind.com/geoip/v2.1/'+ service +'/'+ ip,
+      app.endpoint + service +'/'+ ip,
       {
         headers: {
           'Accept': 'application/vnd.maxmind.com-'+ service +'+json; charset=UTF-8; version=2.1',
