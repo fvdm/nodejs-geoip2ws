@@ -42,6 +42,11 @@ module.exports = function (userId, licenseKey, service, requestTimeout) {
   }
 
   return function (service, ip, callback) {
+    if (service instanceof Object) {
+      ip = service.ip;
+      service = service.service || api.service;
+    }
+
     // service is optional
     if (typeof ip === 'function') {
       callback = ip;
