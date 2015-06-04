@@ -61,10 +61,10 @@ service        | string  | no       | The service you'd like to use: `insights`,
 requestTimeout | integer | no       | Socket read timeout in milliseconds to wait for reply from MaxMind
 
 ```js
-// As arguments
+// With arguments
 var geo = require ('geoip2ws') (1234, 'abc', 'country', 2000);
 
-// Or as an object
+// Or with an object
 var geo = require ('geoip2ws') ({
   userId: 1234,
   licenseKey: 'abc',
