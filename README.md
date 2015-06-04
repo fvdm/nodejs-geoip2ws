@@ -45,18 +45,16 @@ Installation
 You need a Maxmind account ID and license key with enough credits for one of their GeoIP *web*
 services. You can find both [*here*](https://www.maxmind.com/en/my_license_key).
 
-Stable: `npm install geoip2ws`
-
-Develop: `npm install fvdm/nodejs-geoip2ws#develop`
+`npm install geoip2ws`
 
 
 The functions
 -------------
 
-The _first function_ is the setup and takes these arguments:
+The _first function_ is the setup and takes these settings:
 
 parameter      | type    | required | description
--------------- | ------- | -------- | --------------------------------
+---------------|---------|----------|---------------------------------
 userId         | string  | yes      | Your Maxmind account user ID
 licenseKey     | string  | yes      | Your Maxmind account license key
 service        | string  | no       | The service you'd like to use: `insights`, `country`, `city` (default)
@@ -70,7 +68,7 @@ var geo = require ('geoip2ws') (1234, 'abc', 'country', 2000);
 The _second function_ does the IP-address lookup and takes these arguments:
 
 parameter | type     | required | description
---------- | -------- | -------- | ----------------------------------
+----------|----------|----------|-----------------------------------
 service   | string   | no       | The service, same as above
 ip        | string   | yes      | The IPv4 or IPv6 address to lookup
 callback  | function | yes      | Your callback `function` to receive the data
@@ -103,15 +101,11 @@ Response data: <http://dev.maxmind.com/geoip/geoip2/web-services/#Response_Body>
 ### Errors
 
 error message           | description                      | additional
------------------------ | -------------------------------- | --------------------
+------------------------|----------------------------------|---------------------
 no userId or licenseKey | You did not set your credentials |
 invalid service         | The service name is invalid      | no credits used
 invalid ip              | The IP-address is invalid        | no credits used
 request failed          | A request error occured          | `err.error`
-request timeout         | Request took too long            |
-request dropped         | API cancelled the request        |
-no data                 | API response was empty           |
-not json                | API response was not in JSON     |
 API error               | API error occured                | `err.code` and `err.error`
 
 
