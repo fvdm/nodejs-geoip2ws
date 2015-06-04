@@ -15,7 +15,9 @@
     "url":                "https://github.com/fvdm/nodejs-geoip2ws/issues"
   },
   "main":                 "geoip2ws.js",
-  "dependencies":         {},
+  "dependencies": {
+    "httpreq":            "0.4.x"
+  },
   "devDependencies":      {},
   "optionalDependencies": {},
   "engines": {
