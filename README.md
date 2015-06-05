@@ -97,7 +97,7 @@ data JSON will be parsed to an object. When everything is ok `err` is `null` els
 ```js
 function myCallback (err, data) {
   if (err) {
-    console.log (err, err.stack);
+    console.log (err);
   } else {
     console.log (data.city.names.en);
   }
@@ -107,7 +107,7 @@ function myCallback (err, data) {
 Response data: <http://dev.maxmind.com/geoip/geoip2/web-services/#Response_Body>
 
 
-### Errors
+#### Errors
 
 error message           | description                      | additional
 ------------------------|----------------------------------|---------------------
@@ -124,8 +124,6 @@ API errors: <http://dev.maxmind.com/geoip/geoip2/web-services/#Errors>
 Development
 -----------
 
-[![Circle CI](https://circleci.com/gh/fvdm/nodejs-geoip2ws/tree/develop.svg?style=svg)](https://circleci.com/gh/fvdm/nodejs-geoip2ws/tree/develop)
-
 The source code repository has two main branches: `master` and `develop`.
 The `master` is exactly the same as the latest release on [npm](https://www.npmjs.com/package/geoip2ws),
 while `develop` is where all development happens and other branches and Pull Requests are merged into.
@@ -133,6 +131,7 @@ while `develop` is where all development happens and other branches and Pull Req
 When you intent to submit a Pull Request, please code against the `develop` branch.
 
 
+* Branch status: [![Circle CI](https://circleci.com/gh/fvdm/nodejs-geoip2ws/tree/develop.svg?style=svg)](https://circleci.com/gh/fvdm/nodejs-geoip2ws/tree/develop)
 * [Source code](https://github.com/fvdm/nodejs-geoip2ws)
 * [Contribution Guide](https://guides.github.com/activities/contributing-to-open-source/#contributing)
 
@@ -140,6 +139,9 @@ When you intent to submit a Pull Request, please code against the `develop` bran
 ### Testing
 
 You can test your code with `npm test` in the source path or simply create a PR and see what happens.
+
+* With account the API endpoint is at `https://geoip.maxmind.com`: credits count, real data.
+* Without account the API endpoint is at `https://frankl.in`: no credits, no logs, fake data.
 
 
 #### Test configuration
