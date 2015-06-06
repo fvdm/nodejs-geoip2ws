@@ -26,6 +26,6 @@
   "scripts": {
     "test":               "node test.js"
   },
-  "keywords":             ["maxmind", "geoip", "geoip2", "api", "network", "location", "unlicense"],
+  "keywords":             ["maxmind", "geoip", "geoip2", "api", "network", "location"],
   "license":              "Unlicense"
 }
