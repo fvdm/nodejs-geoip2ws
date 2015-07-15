@@ -3,7 +3,7 @@ geoip2ws
 
 Unofficial Node.js module for the Maxmind GeoIP2 Web Services.
 
-Travis CI status [![Build Status](https://travis-ci.org/fvdm/nodejs-geoip2ws.svg?branch=master)](https://travis-ci.org/fvdm/nodejs-geoip2ws)
+[![Build Status](https://travis-ci.org/fvdm/nodejs-geoip2ws.svg?branch=master)](https://travis-ci.org/fvdm/nodejs-geoip2ws)
 
 
 Usage
