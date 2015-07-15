@@ -3,7 +3,7 @@ geoip2ws
 
 Unofficial Node.js module for the Maxmind GeoIP2 Web Services.
 
-[![Circle CI](https://circleci.com/gh/fvdm/nodejs-geoip2ws/tree/master.svg?style=svg)](https://circleci.com/gh/fvdm/nodejs-geoip2ws/tree/master)
+Travis CI status [![Build Status](https://travis-ci.org/fvdm/nodejs-geoip2ws.svg?branch=master)](https://travis-ci.org/fvdm/nodejs-geoip2ws)
 
 
 Usage
@@ -131,7 +131,8 @@ while `develop` is where all development happens and other branches and Pull Req
 When you intent to submit a Pull Request, please code against the `develop` branch.
 
 
-* Branch status: [![Circle CI](https://circleci.com/gh/fvdm/nodejs-geoip2ws/tree/develop.svg?style=svg)](https://circleci.com/gh/fvdm/nodejs-geoip2ws/tree/develop)
+* Branch status: Travis CI [![Travis CI](https://travis-ci.org/fvdm/nodejs-geoip2ws.svg?branch=develop)](https://travis-ci.org/fvdm/nodejs-geoip2ws)
+* Branch status: Circle CI [![Circle CI](https://circleci.com/gh/fvdm/nodejs-geoip2ws/tree/develop.svg?style=svg)](https://circleci.com/gh/fvdm/nodejs-geoip2ws/tree/develop)
 * [Source code](https://github.com/fvdm/nodejs-geoip2ws)
 * [Contribution Guide](https://guides.github.com/activities/contributing-to-open-source/#contributing)
 
