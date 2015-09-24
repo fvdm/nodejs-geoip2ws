@@ -20,16 +20,17 @@ require ('geoip2ws') (userId, licenseKey) (ip, callback);
 #### Multiple calls, same account
 
 ```js
-var geo = require ('geoip2ws') (userId, licenseKey);
-geo (ip1, callback);
-geo (ip2, callback);
+var geoip2ws = require ('geoip2ws') (userId, licenseKey);
+geoip2ws (ip1, callback);
+geoip2ws (ip2, callback);
 ```
 
 #### Mix products (or accounts)
 
 ```js
-var insights = new require ('geoip2ws') (userId, licenseKey, 'insights');
-var country = new require ('geoip2ws') (userId, licenseKey, 'country');
+var geoip2ws = require ('geoip2ws');
+var insights = new geoip2ws (userId, licenseKey, 'insights');
+var country = new geoip2ws (userId, licenseKey, 'country');
 
 // precise lookup, higher cost
 insights (ip, callback);
