@@ -7,6 +7,11 @@ License:        Unlicense (public domain)
 */
 
 var app = require ('./');
+var geo;
+var errors = 0;
+var queue = [];
+var next = 0;
+
 
 // Setup
 // set env GEOIP2WS_USERID and GEOIP2WS_LICENSE  (CI tests)
@@ -16,23 +21,22 @@ var config = {
   service: process.env.GEOIP2WS_SERVICE || 'city',
   endpoint: process.env.GEOIP2WS_ENDPOINT || 'https://geoip.maxmind.com/geoip/v2.1/',
   requestTimeout: process.env.GEOIP2WS_TIMEOUT || 5000
-}
+};
 
 if (!config.userId || !config.licenseKey) {
   config.endpoint = 'https://frankl.in/u/ci_test.php?a=geoip2ws&b=';
 }
 
-var geo = app (config);
+geo = app (config);
 
 
 // handle exits
-var errors = 0;
 process.on ('exit', function () {
   if (errors === 0) {
-    console.log ('\n\033[1mDONE, no errors.\033[0m\n');
+    console.log ('\n\u001b[1mDONE, no errors.\u001b[0m\n');
     process.exit (0);
   } else {
-    console.log ('\n\033[1mFAIL, '+ errors +' error'+  (errors > 1 ? 's' : '') +' occurred!\033[0m\n');
+    console.log ('\n\u001b[1mFAIL, ' + errors + ' error' + (errors > 1 ? 's' : '') + ' occurred!\u001b[0m\n');
     process.exit (1);
   }
 });
@@ -41,15 +45,11 @@ process.on ('exit', function () {
 process.on ('uncaughtException', function (err) {
   console.log ();
   console.error (err.stack);
-  console.trace ();
   console.log ();
   errors++;
 });
 
 // Queue to prevent flooding
-var queue = [];
-var next = 0;
-
 function doNext () {
   next++;
   if (queue[next]) {
@@ -61,15 +61,16 @@ function doNext () {
 //   ['feeds', typeof feeds === 'object']
 // ])
 function doTest (err, label, tests) {
+  var testErrors = [];
+
   if (err instanceof Error) {
-    console.error (label +': \033[1m\033[31mERROR\033[0m\n');
+    console.error (label + ': \u001b[1m\u001b[31mERROR\u001b[0m\n');
     console.dir (err, { depth: null, colors: true });
     console.log ();
     console.error (err.stack);
     console.log ();
     errors++;
   } else {
-    var testErrors = [];
     tests.forEach (function (test) {
       if (test[1] !== true) {
         testErrors.push (test[0]);
@@ -78,9 +79,9 @@ function doTest (err, label, tests) {
     });
 
     if (testErrors.length === 0) {
-      console.log (label +': \033[1m\033[32mok\033[0m');
+      console.log (label + ': \u001b[1m\u001b[32mok\u001b[0m');
     } else {
-      console.error (label +': \033[1m\033[31mfailed\033[0m  ('+ testErrors.join (', ') +')');
+      console.error (label + ': \u001b[1m\u001b[31mfailed\u001b[0m  (' + testErrors.join (', ') + ')');
     }
   }
 

@@ -1,31 +1,49 @@
 {
   "author": {
-    "name":               "Franklin van de Meent",
-    "email":              "fr@nkl.in",
-    "url":                "https://frankl.in"
+    "name": "Franklin van de Meent",
+    "email": "fr@nkl.in",
+    "url": "https://frankl.in"
   },
-  "name":                 "geoip2ws",
-  "description":          "Maxmind GeoIP2 Web Services (unofficial)",
-  "version":              "1.7.1",
+  "name": "geoip2ws",
+  "description": "Maxmind GeoIP2 Web Services (unofficial)",
+  "version": "1.7.2",
   "repository": {
-    "type":               "git",
-    "url":                "git://github.com/fvdm/nodejs-geoip2ws.git"
+    "type": "git",
+    "url": "git://github.com/fvdm/nodejs-geoip2ws.git"
   },
   "bugs": {
-    "url":                "https://github.com/fvdm/nodejs-geoip2ws/issues"
+    "url": "https://github.com/fvdm/nodejs-geoip2ws/issues"
   },
-  "main":                 "geoip2ws.js",
+  "main": "geoip2ws.js",
   "dependencies": {
-    "httpreq":            "0.4.x"
+    "httpreq": "0.4.x"
   },
-  "devDependencies":      {},
+  "devDependencies": {},
   "optionalDependencies": {},
   "engines": {
-    "node":               ">=0.8.0"
+    "node": ">=0.8.0"
   },
   "scripts": {
-    "test":               "node test.js"
+    "test": "node test.js"
   },
-  "keywords":             ["maxmind", "geoip", "geoip2", "api", "network", "location"],
-  "license":              "Unlicense"
+  "keywords": [
+    "maxmind",
+    "geoip",
+    "geoip2",
+    "api",
+    "network",
+    "location"
+  ],
+  "license": "Unlicense",
+  "contributors": [
+    {
+      "name": "Franklin van de Meent",
+      "email": "fr@nkl.in",
+      "url": "https://github.com/fvdm",
+      "contributions": 148,
+      "additions": 1588,
+      "deletions": 887,
+      "hireable": true
+    }
+  ]
 }

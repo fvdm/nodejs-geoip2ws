@@ -18,6 +18,115 @@ var api = {
   requestTimeout: 5000
 };
 
+
+/**
+ * Process HTTP response data
+ *
+ * @param err {Error} instance of Error or null
+ * @param res {Object} response data
+ * @param callback {Function} callback function
+ * @return {void}
+ */
+
+function doResponse (err, res, callback) {
+  var error = null;
+  var data = res && res.body ? res.body.trim () : null;
+
+  if (err) {
+    error = new Error ('request failed');
+    error.error = err;
+    callback (error);
+    return;
+  }
+
+  try {
+    data = JSON.parse (data);
+  } catch (e) {
+    error = new Error ('invalid data');
+    error.error = e;
+    callback (error);
+    return;
+  }
+
+  if (data instanceof Object && data.error) {
+    error = new Error ('API error');
+    error.code = data.code;
+    error.error = data.error;
+    callback (error);
+    return;
+  }
+
+  if (Array.isArray (data.subdivisions) && data.subdivisions.length) {
+    data.most_specific_subdivision = data.subdivisions [data.subdivisions.length - 1];
+  } else {
+    data.subdivisions = [];
+  }
+
+  callback (null, data);
+}
+
+
+/**
+ * Perform lookup
+ *
+ * @param serviceName {String} temporary service override, default to global setting
+ * @param ip {String} IP-address, hostname or `me` to look up
+ * @param callback {Function} callback function
+ * @return {void}
+ */
+
+function doLookup (serviceName, ip, callback) {
+  var httpProps = {};
+
+  if (serviceName instanceof Object) {
+    ip = serviceName.ip;
+    serviceName = serviceName.service || api.service;
+  }
+
+  // service is optional
+  if (typeof ip === 'function') {
+    callback = ip;
+    ip = serviceName;
+    serviceName = api.service;
+  }
+
+  // check input
+  if (!/^(country|city|insights)$/.test (serviceName)) {
+    return callback (new Error ('invalid service'));
+  }
+
+  if (!net.isIP (ip) && ip !== 'me') {
+    return callback (new Error ('invalid ip'));
+  }
+
+  // build request
+  httpProps.method = 'GET';
+  httpProps.url = api.endpoint + serviceName + '/' + ip;
+  httpProps.auth = api.userId + ':' + api.licenseKey;
+  httpProps.timeout = api.requestTimeout;
+  httpProps.headers = {
+    'Accept': 'application/vnd.maxmind.com-' + serviceName + '+json; charset=UTF-8; version=2.1',
+    'User-Agent': 'geoip2ws.js'
+  };
+
+  http.doRequest (httpProps, function (err, res) {
+    doResponse (err, res, callback);
+  });
+
+  return doLookup;
+}
+
+
+/**
+ * Module interface
+ *
+ * @param userId {String} account user ID
+ * @param licenseKey {String} account license key
+ * @param service {String} account service name, defaults to `city`
+ * @param requestTimeout {Integer} request time out in milliseconds, defaults to `5000`
+ * @return {Function doRequest}
+ */
+
 module.exports = function (userId, licenseKey, service, requestTimeout) {
   if (userId instanceof Object) {
     service = userId.service || api.service;
@@ -25,10 +134,6 @@ module.exports = function (userId, licenseKey, service, requestTimeout) {
     api.endpoint = userId.endpoint || api.endpoint;
     licenseKey = userId.licenseKey || null;
     userId = userId.userId || null;
-  }
-
-  if (userId === undefined || licenseKey === undefined) {
-    return new Error ('no userId or licenseKey');
   }
 
   api.userId = userId;
@@ -41,66 +146,5 @@ module.exports = function (userId, licenseKey, service, requestTimeout) {
     api.requestTimeout = requestTimeout || api.requestTimeout;
   }
 
-  return function (service, ip, callback) {
-    if (service instanceof Object) {
-      ip = service.ip;
-      service = service.service || api.service;
-    }
-
-    // service is optional
-    if (typeof ip === 'function') {
-      callback = ip;
-      ip = service;
-      service = api.service;
-    }
-
-    // check input
-    if (! /^(country|city|insights)$/.test (service)) {
-      return callback (new Error ('invalid service'));
-    }
-
-    if (! net.isIP (ip) && ip !== 'me' ) {
-      return callback (new Error ('invalid ip'));
-    }
-
-    // build request
-    http.get (
-      api.endpoint + service +'/'+ ip,
-      {
-        headers: {
-          'Accept': 'application/vnd.maxmind.com-'+ service +'+json; charset=UTF-8; version=2.1',
-          'User-Agent': 'geoip2ws.js'
-        },
-        auth: api.userId +':'+ api.licenseKey,
-        timeout: api.requestTimeout
-      },
-      function (err, res) {
-        var error = null;
-        var data = res && res.body ? res.body.trim () : null;
-
-        if (err) {
-          error = new Error ('request failed');
-          error.error = err;
-        }
-
-        try {
-          data = JSON.parse (data);
-
-          if (Array.isArray (data.subdivisions) && data.subdivisions.length) {
-            data.most_specific_subdivision = data.subdivisions [data.subdivisions.length -1];
-          } else {
-            data.subdivisions = [];
-          }
-
-          if (data instanceof Object && data.error) {
-            error = new Error ('API error');
-            error.code = data.code;
-            error.error = data.error;
-          }
-        }
-        catch (e) {}
-        callback (error, data)
-      }
-    );
-  };
+  return doLookup;
 };
