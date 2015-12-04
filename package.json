@@ -6,7 +6,7 @@
   },
   "name": "geoip2ws",
   "description": "Maxmind GeoIP2 Web Services (unofficial)",
-  "version": "1.7.2",
+  "version": "1.7.3",
   "repository": {
     "type": "git",
     "url": "git://github.com/fvdm/nodejs-geoip2ws.git"
