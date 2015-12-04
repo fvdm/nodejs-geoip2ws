@@ -8,6 +8,7 @@ Unofficial Node.js module for the Maxmind GeoIP2 Web Services.
 * [Node.js](https://nodejs.org/)
 * [Maxmind GeoIP2 Web Services](https://www.maxmind.com/en/geoip2-precision-services)
 * [API documentation](http://dev.maxmind.com/geoip/geoip2/web-services/)
+* [Development](https://github.com/fvdm/nodejs-geoip2ws/wiki)
 
 
 Usage
@@ -124,44 +125,6 @@ API error               | API error occured                | `err.code` and `err
 
 
 API errors: <http://dev.maxmind.com/geoip/geoip2/web-services/#Errors>
-
-
-Development
------------
-
-The source code repository has two main branches: `master` and `develop`.
-The `master` is exactly the same as the latest release on [npm](https://www.npmjs.com/package/geoip2ws),
-while `develop` is where all development happens and other branches and Pull Requests are merged into.
-
-When you intent to submit a Pull Request, please code against the `develop` branch.
-
-
-* Branch status: Travis CI [![Travis CI](https://travis-ci.org/fvdm/nodejs-geoip2ws.svg?branch=develop)](https://travis-ci.org/fvdm/nodejs-geoip2ws)
-* Branch status: Circle CI [![Circle CI](https://circleci.com/gh/fvdm/nodejs-geoip2ws/tree/develop.svg?style=svg)](https://circleci.com/gh/fvdm/nodejs-geoip2ws/tree/develop)
-* [Source code](https://github.com/fvdm/nodejs-geoip2ws)
-* [Contribution Guide](https://guides.github.com/activities/contributing-to-open-source/#contributing)
-
-
-### Testing
-
-You can test your code with `npm test` in the source path or simply create a PR and see what happens.
-
-* With account the API endpoint is at `https://geoip.maxmind.com`: credits count, real data.
-* Without account the API endpoint is at `https://frankl.in`: no credits, no logs, fake data.
-
-
-#### Test configuration
-
-variable          | description                   | default
-------------------|-------------------------------|----------------------------------------
-GEOIP2WS_USERID   | Account user ID               | *null*
-GEOIP2WS_LICENCE  | Account license key           | *null*
-GEOIP2WS_SERVICE  | `country`, `city`, `insights` | city
-GEOIP2WS_TIMEOUT  | Wait time out in ms           | 5000
-GEOIP2WS_ENDPOINT | API endpoint, i.e. http proxy | `https://geoip.maxmind.com/geoip/v2.1/`
-
-
-Example: `GEOIP2WS_TIMEOUT=30000 npm test`
 
 
 Unlicense
