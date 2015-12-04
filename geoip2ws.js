@@ -27,7 +27,7 @@ module.exports = function (userId, licenseKey, service, requestTimeout) {
     userId = userId.userId || null;
   }
 
-  if (userId === undefined || licenseKey === undefined) {
+  if (!userId || !licenseKey) {
     return new Error ('no userId or licenseKey');
   }
 
