@@ -18,13 +18,15 @@
   "dependencies": {
     "httpreq": "0.4.x"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "1.x"
+  },
   "optionalDependencies": {},
   "engines": {
     "node": ">=0.12.0"
   },
   "scripts": {
-    "test": "node test.js"
+    "test": "eslint . && node test.js"
   },
   "keywords": [
     "maxmind",
