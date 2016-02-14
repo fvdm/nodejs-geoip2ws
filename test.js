@@ -6,11 +6,17 @@ Feedback:       https://github.com/fvdm/nodejs-geoip2ws/issues
 License:        Unlicense (public domain)
 */
 
-var app = require ('./');
-var geo;
+var path = require ('path');
+var dir = path.dirname (module.filename);
+
+var pkg = require (path.join (dir, 'package.json'));
+var app = require (path.join (dir));
+
 var errors = 0;
+var warnings = 0;
 var queue = [];
 var next = 0;
+var geo;
 
 
 // Setup
@@ -30,21 +36,73 @@ if (!config.userId || !config.licenseKey) {
 geo = app (config);
 
 
+// Color string
+function colorStr (color, str) {
+  var colors = {
+    red: '\u001b[31m',
+    green: '\u001b[32m',
+    yellow: '\u001b[33m',
+    blue: '\u001b[34m',
+    magenta: '\u001b[35m',
+    cyan: '\u001b[36m',
+    gray: '\u001b[37m',
+    bold: '\u001b[1m',
+    plain: '\u001b[0m'
+  };
+
+  return colors [color] + str + colors.plain;
+}
+
+function log (type, str) {
+  if (!str) {
+    str = type;
+    type = 'plain';
+  }
+
+  switch (type) {
+    case 'error': console.log (colorStr ('red', colorStr ('bold', 'ERR     ')) + str + '\n'); break;
+    case 'fail': console.log (colorStr ('red', 'FAIL') + '    ' + str); break;
+    case 'good': console.log (colorStr ('green', 'good') + '    ' + str); break;
+    case 'warn': console.log (colorStr ('yellow', 'warn') + '    ' + str); break;
+    case 'info': console.log (colorStr ('cyan', 'info') + '    ' + str); break;
+    case 'note': console.log (colorStr ('bold', str)); break;
+    case 'plain': default: console.log (str); break;
+  }
+}
+
+function typeStr (str) {
+  if (typeof str === 'string') {
+    str = '"' + str + '"';
+  } else if (str instanceof Object) {
+    str = 'Object';
+  } else if (str instanceof Array) {
+    str = 'Array';
+  } else if (str instanceof Error) {
+    str = 'Error';
+  }
+
+  return colorStr ('magenta', str);
+}
+
 // handle exits
 process.on ('exit', function () {
-  if (errors === 0) {
-    console.log ('\n\u001b[1mDONE, no errors.\u001b[0m\n');
-    process.exit (0);
-  } else {
-    console.log ('\n\u001b[1mFAIL, ' + errors + ' error' + (errors > 1 ? 's' : '') + ' occurred!\u001b[0m\n');
+  console.log ();
+  log ('info', errors + ' errors');
+  log ('info', warnings + ' warnings');
+  console.log ();
+
+  if (errors) {
     process.exit (1);
+  } else {
+    process.exit (0);
   }
 });
 
 // prevent errors from killing the process
 process.on ('uncaughtException', function (err) {
+  console.log (err);
   console.log ();
-  console.error (err.stack);
+  console.log (err.stack);
   console.log ();
   errors++;
 });
@@ -52,36 +110,72 @@ process.on ('uncaughtException', function (err) {
 // Queue to prevent flooding
 function doNext () {
   next++;
-  if (queue[next]) {
-    queue[next] ();
+  if (queue [next]) {
+    console.log ();
+    queue [next] ();
   }
 }
 
-// doTest (passErr, 'methods', [
-//   ['feeds', typeof feeds === 'object']
-// ])
+/**
+ * doTest checks for error
+ * else runs specified tests
+ *
+ * @param {Error} err
+ * @param {String} label
+ * @param {Array} tests
+ *
+ * doTest(err, 'label text', [
+ *   ['fail', 'feeds', typeof feeds, 'object'],
+ *   ['warn', 'music', music instanceof Array, true],
+ *   ['info', 'tracks', music.length]
+ * ]);
+ */
+
 function doTest (err, label, tests) {
-  var testErrors = [];
+  var level = 'good';
+  var test;
+  var i;
 
   if (err instanceof Error) {
-    console.error (label + ': \u001b[1m\u001b[31mERROR\u001b[0m\n');
+    log ('error', label);
     console.dir (err, { depth: null, colors: true });
     console.log ();
-    console.error (err.stack);
+    console.log (err.stack);
     console.log ();
     errors++;
-  } else {
-    tests.forEach (function (test) {
-      if (test[1] !== true) {
-        testErrors.push (test[0]);
-        errors++;
-      }
-    });
 
-    if (testErrors.length === 0) {
-      console.log (label + ': \u001b[1m\u001b[32mok\u001b[0m');
-    } else {
-      console.error (label + ': \u001b[1m\u001b[31mfailed\u001b[0m  (' + testErrors.join (', ') + ')');
+    doNext ();
+    return;
+  }
+
+  log ('note', colorStr ('blue', '(' + (next + 1) + '/' + queue.length + ') ') + label);
+
+  for (i = 0; i < tests.length; i++) {
+    test = {
+      level: tests [i] [0],
+      label: tests [i] [1],
+      result: tests [i] [2],
+      expect: tests [i] [3]
+    };
+
+    if (test.result === test.expect) {
+      log ('good', colorStr ('blue', test.label) + ': ' + typeStr (test.result) + ' is exactly ' + typeStr (test.expect));
+    }
+
+    if (test.level === 'fail' && test.result !== test.expect) {
+      errors++;
+      level = 'fail';
+      log ('fail', colorStr ('blue', test.label) + ': ' + typeStr (test.result) + ' is not ' + typeStr (test.expect));
+    }
+
+    if (test.level === 'warn' && test.result !== test.expect) {
+      warnings++;
+      level = level !== 'fail' && 'warn';
+      log ('warn', colorStr ('blue', test.label) + ': ' + typeStr (test.result) + ' is not ' + typeStr (test.expect));
+    }
+
+    if (test.level === 'info') {
+      log ('info', colorStr ('blue', test.label) + ': ' + typeStr (test.result));
     }
   }
 
@@ -91,7 +185,7 @@ function doTest (err, label, tests) {
 // METHOD
 queue.push (function () {
   doTest (null, 'module', [
-    ['function type', typeof geo === 'function']
+    ['fail', 'function type', typeof geo, 'function']
   ]);
 });
 
@@ -100,7 +194,7 @@ queue.push (function () {
 queue.push (function () {
   geo ('74.125.206.100', function (err, data) {
     doTest (err, 'lookup', [
-      ['city name', !err && data && typeof data.city.names.en === 'string']
+      ['fail', 'city name', !err && data && typeof data.city.names.en, 'string']
     ]);
   });
 });
@@ -110,8 +204,8 @@ queue.push (function () {
 queue.push (function () {
   geo ('invalid input', function (err) {
     doTest (null, 'Error: invalid ip', [
-      ['type', err instanceof Error],
-      ['message', err.message === 'invalid ip']
+      ['fail', 'type', err instanceof Error, true],
+      ['fail', 'message', err.message, 'invalid ip']
     ]);
   });
 });
@@ -120,8 +214,8 @@ queue.push (function () {
 queue.push (function () {
   geo ('invalid service', '74.125.206.100', function (err) {
     doTest (null, 'Error: invalid service', [
-      ['type', err instanceof Error],
-      ['message', err.message === 'invalid service']
+      ['fail', 'type', err instanceof Error, true],
+      ['fail', 'message', err.message, 'invalid service']
     ]);
   });
 });
@@ -130,8 +224,8 @@ queue.push (function () {
 queue.push (function () {
   geo ('0.0.0.0', function (err) {
     doTest (null, 'Error: API error', [
-      ['type', err instanceof Error],
-      ['message', err.message === 'API error']
+      ['fail', 'type', err instanceof Error, true],
+      ['fail', 'message', err.message, 'API error']
     ]);
   });
 });
@@ -147,12 +241,17 @@ queue.push (function () {
 
   tmp ('74.125.206.100', function (err) {
     doTest (null, 'Error: request timeout', [
-      ['type', err instanceof Error],
-      ['message', err.error.code === 'TIMEOUT']
+      ['fail', 'type', err instanceof Error, true],
+      ['fail', 'message', err.error.code, 'TIMEOUT']
     ]);
   });
 });
 
 
 // Start the tests
-queue[0] ();
+log ('note', 'Running tests...\n');
+log ('note', 'Node.js:  ' + process.versions.node);
+log ('note', 'Module:   ' + pkg.version);
+console.log ();
+
+queue [0] ();
