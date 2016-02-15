@@ -36,7 +36,14 @@ if (!config.userId || !config.licenseKey) {
 geo = app (config);
 
 
-// Color string
+/**
+ * ANSI colorize a string
+ *
+ * @param color {String} - The color to add
+ * @param str {String} - The string to alter
+ * @returns {String}
+ */
+
 function colorStr (color, str) {
   var colors = {
     red: '\u001b[31m',
@@ -52,6 +59,15 @@ function colorStr (color, str) {
 
   return colors [color] + str + colors.plain;
 }
+
+
+/**
+ * console.log with style
+ *
+ * @param [type] {String=plain} - Formatting style
+ * @param str {String} - The string to alter
+ * @returns {void}
+ */
 
 function log (type, str) {
   if (!str) {
@@ -69,6 +85,14 @@ function log (type, str) {
     case 'plain': default: console.log (str); break;
   }
 }
+
+
+/**
+ * Detect and wrap string type
+ *
+ * @param str {String} - The string
+ * @returns {String}
+ */
 
 function typeStr (str) {
   if (typeof str === 'string') {
@@ -107,7 +131,13 @@ process.on ('uncaughtException', function (err) {
   errors++;
 });
 
-// Queue to prevent flooding
+
+/**
+ * Queue to prevent flooding
+ *
+ * @returns {void}
+ */
+
 function doNext () {
   next++;
   if (queue [next]) {
@@ -116,6 +146,7 @@ function doNext () {
   }
 }
 
+
 /**
  * doTest checks for error
  * else runs specified tests
@@ -123,6 +154,7 @@ function doNext () {
  * @param {Error} err
  * @param {String} label
  * @param {Array} tests
+ * @returns {void}
  *
  * doTest(err, 'label text', [
  *   ['fail', 'feeds', typeof feeds, 'object'],
