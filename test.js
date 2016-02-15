@@ -109,7 +109,7 @@ function typeStr (str) {
 }
 
 // handle exits
-process.on ('exit', function () {
+process.on ('exit', function processExit () {
   console.log ();
   log ('info', errors + ' errors');
   log ('info', warnings + ' warnings');
@@ -123,7 +123,7 @@ process.on ('exit', function () {
 });
 
 // prevent errors from killing the process
-process.on ('uncaughtException', function (err) {
+process.on ('uncaughtException', function uncaughtException (err) {
   console.log (err);
   console.log ();
   console.log (err.stack);
