@@ -25,7 +25,7 @@ var api = {
  * @param err {Error} instance of Error or null
  * @param res {Object} response data
  * @param callback {Function} callback function
- * @return {void}
+ * @returns {void}
  */
 
 function doResponse (err, res, callback) {
@@ -72,7 +72,7 @@ function doResponse (err, res, callback) {
  * @param serviceName {String} temporary service override, default to global setting
  * @param ip {String} IP-address, hostname or `me` to look up
  * @param callback {Function} callback function
- * @return {void}
+ * @returns {void}
  */
 
 function doLookup (serviceName, ip, callback) {
@@ -92,11 +92,13 @@ function doLookup (serviceName, ip, callback) {
 
   // check input
   if (!/^(country|city|insights)$/.test (serviceName)) {
-    return callback (new Error ('invalid service'));
+    callback (new Error ('invalid service'));
+    return;
   }
 
   if (!net.isIP (ip) && ip !== 'me') {
-    return callback (new Error ('invalid ip'));
+    callback (new Error ('invalid ip'));
+    return;
   }
 
   // build request
@@ -109,7 +111,7 @@ function doLookup (serviceName, ip, callback) {
     'User-Agent': 'geoip2ws.js'
   };
 
-  http.doRequest (httpProps, function (err, res) {
+  http.doRequest (httpProps, function doRequest (err, res) {
     doResponse (err, res, callback);
   });
 
@@ -124,10 +126,10 @@ function doLookup (serviceName, ip, callback) {
  * @param licenseKey {String} account license key
  * @param service {String} account service name, defaults to `city`
  * @param requestTimeout {Integer} request time out in milliseconds, defaults to `5000`
- * @return {Function doRequest}
+ * @returns {Function doLookup}
  */
 
-module.exports = function (userId, licenseKey, service, requestTimeout) {
+module.exports = function moduleExports (userId, licenseKey, service, requestTimeout) {
   if (userId instanceof Object) {
     service = userId.service || api.service;
     requestTimeout = userId.requestTimeout || api.requestTimeout;
