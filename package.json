@@ -19,7 +19,7 @@
     "httpreq": "0.4.x"
   },
   "devDependencies": {
-    "eslint": "1.x",
+    "eslint": "2.x",
     "dotest": "1.x"
   },
   "optionalDependencies": {},
