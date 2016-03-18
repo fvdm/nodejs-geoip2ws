@@ -35,7 +35,7 @@ doTest.add ('Module', function () {
     .isFunction ('fail', 'exports', app)
     .isFunction ('fail', 'geo', geo)
     .done ();
-})
+});
 
 // Test success
 doTest.add ('lookup', function () {
