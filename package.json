@@ -27,7 +27,7 @@
     "node": ">=0.12.0"
   },
   "scripts": {
-    "test": "node test.js ; eslint ."
+    "test": "eslint . && node test.js"
   },
   "keywords": [
     "maxmind",
