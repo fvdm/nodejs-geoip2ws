@@ -85,7 +85,7 @@ doTest.add ('Error: request timeout', function () {
   tmp ('74.125.206.100', function (err) {
     doTest.test ()
       .isError ('fail', 'err', err)
-      .isExactly ('fail', 'err.message', err && err.message, 'request timeout')
+      .isExactly ('fail', 'err.message', err && err.message, 'request failed')
       .isExactly ('fail', 'err.error.code', err && err.error.code, 'TIMEOUT')
       .done ();
   });
