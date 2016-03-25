@@ -16,11 +16,11 @@
   },
   "main": "geoip2ws.js",
   "dependencies": {
-    "httpreq": "0.4.x"
+    "httpreq": "^0.4.16"
   },
   "devDependencies": {
-    "eslint": "2.x",
-    "dotest": "1.x"
+    "eslint": "^2.4.0",
+    "dotest": "^1.2.0"
   },
   "optionalDependencies": {},
   "engines": {
