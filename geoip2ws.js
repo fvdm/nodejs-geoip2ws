@@ -93,12 +93,12 @@ function doLookup (serviceName, ip, callback) {
   // check input
   if (!/^(country|city|insights)$/.test (serviceName)) {
     callback (new Error ('invalid service'));
-    return;
+    return doLookup;
   }
 
   if (!net.isIP (ip) && ip !== 'me') {
     callback (new Error ('invalid ip'));
-    return;
+    return doLookup;
   }
 
   // build request
