@@ -33,6 +33,9 @@
     "maxmind",
     "geoip",
     "geoip2",
+    "geo",
+    "geolookup",
+    "lookup",
     "api",
     "network",
     "location"
