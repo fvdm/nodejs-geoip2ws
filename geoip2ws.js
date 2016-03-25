@@ -145,6 +145,8 @@ module.exports = function moduleExports (userId, licenseKey, service, requestTim
     return doLookup;
   }
 
+  api.userId = userId;
+  api.licenseKey = licenseKey;
   api.service = service || api.service;
   api.requestTimeout = requestTimeout || api.requestTimeout;
 
