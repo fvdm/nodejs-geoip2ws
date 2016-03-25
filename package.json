@@ -37,16 +37,5 @@
     "network",
     "location"
   ],
-  "license": "Unlicense",
-  "contributors": [
-    {
-      "name": "Franklin van de Meent",
-      "email": "fr@nkl.in",
-      "url": "https://github.com/fvdm",
-      "contributions": 148,
-      "additions": 1588,
-      "deletions": 887,
-      "hireable": true
-    }
-  ]
+  "license": "Unlicense"
 }
