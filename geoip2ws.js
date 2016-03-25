@@ -130,23 +130,23 @@ function doLookup (serviceName, ip, callback) {
  */
 
 module.exports = function moduleExports (userId, licenseKey, service, requestTimeout) {
-  if (userId instanceof Object) {
-    service = userId.service || api.service;
-    requestTimeout = userId.requestTimeout || api.requestTimeout;
-    api.endpoint = userId.endpoint || api.endpoint;
-    licenseKey = userId.licenseKey || null;
-    userId = userId.userId || null;
-  }
+  var key;
 
-  api.userId = userId;
-  api.licenseKey = licenseKey;
+  if (userId instanceof Object) {
+    for (key in userId) {
+      api [key] = userId [key];
+    }
+
+    return doLookup;
+  }
 
   if (typeof service === 'number') {
     api.requestTimeout = service;
-  } else {
-    api.service = service || api.service;
-    api.requestTimeout = requestTimeout || api.requestTimeout;
+    return doLookup;
   }
+
+  api.service = service || api.service;
+  api.requestTimeout = requestTimeout || api.requestTimeout;
 
   return doLookup;
 };
