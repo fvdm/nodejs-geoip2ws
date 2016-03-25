@@ -6,7 +6,7 @@
   },
   "name": "geoip2ws",
   "description": "Maxmind GeoIP2 Web Services (unofficial) - Lookup and geolocate IP-addresses",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/fvdm/nodejs-geoip2ws.git"
