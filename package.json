@@ -5,7 +5,7 @@
     "url": "https://frankl.in"
   },
   "name": "geoip2ws",
-  "description": "Maxmind GeoIP2 Web Services (unofficial)",
+  "description": "Maxmind GeoIP2 Web Services (unofficial) - Lookup and geolocate IP-addresses",
   "version": "1.8.0",
   "repository": {
     "type": "git",
