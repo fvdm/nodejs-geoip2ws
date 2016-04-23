@@ -91,6 +91,10 @@ doTest.add ('Error: API error', function (test) {
     test ()
       .isError ('fail', 'err', err)
       .isExactly ('fail', 'err.message', err && err.message, 'API error')
+      .isString ('fail', 'err.code', err && err.code)
+      .isNotEmpty ('warn', 'err.code', err && err.code)
+      .isString ('fail', 'err.error', err && err.error)
+      .isNotEmpty ('warn', 'err.error', err && err.error)
       .done ();
   });
 });
