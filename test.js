@@ -22,12 +22,28 @@ var config = {
   requestTimeout: process.env.GEOIP2WS_TIMEOUT || 5000
 };
 
-if (!config.userId || !config.licenseKey) {
-  config.endpoint = 'https://frankl.in/u/ci_test.php?a=geoip2ws&b=';
-}
 
-geo = app (config);
+// TESTS
+doTest.add ('Configuration', function (test) {
+  if (!config.userId || !config.licenseKey) {
+    config.endpoint = 'https://frankl.in/u/ci_test.php?a=geoip2ws&b=';
 
+    test ()
+      .warn ('userId or licenseKey not set')
+      .info ('Using test endpoint with fake data');
+  } else {
+    test ()
+      .good ('userId and licenseKey are set')
+      .info ('Using MaxMind endpoint with real data');
+  }
+
+  geo = app (config);
+
+  test ()
+    .info ('config.service:         ' + config.service)
+    .info ('config.requestTimeout:  ' + config.requestTimeout)
+    .done ();
+});
 
 // METHOD
 doTest.add ('Module', function () {
