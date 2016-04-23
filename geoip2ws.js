@@ -1,6 +1,7 @@
 /*
 Name:           geoip2ws
 Description:    Maxmind GeoIP2 Web Services for node.js
+Author:         Franklin van de Meent (https://frankl.in)
 Source & docs:  https://github.com/fvdm/nodejs-geoip2ws
 Feedback:       https://github.com/fvdm/nodejs-geoip2ws/issues
 License:        Unlicense (public domain)
@@ -108,7 +109,7 @@ function doLookup (serviceName, ip, callback) {
   httpProps.timeout = api.requestTimeout;
   httpProps.headers = {
     'Accept': 'application/vnd.maxmind.com-' + serviceName + '+json; charset=UTF-8; version=2.1',
-    'User-Agent': 'geoip2ws.js'
+    'User-Agent': 'geoip2ws.js (https://github.com/fvdm/nodejs-geoip2ws)'
   };
 
   http.doRequest (httpProps, function doRequest (err, res) {

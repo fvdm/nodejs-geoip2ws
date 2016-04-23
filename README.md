@@ -14,7 +14,8 @@ Unofficial Node.js module for the Maxmind GeoIP2 Web Services.
 Usage
 -----
 
-There are multiple ways to load and set up this module. All communication is done over HTTPS.
+There are multiple ways to load and set up this module.
+All communication is done over HTTPS.
 
 #### One line
 
@@ -48,8 +49,9 @@ country (ip, callback);
 Installation
 ------------
 
-You need a Maxmind account ID and license key with enough credits for one of their GeoIP *web*
-services. You can find both [*here*](https://www.maxmind.com/en/my_license_key).
+You need a Maxmind account ID and license key with enough credits
+for one of their GeoIP *web* services.
+You can find both [*here*](https://www.maxmind.com/en/my_license_key).
 
 `npm install geoip2ws`
 
@@ -110,7 +112,7 @@ function myCallback (err, data) {
 }
 ```
 
-Response data: <http://dev.maxmind.com/geoip/geoip2/web-services/#Response_Body>
+[Example response data](http://dev.maxmind.com/geoip/geoip2/web-services/#Response_Body)
 
 
 #### Errors
@@ -124,7 +126,7 @@ request failed          | A request error occured          | `err.error`
 API error               | API error occured                | `err.code` and `err.error`
 
 
-API errors: <http://dev.maxmind.com/geoip/geoip2/web-services/#Errors>
+[List of API errors](http://dev.maxmind.com/geoip/geoip2/web-services/#Errors)
 
 
 Unlicense
@@ -159,6 +161,4 @@ For more information, please refer to <http://unlicense.org/>
 Author
 ------
 
-Franklin van de Meent
-| [Website](https://frankl.in/)
-| [Github](https://github.com/fvdm)
+[Franklin van de Meent](https://frankl.in/)
