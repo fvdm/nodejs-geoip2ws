@@ -45,19 +45,24 @@ doTest.add ('Configuration', function (test) {
     .done ();
 });
 
-// METHOD
+// Module
 doTest.add ('Module', function (test) {
   test ()
     .isFunction ('fail', 'exports', app)
-    .isFunction ('fail', 'geo', geo)
+    .isFunction ('fail', 'interface', geo)
     .done ();
 });
 
 // Test success
 doTest.add ('lookup', function (test) {
   geo ('74.125.206.100', function (err, data) {
-      .isString ('fail', 'city name', data && data.city.names.en)
+    var names = data && data.city && data.city.names;
+
     test (err)
+      .isObject ('fail', 'data', data)
+      .isObject ('fail', 'data.city', data && data.city)
+      .isObject ('fail', 'data.city.names', names)
+      .isString ('fail', 'data.city.names.en', names && names.en)
       .done ();
   });
 });
