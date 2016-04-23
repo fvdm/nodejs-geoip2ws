@@ -30,7 +30,7 @@ doTest.add ('Configuration', function (test) {
     config.endpoint = 'https://frankl.in/u/ci_test.php?a=geoip2ws&b=';
 
     test ()
-      .warn ('userId or licenseKey not set')
+      .warn ('GEOIP2WS_USERID or GEOIP2WS_LICENSE not set')
       .info ('Using test endpoint with fake data');
   } else {
     test ()
