@@ -46,51 +46,51 @@ doTest.add ('Configuration', function (test) {
 });
 
 // METHOD
-doTest.add ('Module', function () {
-  doTest.test ()
+doTest.add ('Module', function (test) {
+  test ()
     .isFunction ('fail', 'exports', app)
     .isFunction ('fail', 'geo', geo)
     .done ();
 });
 
 // Test success
-doTest.add ('lookup', function () {
+doTest.add ('lookup', function (test) {
   geo ('74.125.206.100', function (err, data) {
-    doTest.test (err)
       .isString ('fail', 'city name', data && data.city.names.en)
+    test (err)
       .done ();
   });
 });
 
 // Test errors
-doTest.add ('Error: invalid ip', function () {
+doTest.add ('Error: invalid ip', function (test) {
   geo ('invalid input', function (err) {
-    doTest.test ()
+    test ()
       .isError ('fail', 'err', err)
       .isExactly ('fail', 'err.message', err && err.message, 'invalid ip')
       .done ();
   });
 });
 
-doTest.add ('Error: invalid service', function () {
+doTest.add ('Error: invalid service', function (test) {
   geo ('invalid service', '74.125.206.100', function (err) {
-    doTest.test ()
+    test ()
       .isError ('fail', 'err', err)
       .isExactly ('fail', 'err.message', err && err.message, 'invalid service')
       .done ();
   });
 });
 
-doTest.add ('Error: API error', function () {
+doTest.add ('Error: API error', function (test) {
   geo ('0.0.0.0', function (err) {
-    doTest.test ()
+    test ()
       .isError ('fail', 'err', err)
       .isExactly ('fail', 'err.message', err && err.message, 'API error')
       .done ();
   });
 });
 
-doTest.add ('Error: request timeout', function () {
+doTest.add ('Error: request timeout', function (test) {
   var tmp = app (
     config.userId,
     config.licenseKey,
@@ -99,7 +99,7 @@ doTest.add ('Error: request timeout', function () {
   );
 
   tmp ('74.125.206.100', function (err) {
-    doTest.test ()
+    test ()
       .isError ('fail', 'err', err)
       .isExactly ('fail', 'err.message', err && err.message, 'request failed')
       .isExactly ('fail', 'err.error.code', err && err.error.code, 'TIMEOUT')
