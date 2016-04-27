@@ -4,6 +4,7 @@ geoip2ws
 Unofficial Node.js module for the Maxmind GeoIP2 Web Services.
 
 [![Build Status](https://travis-ci.org/fvdm/nodejs-geoip2ws.svg?branch=master)](https://travis-ci.org/fvdm/nodejs-geoip2ws)
+[![Dependency Status](https://gemnasium.com/badges/github.com/fvdm/nodejs-geoip2ws.svg)](https://gemnasium.com/github.com/fvdm/nodejs-geoip2ws)
 
 * [Node.js](https://nodejs.org/)
 * [Maxmind GeoIP2 Web Services](https://www.maxmind.com/en/geoip2-precision-services)
