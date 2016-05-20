@@ -22,7 +22,6 @@
     "dotest": "^1.11.0",
     "eslint": "^2.10.2"
   },
-  "optionalDependencies": {},
   "engines": {
     "node": ">=0.12.0"
   },
