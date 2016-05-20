@@ -111,7 +111,7 @@ doTest.add ('Error: request timeout', function (test) {
     test ()
       .isError ('fail', 'err', err)
       .isExactly ('fail', 'err.message', err && err.message, 'request failed')
-      .isExactly ('fail', 'err.error.code', err && err.error.code, 'TIMEOUT')
+      .isExactly ('fail', 'err.error.code', err && err.error && err.error.code, 'TIMEOUT')
       .done ();
   });
 });
