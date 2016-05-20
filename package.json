@@ -39,7 +39,7 @@
     "hostname",
     "network",
     "location"
-    "api",
+    "api"
   ],
   "license": "Unlicense"
 }
