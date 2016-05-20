@@ -77,7 +77,14 @@ function doResponse (err, res, callback) {
  */
 
 function doLookup (serviceName, ip, callback) {
-  var httpProps = {};
+  var httpProps = {
+    method: 'GET',
+    auth: api.userId + ':' + api.licenseKey,
+    timeout: api.requestTimeout,
+    headers: {
+      'User-Agent': 'geoip2ws.js (https://github.com/fvdm/nodejs-geoip2ws)'
+    }
+  };
 
   if (serviceName instanceof Object) {
     ip = serviceName.ip;
@@ -102,15 +109,9 @@ function doLookup (serviceName, ip, callback) {
     return doLookup;
   }
 
-  // build request
-  httpProps.method = 'GET';
+  // do request
   httpProps.url = api.endpoint + serviceName + '/' + ip;
-  httpProps.auth = api.userId + ':' + api.licenseKey;
-  httpProps.timeout = api.requestTimeout;
-  httpProps.headers = {
-    'Accept': 'application/vnd.maxmind.com-' + serviceName + '+json; charset=UTF-8; version=2.1',
-    'User-Agent': 'geoip2ws.js (https://github.com/fvdm/nodejs-geoip2ws)'
-  };
+  httpProps.headers.Accept = 'application/vnd.maxmind.com-' + serviceName + '+json; charset=UTF-8; version=2.1';
 
   http.doRequest (httpProps, function doRequest (err, res) {
     doResponse (err, res, callback);
