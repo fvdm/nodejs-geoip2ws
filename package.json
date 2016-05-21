@@ -15,6 +15,10 @@
     "url": "https://github.com/fvdm/nodejs-geoip2ws/issues"
   },
   "main": "geoip2ws.js",
+  "tonicExampleFilename": "example.js",
+  "files": [
+    "example.js"
+  ],
   "dependencies": {
     "httpreq": "^0.4.22"
   },
