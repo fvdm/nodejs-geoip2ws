@@ -41,9 +41,9 @@ function doError (message, err, code) {
 /**
  * Process HTTP response data
  *
- * @param err {Error} instance of Error or null
- * @param res {Object} response data
- * @param callback {Function} callback function
+ * @param err {Error} - instance of Error or null
+ * @param res {Object} - response data
+ * @param callback {Function} - callback function
  * @returns {void}
  */
 
@@ -80,9 +80,9 @@ function doResponse (err, res, callback) {
 /**
  * Perform lookup
  *
- * @param serviceName {String} temporary service override, default to global setting
- * @param ip {String} IP-address, hostname or `me` to look up
- * @param callback {Function} callback function
+ * @param serviceName {String} - temporary service override, default to global setting
+ * @param ip {String} - IP-address, hostname or `me` to look up
+ * @param callback {Function} - callback function
  * @returns {function doLookup}
  */
 
@@ -136,10 +136,10 @@ function doLookup (serviceName, ip, callback) {
 /**
  * Module interface
  *
- * @param userId {String} account user ID
- * @param licenseKey {String} account license key
- * @param service {String} account service name, defaults to `city`
- * @param requestTimeout {Integer} request time out in milliseconds, defaults to `5000`
+ * @param userId {String} - account user ID
+ * @param licenseKey {String} - account license key
+ * @param service {String} - account service name, defaults to `city`
+ * @param requestTimeout {Integer} - request time out in milliseconds, defaults to `5000`
  * @returns {Function doLookup}
  */
 
