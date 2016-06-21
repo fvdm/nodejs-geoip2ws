@@ -26,7 +26,7 @@ var api = {
  * @param message {string} - Error.message
  * @param err {mixed, null} - Error.error
  * @param code {mixed} - data.code or res.statusCode
- * @returns error {Error}
+ * @returns {Error error}
  */
 
 function doError (message, err, code) {
@@ -83,7 +83,7 @@ function doResponse (err, res, callback) {
  * @param serviceName {String} temporary service override, default to global setting
  * @param ip {String} IP-address, hostname or `me` to look up
  * @param callback {Function} callback function
- * @returns {void}
+ * @returns {function doLookup}
  */
 
 function doLookup (serviceName, ip, callback) {
