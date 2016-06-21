@@ -116,7 +116,7 @@ function doLookup (serviceName, ip, callback) {
     return doLookup;
   }
 
-  if (!net.isIP (ip) && ip !== 'me') {
+  if (ip !== 'me' && !net.isIP (ip)) {
     callback (new Error ('invalid ip'));
     return doLookup;
   }
