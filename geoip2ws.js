@@ -48,7 +48,6 @@ function doError (message, err, code) {
  */
 
 function doResponse (err, res, callback) {
-  var error = null;
   var data = res && res.body ? res.body.trim () : null;
 
   if (err) {
