@@ -68,6 +68,9 @@ doTest.add ('lookup - arguments', function (test) {
       .isExactly ('fail', 'data.city.names.en', names && names.en, 'Mountain View')
       .isExactly ('fail', 'data.traits.ip_address', dataIP, '74.125.206.100')
       .isExactly ('fail', 'data.most_specific_subdivision', dataSub, 'CA')
+      .done ();
+  });
+});
 
 doTest.add ('lookup - object', function (test) {
   var obj = {
@@ -90,6 +93,16 @@ doTest.add ('lookup - object', function (test) {
       .done ();
   });
 });
+
+// Satellite IPs have no geo location
+doTest.add ('lookup - data.subdivisions array', function (test) {
+  geo ('95.107.128.1', function (err, data) {
+    var dataIP = data && data.traits && data.traits.ip_address;
+
+    test (err)
+      .isArray ('fail', 'data.subdivisions', data.subdivisions)
+      .isEmpty ('fail', 'data.subdivisions', data.subdivisions)
+      .isExactly ('fail', 'data.traits.ip_address', dataIP, '95.107.128.1')
       .done ();
   });
 });
