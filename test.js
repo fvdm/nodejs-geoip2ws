@@ -104,11 +104,7 @@ doTest.add ('Error: API error', function (test) {
 });
 
 doTest.add ('Error: request timeout', function (test) {
-  var tmpConfig = config;
-  var tmp;
-
-  tmpConfig.requestTimeout = 1;
-  tmp = app (tmpConfig);
+  var tmp = app (config.userId, config.licenseKey, 1);
 
   tmp ('74.125.206.100', function (err, data) {
     test ()
