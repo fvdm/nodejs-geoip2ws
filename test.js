@@ -129,6 +129,25 @@ doTest.add ('Error: API error', function (test) {
   });
 });
 
+doTest.add ('Setup with arguments', function (test) {
+  geo = app (config.userId, config.licenseKey, config.service, config.timeout);
+
+  geo ('74.125.206.100', function (err, data) {
+    var names = data && data.city && data.city.names;
+    var dataIP = data && data.traits && data.traits.ip_address;
+    var dataSub = data && data.most_specific_subdivision.iso_code;
+
+    test (err)
+      .isObject ('fail', 'data', data)
+      .isObject ('fail', 'data.city', data && data.city)
+      .isObject ('fail', 'data.city.names', names)
+      .isExactly ('fail', 'data.city.names.en', names && names.en, 'Mountain View')
+      .isExactly ('fail', 'data.traits.ip_address', dataIP, '74.125.206.100')
+      .isExactly ('fail', 'data.most_specific_subdivision', dataSub, 'CA')
+      .done ();
+  });
+});
+
 doTest.add ('Error: request timeout', function (test) {
   var tmp = app (config.userId, config.licenseKey, 1);
 
