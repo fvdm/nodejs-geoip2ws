@@ -58,12 +58,14 @@ doTest.add ('Module', function (test) {
 doTest.add ('lookup - arguments', function (test) {
   geo ('74.125.206.100', function (err, data) {
     var names = data && data.city && data.city.names;
+    var dataIP = data && data.traits && data.traits.ip_address;
 
     test (err)
       .isObject ('fail', 'data', data)
       .isObject ('fail', 'data.city', data && data.city)
       .isObject ('fail', 'data.city.names', names)
       .isExactly ('fail', 'data.city.names.en', names && names.en, 'Mountain View')
+      .isExactly ('fail', 'data.traits.ip_address', dataIP, '74.125.206.100')
 
 doTest.add ('lookup - object', function (test) {
   var obj = {
