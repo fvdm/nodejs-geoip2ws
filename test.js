@@ -46,6 +46,7 @@ doTest.add ('Configuration', function (test) {
     .done ();
 });
 
+
 // Module
 doTest.add ('Module', function (test) {
   test ()
@@ -53,6 +54,7 @@ doTest.add ('Module', function (test) {
     .isFunction ('fail', 'interface', geo)
     .done ();
 });
+
 
 // Test success
 doTest.add ('lookup - arguments', function (test) {
@@ -71,6 +73,7 @@ doTest.add ('lookup - arguments', function (test) {
       .done ();
   });
 });
+
 
 doTest.add ('lookup - object', function (test) {
   var obj = {
@@ -94,6 +97,7 @@ doTest.add ('lookup - object', function (test) {
   });
 });
 
+
 // Satellite IPs have no geo location
 doTest.add ('lookup - data.subdivisions array', function (test) {
   geo ('95.107.128.1', function (err, data) {
@@ -107,6 +111,7 @@ doTest.add ('lookup - data.subdivisions array', function (test) {
   });
 });
 
+
 // Test errors
 doTest.add ('Error: invalid ip', function (test) {
   geo ('invalid input', function (err, data) {
@@ -118,6 +123,7 @@ doTest.add ('Error: invalid ip', function (test) {
   });
 });
 
+
 doTest.add ('Error: invalid service', function (test) {
   geo ('invalid service', '74.125.206.100', function (err, data) {
     test ()
@@ -127,6 +133,7 @@ doTest.add ('Error: invalid service', function (test) {
       .done ();
   });
 });
+
 
 doTest.add ('Error: API error', function (test) {
   geo ('0.0.0.0', function (err, data) {
@@ -141,6 +148,7 @@ doTest.add ('Error: API error', function (test) {
       .done ();
   });
 });
+
 
 doTest.add ('Setup with arguments', function (test) {
   geo = app (config.userId, config.licenseKey, config.service, config.timeout);
@@ -160,6 +168,7 @@ doTest.add ('Setup with arguments', function (test) {
       .done ();
   });
 });
+
 
 doTest.add ('Error: request timeout', function (test) {
   var tmp = app (config.userId, config.licenseKey, 1);
