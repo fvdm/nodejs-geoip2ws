@@ -70,25 +70,27 @@ doTest.add ('lookup', function (test) {
 
 // Test errors
 doTest.add ('Error: invalid ip', function (test) {
-  geo ('invalid input', function (err) {
+  geo ('invalid input', function (err, data) {
     test ()
       .isError ('fail', 'err', err)
       .isExactly ('fail', 'err.message', err && err.message, 'invalid ip')
+      .isUndefined ('fail', 'data', data)
       .done ();
   });
 });
 
 doTest.add ('Error: invalid service', function (test) {
-  geo ('invalid service', '74.125.206.100', function (err) {
+  geo ('invalid service', '74.125.206.100', function (err, data) {
     test ()
       .isError ('fail', 'err', err)
       .isExactly ('fail', 'err.message', err && err.message, 'invalid service')
+      .isUndefined ('fail', 'data', data)
       .done ();
   });
 });
 
 doTest.add ('Error: API error', function (test) {
-  geo ('0.0.0.0', function (err) {
+  geo ('0.0.0.0', function (err, data) {
     test ()
       .isError ('fail', 'err', err)
       .isExactly ('fail', 'err.message', err && err.message, 'API error')
@@ -96,6 +98,7 @@ doTest.add ('Error: API error', function (test) {
       .isNotEmpty ('warn', 'err.code', err && err.code)
       .isString ('fail', 'err.error', err && err.error)
       .isNotEmpty ('warn', 'err.error', err && err.error)
+      .isUndefined ('fail', 'data', data)
       .done ();
   });
 });
@@ -107,12 +110,13 @@ doTest.add ('Error: request timeout', function (test) {
   tmpConfig.requestTimeout = 1;
   tmp = app (tmpConfig);
 
-  tmp ('74.125.206.100', function (err) {
+  tmp ('74.125.206.100', function (err, data) {
     test ()
       .isError ('fail', 'err', err)
       .isExactly ('fail', 'err.message', err && err.message, 'request failed')
       .isError ('fail', 'err.error', err && err.error)
       .isExactly ('fail', 'err.error.code', err && err.error && err.error.code, 'TIMEOUT')
+      .isUndefined ('fail', 'data', data)
       .done ();
   });
 });
