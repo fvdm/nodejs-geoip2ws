@@ -64,6 +64,28 @@ doTest.add ('lookup', function (test) {
       .isObject ('fail', 'data.city', data && data.city)
       .isObject ('fail', 'data.city.names', names)
       .isString ('fail', 'data.city.names.en', names && names.en)
+
+doTest.add ('lookup - object', function (test) {
+  var obj = {
+    ip: '74.125.206.100',
+    service: config.service
+  };
+
+  geo (obj, function (err, data) {
+    var names = data && data.city && data.city.names;
+    var dataIP = data && data.traits && data.traits.ip_address;
+    var dataSub = data && data.most_specific_subdivision.iso_code;
+
+    test (err)
+      .isObject ('fail', 'data', data)
+      .isObject ('fail', 'data.city', data && data.city)
+      .isObject ('fail', 'data.city.names', names)
+      .isExactly ('fail', 'data.city.names.en', names && names.en, 'Mountain View')
+      .isExactly ('fail', 'data.traits.ip_address', dataIP, '74.125.206.100')
+      .isExactly ('fail', 'data.most_specific_subdivision', dataSub, 'CA')
+      .done ();
+  });
+});
       .done ();
   });
 });
