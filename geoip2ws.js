@@ -21,6 +21,24 @@ var api = {
 
 
 /**
+ * Call back an error
+ *
+ * @param message {string} - Error.message
+ * @param err {mixed, null} - Error.error
+ * @param code {mixed} - data.code or res.statusCode
+ * @returns error {Error}
+ */
+
+function doError (message, err, code) {
+  var error = new Error (message);
+
+  error.code = code;
+  error.error = err;
+  return error;
+}
+
+
+/**
  * Process HTTP response data
  *
  * @param err {Error} instance of Error or null
@@ -34,26 +52,19 @@ function doResponse (err, res, callback) {
   var data = res && res.body ? res.body.trim () : null;
 
   if (err) {
-    error = new Error ('request failed');
-    error.error = err;
-    callback (error);
+    callback (doError ('request failed', err, null));
     return;
   }
 
   try {
     data = JSON.parse (data);
   } catch (e) {
-    error = new Error ('invalid data');
-    error.error = e;
-    callback (error);
+    callback (doError ('invalid data', null, res.statusCode));
     return;
   }
 
   if (data instanceof Object && data.error) {
-    error = new Error ('API error');
-    error.code = data.code;
-    error.error = data.error;
-    callback (error);
+    callback (doError ('API error', data.error, data.code));
     return;
   }
 
