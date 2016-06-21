@@ -59,6 +59,7 @@ doTest.add ('lookup - arguments', function (test) {
   geo ('74.125.206.100', function (err, data) {
     var names = data && data.city && data.city.names;
     var dataIP = data && data.traits && data.traits.ip_address;
+    var dataSub = data && data.most_specific_subdivision.iso_code;
 
     test (err)
       .isObject ('fail', 'data', data)
@@ -66,6 +67,7 @@ doTest.add ('lookup - arguments', function (test) {
       .isObject ('fail', 'data.city.names', names)
       .isExactly ('fail', 'data.city.names.en', names && names.en, 'Mountain View')
       .isExactly ('fail', 'data.traits.ip_address', dataIP, '74.125.206.100')
+      .isExactly ('fail', 'data.most_specific_subdivision', dataSub, 'CA')
 
 doTest.add ('lookup - object', function (test) {
   var obj = {
