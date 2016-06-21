@@ -86,13 +86,15 @@ function doLookup (serviceName, ip, callback) {
     }
   };
 
-  if (serviceName instanceof Object) {
+  // object input - doLookup (object, callbackFunction)
+  if (serviceName instanceof Object && typeof ip === 'function') {
+    callback = ip;
     ip = serviceName.ip;
     serviceName = serviceName.service || api.service;
   }
 
-  // service is optional
-  if (typeof ip === 'function') {
+  // service is optional - doLookup (ipString, callbackFunction)
+  if (typeof serviceName === 'string' && typeof ip === 'function') {
     callback = ip;
     ip = serviceName;
     serviceName = api.service;
@@ -143,8 +145,8 @@ module.exports = function moduleExports (userId, licenseKey, service, requestTim
   }
 
   if (typeof service === 'number') {
-    api.requestTimeout = service;
-    return doLookup;
+    requestTimeout = service;
+    service = api.service;
   }
 
   api.userId = userId;
