@@ -55,7 +55,7 @@ doTest.add ('Module', function (test) {
 });
 
 // Test success
-doTest.add ('lookup', function (test) {
+doTest.add ('lookup - arguments', function (test) {
   geo ('74.125.206.100', function (err, data) {
     var names = data && data.city && data.city.names;
 
