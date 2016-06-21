@@ -63,7 +63,7 @@ doTest.add ('lookup - arguments', function (test) {
       .isObject ('fail', 'data', data)
       .isObject ('fail', 'data.city', data && data.city)
       .isObject ('fail', 'data.city.names', names)
-      .isString ('fail', 'data.city.names.en', names && names.en)
+      .isExactly ('fail', 'data.city.names.en', names && names.en, 'Mountain View')
 
 doTest.add ('lookup - object', function (test) {
   var obj = {
