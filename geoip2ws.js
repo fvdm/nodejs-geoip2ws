@@ -62,7 +62,7 @@ function doResponse (err, res, callback) {
     return;
   }
 
-  if (data instanceof Object && data.error) {
+  if (data.error) {
     callback (doError ('API error', data.error, data.code));
     return;
   }
