@@ -48,7 +48,7 @@ function doError (message, err, code) {
  */
 
 function doResponse (err, res, callback) {
-  var data = res && res.body ? res.body.trim () : null;
+  var data = res && res.body || null;
 
   if (err) {
     callback (doError ('request failed', err, null));
