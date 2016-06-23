@@ -127,11 +127,7 @@
     }],
     "one-var": [2, "never"],
     "operator-assignment": [2, "always"],
-    "operator-linebreak": [2, "none", {
-      "overrides": {
-        "+": "before"
-      }
-    }],
+    "operator-linebreak": [2, "before"],
     "padded-blocks": [2, "never"],
     "quote-props": [2, "consistent"],
     "quotes": [2, "single", "avoid-escape"],
