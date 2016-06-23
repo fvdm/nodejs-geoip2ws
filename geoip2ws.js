@@ -125,10 +125,11 @@ function doLookup (serviceName, ip, callback) {
   httpProps.url = api.endpoint + serviceName + '/' + ip;
   httpProps.headers.Accept = 'application/vnd.maxmind.com-' + serviceName + '+json; charset=UTF-8; version=2.1';
 
-  http.doRequest (httpProps, function doRequest (err, res) {
+  function httpResponse (err, res) {
     doResponse (err, res, callback);
-  });
+  }
 
+  http.doRequest (httpProps, httpResponse);
   return doLookup;
 }
 
