@@ -144,7 +144,7 @@ function doLookup (serviceName, ip, callback) {
  * @returns {Function doLookup}
  */
 
-module.exports = function moduleExports (userId, licenseKey, service, requestTimeout) {
+function setup (userId, licenseKey, service, requestTimeout) {
   var key;
 
   if (userId instanceof Object) {
@@ -166,4 +166,6 @@ module.exports = function moduleExports (userId, licenseKey, service, requestTim
   api.requestTimeout = requestTimeout || api.requestTimeout;
 
   return doLookup;
-};
+}
+
+module.exports = setup;
