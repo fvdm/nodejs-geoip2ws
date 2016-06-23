@@ -35,17 +35,17 @@
     "test": "bash test.sh"
   },
   "keywords": [
-    "maxmind",
+    "api",
+    "geo",
     "geoip",
     "geoip2",
-    "geo",
     "geolookup",
-    "lookup",
-    "ip",
     "hostname",
-    "network",
+    "ip",
     "location",
-    "api"
+    "lookup",
+    "maxmind",
+    "network"
   ],
   "license": "Unlicense"
 }
