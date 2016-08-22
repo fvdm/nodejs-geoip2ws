@@ -1,3 +1,13 @@
+#### 1.8.7 (2016-8-22)
+
+##### Documentation Changes
+
+* **badges:**
+  * Replaced bitHound score with code ([f2bda62f](https://github.com/fvdm/nodejs-geoip2ws/commit/f2bda62f09a70b366b198f7165e18c2f025c99c3))
+  * Replaced Gemnasium with bitHound deps ([ea8d83b7](https://github.com/fvdm/nodejs-geoip2ws/commit/ea8d83b7998055356ce80609bf55c09d87e7fc82))
+  * Added bitHound score ([356600cd](https://github.com/fvdm/nodejs-geoip2ws/commit/356600cd9c4363b36201aa7685ec15c988edccc1))
+  * Reordered badges ([a3578a86](https://github.com/fvdm/nodejs-geoip2ws/commit/a3578a86b0df96c4b10bd23387a1bd59588100af))
+
 #### 1.8.6 (2016-8-22)
 
 ##### Chores
