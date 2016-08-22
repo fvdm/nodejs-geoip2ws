@@ -7,6 +7,7 @@ Unofficial Node.js module for the Maxmind GeoIP2 Web Services.
 [![Dependency Status](https://gemnasium.com/badges/github.com/fvdm/nodejs-geoip2ws.svg)](https://gemnasium.com/github.com/fvdm/nodejs-geoip2ws#runtime-dependencies)
 [![Build Status](https://travis-ci.org/fvdm/nodejs-geoip2ws.svg?branch=master)](https://travis-ci.org/fvdm/nodejs-geoip2ws)
 [![Coverage Status](https://coveralls.io/repos/github/fvdm/nodejs-geoip2ws/badge.svg?branch=master)](https://coveralls.io/github/fvdm/nodejs-geoip2ws?branch=master)
+[![bitHound Overall Score](https://www.bithound.io/github/fvdm/nodejs-geoip2ws/badges/score.svg)](https://www.bithound.io/github/fvdm/nodejs-geoip2ws)
 
 * [Node.js](https://nodejs.org/)
 * [Maxmind GeoIP2 Web Services](https://www.maxmind.com/en/geoip2-precision-services)
