@@ -1,3 +1,31 @@
+#### 1.8.6 (2016-8-22)
+
+##### Chores
+
+* **package:**
+  * Updated dev dependencies ([071eb290](https://github.com/fvdm/nodejs-geoip2ws/commit/071eb290033b19c1f3f3b7f8f0c658dd8bbb0423))
+  * update coveralls to version 2.11.10 ([10aa17c5](https://github.com/fvdm/nodejs-geoip2ws/commit/10aa17c5d109fe87dd8a84bc9852f6f917e61e27))
+  * update eslint to version 3.0.0 ([20590621](https://github.com/fvdm/nodejs-geoip2ws/commit/20590621c675912dc6adcdc3a59c2798019c951b))
+  * Sort A-Z keywords ([1a046942](https://github.com/fvdm/nodejs-geoip2ws/commit/1a0469423ad20e3218820a0b584d92f5112e166b))
+
+##### Refactors
+
+* **package:** Changed minimum node v4.0 ([2f9b47f6](https://github.com/fvdm/nodejs-geoip2ws/commit/2f9b47f6457d3fb39603f725654d8e9853d5dd13))
+* **setup:** Moved inline exports func to setup ([d9f3200b](https://github.com/fvdm/nodejs-geoip2ws/commit/d9f3200bc2dffa94d40fa5e2128ed9f754f3ff1c))
+* **doLookup:** Cleaner request response action ([76e1e7ec](https://github.com/fvdm/nodejs-geoip2ws/commit/76e1e7ec7efaba01174efaa330d4da8e935bc48c))
+* **doResponse:**
+  * Removed res.body.trim ([d08ff142](https://github.com/fvdm/nodejs-geoip2ws/commit/d08ff14282dff4a5e6f16edde93e53c7194c1649))
+  * Removed object check after JSON.parse ([71799677](https://github.com/fvdm/nodejs-geoip2ws/commit/717996771d7f61afd94c064a30881a539942ba20))
+* **jsdoc:** Minor jsdoc fixes ([012c0528](https://github.com/fvdm/nodejs-geoip2ws/commit/012c052833fc3949a86c713e78c26623ac188a2f))
+
+##### Tests
+
+* **runner:** Log commits and cleanup ([21022831](https://github.com/fvdm/nodejs-geoip2ws/commit/21022831d01072d4fb8a4616304a20b53b2d588a))
+* **lint:** Update eslint config to ES6 ([57044de2](https://github.com/fvdm/nodejs-geoip2ws/commit/57044de2761d0c06be9bfcaeaac6fbb56d3e4745))
+* **config:**
+  * Changed minimum node v4.0 ([bb2c6bdb](https://github.com/fvdm/nodejs-geoip2ws/commit/bb2c6bdb7bae067a8b2c03ed7cf39fb563f78b65))
+  * Changed eslint operator-linebreak to before ([07a09ecf](https://github.com/fvdm/nodejs-geoip2ws/commit/07a09ecf6e769d36f2344350e93682f9213080d6))
+
 #### 1.8.5 (2016-6-21)
 
 ##### Chores
