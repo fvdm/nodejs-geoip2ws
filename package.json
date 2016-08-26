@@ -23,16 +23,13 @@
     "httpreq": "^0.4.22"
   },
   "devDependencies": {
-    "coveralls": "^2.11.12",
-    "dotest": "^1.12.4",
-    "eslint": "^3.3.1",
-    "istanbul": "^0.4.5"
+    "dotest": "^1.13.4"
   },
   "engines": {
     "node": ">=4.0.0"
   },
   "scripts": {
-    "test": "bash test.sh"
+    "test": "dotest"
   },
   "keywords": [
     "api",
