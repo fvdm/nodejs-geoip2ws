@@ -4,6 +4,9 @@
       "engine": "eslint"
     }
   },
+  "ignore": [
+    "example.js"
+  ],
   "test": [
     "test.js"
   ]
