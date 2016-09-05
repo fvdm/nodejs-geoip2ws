@@ -47,7 +47,7 @@ function checkSuccess (test, err, data, ret) {
     .isExactly ('fail', 'data.traits.ip_address', dataIP, '74.125.206.100')
     .isExactly ('fail', 'data.most_specific_subdivision', dataSub, 'CA');
 
-  if (!err && ret !== undefined) {
+  if (!err && typeof ret !== 'undefined') {
     test ()
       .isFunction ('fail', 'return', ret);
   }
