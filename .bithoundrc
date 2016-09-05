@@ -1,4 +1,9 @@
 {
+  "critics": {
+    "lint": {
+      "engine": "eslint"
+    }
+  },
   "test": [
     "test.js"
   ]
