@@ -34,7 +34,7 @@ var config = {
  * @return {void}
  */
 
-function checkSuccess (test, err, data, ret)
+function checkSuccess (test, err, data, ret) {
   var names = data && data.city && data.city.names;
   var dataIP = data && data.traits && data.traits.ip_address;
   var dataSub = data && data.most_specific_subdivision.iso_code;
