@@ -24,6 +24,39 @@ var config = {
 };
 
 
+/**
+ * Check common success response
+ *
+ * @param test {function} - Test specific function
+ * @param err {Error|null} - Callback error
+ * @param data {mixed|null} - Callback data
+ * @param [ret] {mixed} - Method return value
+ * @return {void}
+ */
+
+function checkSuccess (test, err, data, ret) {
+  var names = data && data.city && data.city.names;
+  var dataIP = data && data.traits && data.traits.ip_address;
+  var dataSub = data && data.most_specific_subdivision.iso_code;
+
+  test (err)
+    .isObject ('fail', 'data', data)
+    .isObject ('fail', 'data.city', data && data.city)
+    .isObject ('fail', 'data.city.names', names)
+    .isExactly ('fail', 'data.city.names.en', names && names.en, 'Mountain View')
+    .isExactly ('fail', 'data.traits.ip_address', dataIP, '74.125.206.100')
+    .isExactly ('fail', 'data.most_specific_subdivision', dataSub, 'CA');
+
+  if (!err && typeof ret !== 'undefined') {
+    test ()
+      .isFunction ('fail', 'return', ret);
+  }
+
+  test ()
+      .done ();
+}
+
+
 // TESTS
 doTest.add ('Configuration', function (test) {
   if (!config.userId || !config.licenseKey) {
@@ -59,19 +92,7 @@ doTest.add ('Module', function (test) {
 // Test success
 doTest.add ('lookup - arguments', function (test) {
   var ret = geo ('74.125.206.100', function (err, data) {
-    var names = data && data.city && data.city.names;
-    var dataIP = data && data.traits && data.traits.ip_address;
-    var dataSub = data && data.most_specific_subdivision.iso_code;
-
-    test (err)
-      .isObject ('fail', 'data', data)
-      .isObject ('fail', 'data.city', data && data.city)
-      .isObject ('fail', 'data.city.names', names)
-      .isExactly ('fail', 'data.city.names.en', names && names.en, 'Mountain View')
-      .isExactly ('fail', 'data.traits.ip_address', dataIP, '74.125.206.100')
-      .isExactly ('fail', 'data.most_specific_subdivision', dataSub, 'CA')
-      .isFunction ('fail', 'return', ret)
-      .done ();
+    checkSuccess (test, err, data, ret);
   });
 });
 
@@ -83,18 +104,7 @@ doTest.add ('lookup - object', function (test) {
   };
 
   geo (obj, function (err, data) {
-    var names = data && data.city && data.city.names;
-    var dataIP = data && data.traits && data.traits.ip_address;
-    var dataSub = data && data.most_specific_subdivision.iso_code;
-
-    test (err)
-      .isObject ('fail', 'data', data)
-      .isObject ('fail', 'data.city', data && data.city)
-      .isObject ('fail', 'data.city.names', names)
-      .isExactly ('fail', 'data.city.names.en', names && names.en, 'Mountain View')
-      .isExactly ('fail', 'data.traits.ip_address', dataIP, '74.125.206.100')
-      .isExactly ('fail', 'data.most_specific_subdivision', dataSub, 'CA')
-      .done ();
+    checkSuccess (test, err, data);
   });
 });
 
@@ -155,18 +165,7 @@ doTest.add ('Setup with arguments', function (test) {
   geo = app (config.userId, config.licenseKey, config.service, config.timeout);
 
   geo ('74.125.206.100', function (err, data) {
-    var names = data && data.city && data.city.names;
-    var dataIP = data && data.traits && data.traits.ip_address;
-    var dataSub = data && data.most_specific_subdivision.iso_code;
-
-    test (err)
-      .isObject ('fail', 'data', data)
-      .isObject ('fail', 'data.city', data && data.city)
-      .isObject ('fail', 'data.city.names', names)
-      .isExactly ('fail', 'data.city.names.en', names && names.en, 'Mountain View')
-      .isExactly ('fail', 'data.traits.ip_address', dataIP, '74.125.206.100')
-      .isExactly ('fail', 'data.most_specific_subdivision', dataSub, 'CA')
-      .done ();
+    checkSuccess (test, err, data);
   });
 });
 
