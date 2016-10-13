@@ -173,7 +173,7 @@ doTest.add ('Setup with arguments', (test) => {
 
 
 doTest.add ('Error: request timeout', (test) => {
-  var tmp = app (config.userId, config.licenseKey, 1);
+  const tmp = app (config.userId, config.licenseKey, 1);
 
   tmp ('74.125.206.100', (err, data) => {
     test ()
