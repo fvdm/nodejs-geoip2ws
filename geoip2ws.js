@@ -7,11 +7,13 @@ Feedback:       https://github.com/fvdm/nodejs-geoip2ws/issues
 License:        Unlicense (public domain)
 */
 
-var http = require ('httpreq');
-var net = require ('net');
+'use strict';
+
+const http = require ('httpreq');
+const net = require ('net');
 
 // setup
-var api = {
+let api = {
   userId: null,
   licenseKey: null,
   service: 'city',
@@ -30,7 +32,7 @@ var api = {
  */
 
 function doError (message, err, code) {
-  var error = new Error (message);
+  let error = new Error (message);
 
   error.code = code;
   error.error = err;
@@ -48,7 +50,7 @@ function doError (message, err, code) {
  */
 
 function doResponse (err, res, callback) {
-  var data = res && res.body || null;
+  let data = res && res.body || null;
 
   if (err) {
     callback (doError ('request failed', err, null));
@@ -87,7 +89,7 @@ function doResponse (err, res, callback) {
  */
 
 function doLookup (serviceName, ip, callback) {
-  var httpProps = {
+  let httpProps = {
     method: 'GET',
     auth: api.userId + ':' + api.licenseKey,
     timeout: api.requestTimeout,
@@ -125,11 +127,10 @@ function doLookup (serviceName, ip, callback) {
   httpProps.url = api.endpoint + serviceName + '/' + ip;
   httpProps.headers.Accept = 'application/vnd.maxmind.com-' + serviceName + '+json; charset=UTF-8; version=2.1';
 
-  function httpResponse (err, res) {
+  http.doRequest (httpProps, (err, res) => {
     doResponse (err, res, callback);
-  }
+  });
 
-  http.doRequest (httpProps, httpResponse);
   return doLookup;
 }
 
@@ -145,7 +146,7 @@ function doLookup (serviceName, ip, callback) {
  */
 
 function setup (userId, licenseKey, service, requestTimeout) {
-  var key;
+  let key;
 
   if (userId instanceof Object) {
     for (key in userId) {
