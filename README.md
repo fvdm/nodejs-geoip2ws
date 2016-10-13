@@ -57,7 +57,7 @@ You need a Maxmind account ID and license key with enough credits
 for one of their GeoIP *web* services.
 You can find both [*here*](https://www.maxmind.com/en/my_license_key).
 
-`npm install geoip2ws`
+`npm install geoip2ws --save`
 
 
 The functions
