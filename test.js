@@ -7,6 +7,8 @@ Feedback:       https://github.com/fvdm/nodejs-geoip2ws/issues
 License:        Unlicense (public domain, see LICENSE file)
 */
 
+'use strict';
+
 const doTest = require ('dotest');
 const app = require ('./');
 
