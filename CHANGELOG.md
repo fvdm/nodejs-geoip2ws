@@ -1,3 +1,39 @@
+#### 1.8.8 (2016-10-26)
+
+##### Chores
+
+* **main:**
+  * Renamed http var to httpreq ([5f62ce41](https://github.com/fvdm/nodejs-geoip2ws/commit/5f62ce41d0732b11090091d270f4ff2436907aa4))
+  * Minor comment change, renamed var ([50fe6210](https://github.com/fvdm/nodejs-geoip2ws/commit/50fe62109e1a2db0b5bc62c8358a38b58186b24b))
+  * Minor edits to comments ([34babf85](https://github.com/fvdm/nodejs-geoip2ws/commit/34babf85f9d34b8e8f0a8950f2540752957f5283))
+* **develop:** Added gitignore config ([f948fd64](https://github.com/fvdm/nodejs-geoip2ws/commit/f948fd64cc6f1df1a5526979ea17f4c38046ba6e))
+* **package:**
+  * Fixed dotest dev dep version ([214fe4b2](https://github.com/fvdm/nodejs-geoip2ws/commit/214fe4b2b8a50022bdd44e8402d01dfd7b6139dd))
+  * Removed dev deps and test runner ([046b29c6](https://github.com/fvdm/nodejs-geoip2ws/commit/046b29c69859960d340736a7fb0eca3409ca29b2))
+
+##### Documentation Changes
+
+* **readme:** Add save flag to npm install ([f890cd2e](https://github.com/fvdm/nodejs-geoip2ws/commit/f890cd2e6afccb6a557a31a378ab527728e017ec))
+
+##### Bug Fixes
+
+* **main:** Fixed timeout var in setup() ([c7e11c66](https://github.com/fvdm/nodejs-geoip2ws/commit/c7e11c66d3a96ab6fac4d09e55c230c6694ffcca))
+
+##### Refactors
+
+* **errors:** Error handling without returns ([94261f4e](https://github.com/fvdm/nodejs-geoip2ws/commit/94261f4efcb959d6fb8f9cbda560e084c4e725f9))
+
+##### Tests
+
+* **main:** Don't report when using real data ([acf9234c](https://github.com/fvdm/nodejs-geoip2ws/commit/acf9234cfd96a4720a27f2e6dc6130c58b435167))
+* **config:**
+  * Use dynamic node versions on Travis CI (#25) ([98e358d1](https://github.com/fvdm/nodejs-geoip2ws/commit/98e358d143df53c02e9dbddcbd0319e775e379bb))
+  * Removed node v7 from Travis CI ([5169efcc](https://github.com/fvdm/nodejs-geoip2ws/commit/5169efcc3a4405a6b6512fde49583b93867786e0))
+  * Added node v5 to Travis CI ([6d218d0d](https://github.com/fvdm/nodejs-geoip2ws/commit/6d218d0d2e916b2171e9be66fbdcab21e3b3bffe))
+  * Removed node v5 from Travis CI ([e9bd0c55](https://github.com/fvdm/nodejs-geoip2ws/commit/e9bd0c55975b8bd5e84fe0727bb1f2909f91570f))
+  * Add bitHound config (#23) ([41d88327](https://github.com/fvdm/nodejs-geoip2ws/commit/41d883273675b9305f272f53b17e607fc486ba0c))
+* **style:** Reduce code duplication (#22) ([c27fb56e](https://github.com/fvdm/nodejs-geoip2ws/commit/c27fb56ef1ddc422974273f9dc2b6c15a98bad13))
+
 #### 1.8.7 (2016-8-22)
 
 ##### Documentation Changes
