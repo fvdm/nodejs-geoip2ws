@@ -1,10 +1,10 @@
 /*
-Name:           geoip2ws
-Description:    Maxmind GeoIP2 Web Services for node.js
+Name:           geoip2ws - geoip2ws.js
+Description:    Maxmind GeoIP2 Web Services for node.js (unofficial)
 Author:         Franklin van de Meent (https://frankl.in)
 Source & docs:  https://github.com/fvdm/nodejs-geoip2ws
 Feedback:       https://github.com/fvdm/nodejs-geoip2ws/issues
-License:        Unlicense (public domain)
+License:        Unlicense (public domain, see LICENSE file)
 */
 
 var http = require ('httpreq');
@@ -23,10 +23,10 @@ var api = {
 /**
  * Call back an error
  *
- * @param message {string} - Error.message
- * @param err {mixed, null} - Error.error
- * @param code {mixed} - data.code or res.statusCode
- * @returns {Error error}
+ * @param message {string} - `Error.message`
+ * @param err {mixed|null} - `Error.error`
+ * @param code {mixed} - `data.code` or `res.statusCode`
+ * @return {Error} error
  */
 
 function doError (message, err, code) {
@@ -41,10 +41,10 @@ function doError (message, err, code) {
 /**
  * Process HTTP response data
  *
- * @param err {Error} - instance of Error or null
- * @param res {Object} - response data
- * @param callback {Function} - callback function
- * @returns {void}
+ * @param err {Error} - Instance of `Error` or `null`
+ * @param res {object} - Response data
+ * @param callback {function} - Callback function
+ * @return {void}
  */
 
 function doResponse (err, res, callback) {
@@ -80,10 +80,10 @@ function doResponse (err, res, callback) {
 /**
  * Perform lookup
  *
- * @param serviceName {String} - temporary service override, default to global setting
- * @param ip {String} - IP-address, hostname or `me` to look up
- * @param callback {Function} - callback function
- * @returns {function doLookup}
+ * @param [serviceName=api.service] {string} - Temporary service override
+ * @param ip {string} - IP-address, hostname or `me` to look up
+ * @param callback {function} - Callback function
+ * @return {function} doLookup
  */
 
 function doLookup (serviceName, ip, callback) {
@@ -137,11 +137,11 @@ function doLookup (serviceName, ip, callback) {
 /**
  * Module interface
  *
- * @param userId {String} - account user ID
- * @param licenseKey {String} - account license key
- * @param service {String} - account service name, defaults to `city`
- * @param requestTimeout {Integer} - request time out in milliseconds, defaults to `5000`
- * @returns {Function doLookup}
+ * @param userId {string} - Account user ID
+ * @param licenseKey {string} - Account license key
+ * @param service {string} - Account service name, defaults to `city`
+ * @param requestTimeout {integer} - Request time out in milliseconds, defaults to `5000`
+ * @return {function} doLookup
  */
 
 function setup (userId, licenseKey, service, requestTimeout) {
