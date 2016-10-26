@@ -139,12 +139,12 @@ function doLookup (serviceName, ip, callback) {
  *
  * @param userId {string} - Account user ID
  * @param licenseKey {string} - Account license key
- * @param service {string} - Account service name, defaults to `city`
- * @param requestTimeout {integer} - Request time out in milliseconds, defaults to `5000`
+ * @param [service=city] {string} - Account service name
+ * @param [timeout=5000] {integer} - Request time out in milliseconds
  * @return {function} doLookup
  */
 
-function setup (userId, licenseKey, service, requestTimeout) {
+function setup (userId, licenseKey, service, timeout) {
   var key;
 
   if (userId instanceof Object) {
@@ -163,7 +163,7 @@ function setup (userId, licenseKey, service, requestTimeout) {
   api.userId = userId;
   api.licenseKey = licenseKey;
   api.service = service || api.service;
-  api.requestTimeout = requestTimeout || api.requestTimeout;
+  api.requestTimeout = timeout || api.requestTimeout;
 
   return doLookup;
 }
