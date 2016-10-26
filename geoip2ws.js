@@ -7,7 +7,7 @@ Feedback:       https://github.com/fvdm/nodejs-geoip2ws/issues
 License:        Unlicense (public domain, see LICENSE file)
 */
 
-var http = require ('httpreq');
+var httpreq = require ('httpreq');
 var net = require ('net');
 
 // setup
@@ -129,7 +129,7 @@ function doLookup (serviceName, ip, callback) {
     doResponse (err, res, callback);
   }
 
-  http.doRequest (httpProps, httpResponse);
+  httpreq.doRequest (httpProps, httpResponse);
   return doLookup;
 }
 
