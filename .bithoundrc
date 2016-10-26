@@ -2,7 +2,7 @@
   "critics": {
     "lint": {
       "engine": "eslint"
-    }
+    },
     "wc": {
       "limit": 400
     }
