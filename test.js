@@ -7,15 +7,17 @@ Feedback:       https://github.com/fvdm/nodejs-geoip2ws/issues
 License:        Unlicense (public domain, see LICENSE file)
 */
 
-var doTest = require ('dotest');
-var app = require ('./');
+'use strict';
 
-var geo;
+const doTest = require ('dotest');
+const app = require ('./');
+
+let geo;
 
 
 // Setup
 // set env GEOIP2WS_USERID and GEOIP2WS_LICENSE  (CI tests)
-var config = {
+const config = {
   userId: process.env.GEOIP2WS_USERID || null,
   licenseKey: process.env.GEOIP2WS_LICENSE || null,
   service: process.env.GEOIP2WS_SERVICE || 'city',
@@ -35,9 +37,9 @@ var config = {
  */
 
 function checkSuccess (test, err, data, ret) {
-  var names = data && data.city && data.city.names;
-  var dataIP = data && data.traits && data.traits.ip_address;
-  var dataSub = data && data.most_specific_subdivision.iso_code;
+  const names = data && data.city && data.city.names;
+  const dataIP = data && data.traits && data.traits.ip_address;
+  const dataSub = data && data.most_specific_subdivision.iso_code;
 
   test (err)
     .isObject ('fail', 'data', data)
@@ -53,12 +55,12 @@ function checkSuccess (test, err, data, ret) {
   }
 
   test ()
-      .done ();
+    .done ();
 }
 
 
 // TESTS
-doTest.add ('Configuration', function (test) {
+doTest.add ('Configuration', (test) => {
   if (!config.userId || !config.licenseKey) {
     config.endpoint = 'https://frankl.in/u/ci_test.php?a=geoip2ws&b=';
 
@@ -81,7 +83,7 @@ doTest.add ('Configuration', function (test) {
 
 
 // Module
-doTest.add ('Module', function (test) {
+doTest.add ('Module', (test) => {
   test ()
     .isFunction ('fail', 'exports', app)
     .isFunction ('fail', 'interface', geo)
@@ -90,29 +92,29 @@ doTest.add ('Module', function (test) {
 
 
 // Test success
-doTest.add ('lookup - arguments', function (test) {
-  var ret = geo ('74.125.206.100', function (err, data) {
+doTest.add ('lookup - arguments', (test) => {
+  const ret = geo ('74.125.206.100', (err, data) => {
     checkSuccess (test, err, data, ret);
   });
 });
 
 
-doTest.add ('lookup - object', function (test) {
-  var obj = {
+doTest.add ('lookup - object', (test) => {
+  const obj = {
     ip: '74.125.206.100',
     service: config.service
   };
 
-  geo (obj, function (err, data) {
+  geo (obj, (err, data) => {
     checkSuccess (test, err, data);
   });
 });
 
 
 // Satellite IPs have no geo location
-doTest.add ('lookup - data.subdivisions array', function (test) {
-  geo ('95.107.128.1', function (err, data) {
-    var dataIP = data && data.traits && data.traits.ip_address;
+doTest.add ('lookup - data.subdivisions array', (test) => {
+  geo ('95.107.128.1', (err, data) => {
+    const dataIP = data && data.traits && data.traits.ip_address;
 
     test (err)
       .isArray ('fail', 'data.subdivisions', data.subdivisions)
@@ -124,8 +126,8 @@ doTest.add ('lookup - data.subdivisions array', function (test) {
 
 
 // Test errors
-doTest.add ('Error: invalid ip', function (test) {
-  geo ('invalid input', function (err, data) {
+doTest.add ('Error: invalid ip', (test) => {
+  geo ('invalid input', (err, data) => {
     test ()
       .isError ('fail', 'err', err)
       .isExactly ('fail', 'err.message', err && err.message, 'invalid ip')
@@ -135,8 +137,8 @@ doTest.add ('Error: invalid ip', function (test) {
 });
 
 
-doTest.add ('Error: invalid service', function (test) {
-  geo ('invalid service', '74.125.206.100', function (err, data) {
+doTest.add ('Error: invalid service', (test) => {
+  geo ('invalid service', '74.125.206.100', (err, data) => {
     test ()
       .isError ('fail', 'err', err)
       .isExactly ('fail', 'err.message', err && err.message, 'invalid service')
@@ -146,8 +148,8 @@ doTest.add ('Error: invalid service', function (test) {
 });
 
 
-doTest.add ('Error: API error', function (test) {
-  geo ('0.0.0.0', function (err, data) {
+doTest.add ('Error: API error', (test) => {
+  geo ('0.0.0.0', (err, data) => {
     test ()
       .isError ('fail', 'err', err)
       .isExactly ('fail', 'err.message', err && err.message, 'API error')
@@ -161,19 +163,19 @@ doTest.add ('Error: API error', function (test) {
 });
 
 
-doTest.add ('Setup with arguments', function (test) {
+doTest.add ('Setup with arguments', (test) => {
   geo = app (config.userId, config.licenseKey, config.service, config.timeout);
 
-  geo ('74.125.206.100', function (err, data) {
+  geo ('74.125.206.100', (err, data) => {
     checkSuccess (test, err, data);
   });
 });
 
 
-doTest.add ('Error: request timeout', function (test) {
-  var tmp = app (config.userId, config.licenseKey, 1);
+doTest.add ('Error: request timeout', (test) => {
+  const tmp = app (config.userId, config.licenseKey, 1);
 
-  tmp ('74.125.206.100', function (err, data) {
+  tmp ('74.125.206.100', (err, data) => {
     test ()
       .isError ('fail', 'err', err)
       .isExactly ('fail', 'err.message', err && err.message, 'request failed')
