@@ -49,31 +49,31 @@ function doError (message, err, code) {
 
 function doResponse (err, res, callback) {
   var data = res && res.body || null;
-
-  if (err) {
-    callback (doError ('request failed', err, null));
-    return;
-  }
+  var error = null;
 
   try {
     data = JSON.parse (data);
+
+    if (data.error) {
+      error = doError ('API error', data.error, data.code);
+    } else if (Array.isArray (data.subdivisions) && data.subdivisions.length) {
+      data.most_specific_subdivision = data.subdivisions [data.subdivisions.length - 1];
+    } else {
+      data.subdivisions = [];
+    }
   } catch (e) {
-    callback (doError ('invalid data', null, res.statusCode));
-    return;
+    error = doError ('invalid data', null, res && res.statusCode);
   }
 
-  if (data.error) {
-    callback (doError ('API error', data.error, data.code));
-    return;
+  if (err) {
+    error = doError ('request failed', err, null);
   }
 
-  if (Array.isArray (data.subdivisions) && data.subdivisions.length) {
-    data.most_specific_subdivision = data.subdivisions [data.subdivisions.length - 1];
+  if (error) {
+    callback (error);
   } else {
-    data.subdivisions = [];
+    callback (null, data);
   }
-
-  callback (null, data);
 }
 
 
