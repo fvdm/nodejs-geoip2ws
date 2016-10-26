@@ -156,7 +156,7 @@ function setup (userId, licenseKey, service, timeout) {
   }
 
   if (typeof service === 'number') {
-    requestTimeout = service;
+    timeout = service;
     service = api.service;
   }
 
