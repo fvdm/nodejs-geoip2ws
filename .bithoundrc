@@ -3,6 +3,9 @@
     "lint": {
       "engine": "eslint"
     }
+    "wc": {
+      "limit": 400
+    }
   },
   "ignore": [
     "example.js"
