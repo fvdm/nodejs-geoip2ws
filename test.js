@@ -65,10 +65,6 @@ doTest.add ('Configuration', function (test) {
     test ()
       .warn ('GEOIP2WS_USERID or GEOIP2WS_LICENSE not set')
       .info ('Using test endpoint with fake data');
-  } else {
-    test ()
-      .good ('userId and licenseKey are set')
-      .info ('Using MaxMind endpoint with real data');
   }
 
   geo = app (config);
