@@ -27,11 +27,11 @@ var config = {
 /**
  * Check common success response
  *
- * @param test {function} - Test specific function
- * @param err {Error|null} - Callback error
- * @param data {mixed|null} - Callback data
- * @param [ret] {mixed} - Method return value
- * @return {void}
+ * @param   {function}    test   Test specific function
+ * @param   {Error|null}  err    Callback error
+ * @param   {mixed}       data   Callback data
+ * @param   {mixed}       [ret]  Method return value
+ * @return  {void}
  */
 
 function checkSuccess (test, err, data, ret) {
