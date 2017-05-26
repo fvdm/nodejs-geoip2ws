@@ -23,10 +23,10 @@ var api = {
 /**
  * Call back an error
  *
- * @param message {string} - `Error.message`
- * @param err {mixed|null} - `Error.error`
- * @param code {mixed} - `data.code` or `res.statusCode`
- * @return {Error} error
+ * @param   {string}  message  `Error.message`
+ * @param   {mixed}   err      `Error.error`
+ * @param   {mixed}   code     `data.code` or `res.statusCode`
+ * @return  {Error}   error
  */
 
 function doError (message, err, code) {
@@ -41,10 +41,10 @@ function doError (message, err, code) {
 /**
  * Process HTTP response data
  *
- * @param err {Error} - Instance of `Error` or `null`
- * @param res {object} - Response data
- * @param callback {function} - Callback function
- * @return {void}
+ * @param   {Error|null}  err       Instance of `Error` or `null`
+ * @param   {object}      res       Response data
+ * @param   {function}    callback  Callback function
+ * @return  {void}
  */
 
 function doResponse (err, res, callback) {
@@ -80,10 +80,10 @@ function doResponse (err, res, callback) {
 /**
  * Perform lookup
  *
- * @param [serviceName=api.service] {string} - Temporary service override
- * @param ip {string} - IP-address, hostname or `me` to look up
- * @param callback {function} - Callback function
- * @return {function} doLookup
+ * @param   {string}    [serviceName=api.service]  Temporary service override
+ * @param   {string}    ip                         IP-address, hostname or `me` to look up
+ * @param   {function}  callback                   Callback function
+ * @return  {function}  doLookup
  */
 
 function doLookup (serviceName, ip, callback) {
@@ -137,11 +137,11 @@ function doLookup (serviceName, ip, callback) {
 /**
  * Module interface
  *
- * @param userId {string} - Account user ID
- * @param licenseKey {string} - Account license key
- * @param [service=city] {string} - Account service name
- * @param [timeout=5000] {integer} - Request time out in milliseconds
- * @return {function} doLookup
+ * @param   {string}    userId          Account user ID
+ * @param   {string}    licenseKey      Account license key
+ * @param   {string}    [service=city]  Account service name
+ * @param   {number}    [timeout=5000]  Request time out in milliseconds
+ * @return  {function}  doLookup
  */
 
 function setup (userId, licenseKey, service, timeout) {
