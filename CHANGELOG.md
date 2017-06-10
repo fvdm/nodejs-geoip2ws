@@ -1,3 +1,34 @@
+#### 1.8.9 (2017-6-10)
+
+##### Chores
+
+* **package:**
+  * Update dependencies ([5edc1ee6](https://github.com/fvdm/nodejs-geoip2ws/commit/5edc1ee67f9878958dfa121423fe18df161ecfbc))
+  * Update dotest dev dep ([0b5338cd](https://github.com/fvdm/nodejs-geoip2ws/commit/0b5338cd15dd2f99891e92350a36bc8410208ce5))
+  * Update dev deps ([c1e3a81d](https://github.com/fvdm/nodejs-geoip2ws/commit/c1e3a81d6ba35e93e66e7b46435f36767d9ea06a))
+
+##### Documentation Changes
+
+* **readme:** Replaced Ko-Fi image with SVG ([914c2589](https://github.com/fvdm/nodejs-geoip2ws/commit/914c2589a03e0dbf8675afd295803aa42009a82a))
+
+##### Refactors
+
+* **readme:** Added coffee link to Author ([29ea410c](https://github.com/fvdm/nodejs-geoip2ws/commit/29ea410c3567efafb1f42fa6e24e83d78bff733a))
+
+##### Code Style Changes
+
+* **comments:** Clean up JSDoc syntax ([86eab888](https://github.com/fvdm/nodejs-geoip2ws/commit/86eab8886565da14319059b2803362d5f8e9785f))
+
+##### Tests
+
+* **config:**
+  * Replaced node 7 with 8 on Travis CI ([5a402e10](https://github.com/fvdm/nodejs-geoip2ws/commit/5a402e1054b05bd26667ef6b154e035c6a215011))
+  * Removed Node.js v8 from Travis CI ([0e5b624c](https://github.com/fvdm/nodejs-geoip2ws/commit/0e5b624cfc1238bd951f8ed067cf0f2ab7fa5243))
+  * Add Node.js v8 to Travis CI ([b58beb1d](https://github.com/fvdm/nodejs-geoip2ws/commit/b58beb1d254e306abdcf199b3340604ac928ad22))
+  * Fixed syntax typo for bitHound ([092ef570](https://github.com/fvdm/nodejs-geoip2ws/commit/092ef57075a8fdab2f4b467bf72d8379255fb9c3))
+  * Set bitHound long file to 400 lines ([8d3d717e](https://github.com/fvdm/nodejs-geoip2ws/commit/8d3d717e5cb6645cb55fddf415f1c68b6e5dc6fa))
+* **style:** Clean up JSDoc comments ([5ba911da](https://github.com/fvdm/nodejs-geoip2ws/commit/5ba911dac36e4d8ed98ac56bff47455ebdc848e3))
+
 #### 1.8.8 (2016-10-26)
 
 ##### Chores
