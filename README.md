@@ -1,8 +1,6 @@
 geoip2ws
 ========
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/fvdm/nodejs-geoip2ws.svg)](https://greenkeeper.io/)
-
 Unofficial Node.js module for the Maxmind GeoIP2 Web Services.
 
 [![npm](https://img.shields.io/npm/v/geoip2ws.svg?maxAge=3600)](https://github.com/fvdm/nodejs-geoip2ws/blob/master/CHANGELOG.md)
