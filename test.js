@@ -53,7 +53,7 @@ function checkSuccess (test, err, data, ret) {
   }
 
   test ()
-      .done ();
+    .done ();
 }
 
 
