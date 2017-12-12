@@ -1,8 +1,6 @@
 geoip2ws
 ========
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/fvdm/nodejs-geoip2ws.svg)](https://greenkeeper.io/)
-
 Unofficial Node.js module for the Maxmind GeoIP2 Web Services.
 
 [![npm](https://img.shields.io/npm/v/geoip2ws.svg?maxAge=3600)](https://github.com/fvdm/nodejs-geoip2ws/blob/master/CHANGELOG.md)
@@ -10,6 +8,7 @@ Unofficial Node.js module for the Maxmind GeoIP2 Web Services.
 [![Coverage Status](https://coveralls.io/repos/github/fvdm/nodejs-geoip2ws/badge.svg?branch=master)](https://coveralls.io/github/fvdm/nodejs-geoip2ws?branch=master)
 [![bitHound Dependencies](https://www.bithound.io/github/fvdm/nodejs-geoip2ws/badges/master/dependencies.svg)](https://www.bithound.io/github/fvdm/nodejs-geoip2ws/master/dependencies/npm)
 [![bitHound Code](https://www.bithound.io/github/fvdm/nodejs-geoip2ws/badges/master/code.svg)](https://www.bithound.io/github/fvdm/nodejs-geoip2ws/master/files)
+[![Greenkeeper](https://badges.greenkeeper.io/fvdm/nodejs-geoip2ws.svg)](https://greenkeeper.io/)
 
 * [Node.js](https://nodejs.org/)
 * [Maxmind GeoIP2 Web Services](https://www.maxmind.com/en/geoip2-precision-services)
