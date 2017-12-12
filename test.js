@@ -77,7 +77,7 @@ doTest.add ('Configuration', test => {
 
 
 // Module
-doTest.add ('Module',test => {
+doTest.add ('Module', test => {
   test()
     .isFunction ('fail', 'exports', app)
     .isFunction ('fail', 'interface', geo)
@@ -86,28 +86,28 @@ doTest.add ('Module',test => {
 
 
 // Test success
-doTest.add ('lookup - arguments',test => {
-  const ret = geo ('74.125.206.100',(err, data) => {
+doTest.add ('lookup - arguments', test => {
+  const ret = geo ('74.125.206.100', (err, data) => {
     checkSuccess (test, err, data, ret);
   });
 });
 
 
-doTest.add ('lookup - object',test => {
+doTest.add ('lookup - object', test => {
   const obj = {
     ip: '74.125.206.100',
     service: config.service
   };
 
-  geo (obj,(err, data) => {
+  geo (obj, (err, data) => {
     checkSuccess (test, err, data);
   });
 });
 
 
 // Satellite IPs have no geo location
-doTest.add ('lookup - data.subdivisions array',test => {
-  geo ('95.107.128.1',(err, data) => {
+doTest.add ('lookup - data.subdivisions array', test => {
+  geo ('95.107.128.1', (err, data) => {
     const dataIP = data && data.traits && data.traits.ip_address;
 
     test (err)
@@ -120,8 +120,8 @@ doTest.add ('lookup - data.subdivisions array',test => {
 
 
 // Test errors
-doTest.add ('Error: invalid ip',test => {
-  geo ('invalid input',(err, data) => {
+doTest.add ('Error: invalid ip', test => {
+  geo ('invalid input', (err, data) => {
     test()
       .isError ('fail', 'err', err)
       .isExactly ('fail', 'err.message', err && err.message, 'invalid ip')
@@ -131,8 +131,8 @@ doTest.add ('Error: invalid ip',test => {
 });
 
 
-doTest.add ('Error: invalid service',test => {
-  geo ('invalid service', '74.125.206.100',(err, data) => {
+doTest.add ('Error: invalid service', test => {
+  geo ('invalid service', '74.125.206.100', (err, data) => {
     test()
       .isError ('fail', 'err', err)
       .isExactly ('fail', 'err.message', err && err.message, 'invalid service')
@@ -142,8 +142,8 @@ doTest.add ('Error: invalid service',test => {
 });
 
 
-doTest.add ('Error: API error',test => {
-  geo ('0.0.0.0',(err, data) => {
+doTest.add ('Error: API error', test => {
+  geo ('0.0.0.0', (err, data) => {
     test()
       .isError ('fail', 'err', err)
       .isExactly ('fail', 'err.message', err && err.message, 'API error')
@@ -157,19 +157,19 @@ doTest.add ('Error: API error',test => {
 });
 
 
-doTest.add ('Setup with arguments',test => {
+doTest.add ('Setup with arguments', test => {
   geo = app (config.userId, config.licenseKey, config.service, config.timeout);
 
-  geo ('74.125.206.100',(err, data) => {
+  geo ('74.125.206.100', (err, data) => {
     checkSuccess (test, err, data);
   });
 });
 
 
-doTest.add ('Error: request timeout',test => {
+doTest.add ('Error: request timeout', test => {
   const tmp = app (config.userId, config.licenseKey, 1);
 
-  tmp ('74.125.206.100',(err, data) => {
+  tmp ('74.125.206.100', (err, data) => {
     test()
       .isError ('fail', 'err', err)
       .isExactly ('fail', 'err.message', err && err.message, 'request failed')
