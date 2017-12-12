@@ -6,8 +6,8 @@ Unofficial Node.js module for the Maxmind GeoIP2 Web Services.
 [![npm](https://img.shields.io/npm/v/geoip2ws.svg?maxAge=3600)](https://github.com/fvdm/nodejs-geoip2ws/blob/master/CHANGELOG.md)
 [![Build Status](https://travis-ci.org/fvdm/nodejs-geoip2ws.svg?branch=master)](https://travis-ci.org/fvdm/nodejs-geoip2ws)
 [![Coverage Status](https://coveralls.io/repos/github/fvdm/nodejs-geoip2ws/badge.svg?branch=master)](https://coveralls.io/github/fvdm/nodejs-geoip2ws?branch=master)
-[![bitHound Dependencies](https://www.bithound.io/github/fvdm/nodejs-geoip2ws/badges/dependencies.svg)](https://www.bithound.io/github/fvdm/nodejs-geoip2ws/develop/dependencies/npm)
-[![bitHound Code](https://www.bithound.io/github/fvdm/nodejs-geoip2ws/badges/code.svg)](https://www.bithound.io/github/fvdm/nodejs-geoip2ws)
+[![bitHound Dependencies](https://www.bithound.io/github/fvdm/nodejs-geoip2ws/badges/master/dependencies.svg)](https://www.bithound.io/github/fvdm/nodejs-geoip2ws/master/dependencies/npm)
+[![bitHound Code](https://www.bithound.io/github/fvdm/nodejs-geoip2ws/badges/master/code.svg)](https://www.bithound.io/github/fvdm/nodejs-geoip2ws/master/files)
 
 * [Node.js](https://nodejs.org/)
 * [Maxmind GeoIP2 Web Services](https://www.maxmind.com/en/geoip2-precision-services)
@@ -30,7 +30,7 @@ require ('geoip2ws') (userId, licenseKey) (ip, callback);
 #### Multiple calls, same account
 
 ```js
-var geoip2ws = require ('geoip2ws') (userId, licenseKey);
+const geoip2ws = require ('geoip2ws') (userId, licenseKey);
 geoip2ws (ip1, callback);
 geoip2ws (ip2, callback);
 ```
@@ -38,9 +38,9 @@ geoip2ws (ip2, callback);
 #### Mix products (or accounts)
 
 ```js
-var geoip2ws = require ('geoip2ws');
-var insights = new geoip2ws (userId, licenseKey, 'insights');
-var country = new geoip2ws (userId, licenseKey, 'country');
+const geoip2ws = require ('geoip2ws');
+const insights = new geoip2ws (userId, licenseKey, 'insights');
+const country = new geoip2ws (userId, licenseKey, 'country');
 
 // precise lookup, higher cost
 insights (ip, callback);
@@ -57,7 +57,7 @@ You need a Maxmind account ID and license key with enough credits
 for one of their GeoIP *web* services.
 You can find both [*here*](https://www.maxmind.com/en/my_license_key).
 
-`npm install geoip2ws --save`
+`npm i geoip2ws --save`
 
 
 The functions
@@ -74,10 +74,10 @@ requestTimeout | integer | no       | Socket read timeout in milliseconds to wai
 
 ```js
 // With arguments
-var geo = require ('geoip2ws') (1234, 'abc', 'country', 2000);
+const geo = require ('geoip2ws') (1234, 'abc', 'country', 2000);
 
 // Or with an object
-var geo = require ('geoip2ws') ({
+const geo = require ('geoip2ws') ({
   userId: 1234,
   licenseKey: 'abc',
   service: 'country',
