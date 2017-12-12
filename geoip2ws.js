@@ -23,10 +23,11 @@ var api = {
 /**
  * Call back an error
  *
+ * @return  {Error}            The new error
+ *
  * @param   {string}  message  `Error.message`
  * @param   {mixed}   err      `Error.error`
  * @param   {mixed}   code     `data.code` or `res.statusCode`
- * @return  {Error}   error
  */
 
 function doError (message, err, code) {
@@ -41,10 +42,12 @@ function doError (message, err, code) {
 /**
  * Process HTTP response data
  *
- * @param   {Error|null}  err       Instance of `Error` or `null`
- * @param   {object}      res       Response data
- * @param   {function}    callback  Callback function
- * @return  {void}
+ * @callback  callback
+ * @return    {void}
+ *
+ * @param     {Error|null}  err       Instance of `Error` or `null`
+ * @param     {object}      res       Response data
+ * @param     {function}    callback  `(err, data)`
  */
 
 function doResponse (err, res, callback) {
@@ -80,13 +83,15 @@ function doResponse (err, res, callback) {
 /**
  * Perform lookup
  *
- * @param   {string}    [serviceName=api.service]  Temporary service override
- * @param   {string}    ip                         IP-address, hostname or `me` to look up
- * @param   {function}  callback                   Callback function
- * @return  {function}  doLookup
+ * @callback  callback
+ * @return    {function}                         doLookup()
+ *
+ * @param     {string}    [service=api.service]  Temporary service override
+ * @param     {string}    ip                     IP-address, hostname or `me` to look up
+ * @param     {function}  callback               `(err, data)`
  */
 
-function doLookup (serviceName, ip, callback) {
+function doLookup (service, ip, callback) {
   var httpProps = {
     method: 'GET',
     auth: api.userId + ':' + api.licenseKey,
@@ -97,21 +102,21 @@ function doLookup (serviceName, ip, callback) {
   };
 
   // object input - doLookup (object, callbackFunction)
-  if (serviceName instanceof Object && typeof ip === 'function') {
+  if (service instanceof Object && typeof ip === 'function') {
     callback = ip;
-    ip = serviceName.ip;
-    serviceName = serviceName.service || api.service;
+    ip = service.ip;
+    service = service.service || api.service;
   }
 
   // service is optional - doLookup (ipString, callbackFunction)
-  if (typeof serviceName === 'string' && typeof ip === 'function') {
+  if (typeof service === 'string' && typeof ip === 'function') {
     callback = ip;
-    ip = serviceName;
-    serviceName = api.service;
+    ip = service;
+    service = api.service;
   }
 
   // check input
-  if (!/^(country|city|insights)$/.test (serviceName)) {
+  if (!/^(country|city|insights)$/.test (service)) {
     callback (new Error ('invalid service'));
     return doLookup;
   }
@@ -122,8 +127,8 @@ function doLookup (serviceName, ip, callback) {
   }
 
   // do request
-  httpProps.url = api.endpoint + serviceName + '/' + ip;
-  httpProps.headers.Accept = 'application/vnd.maxmind.com-' + serviceName + '+json; charset=UTF-8; version=2.1';
+  httpProps.url = api.endpoint + service + '/' + ip;
+  httpProps.headers.Accept = 'application/vnd.maxmind.com-' + service + '+json; charset=UTF-8; version=2.1';
 
   function httpResponse (err, res) {
     doResponse (err, res, callback);
@@ -137,11 +142,12 @@ function doLookup (serviceName, ip, callback) {
 /**
  * Module interface
  *
+ * @return  {function}                  doLookup()
+ *
  * @param   {string}    userId          Account user ID
  * @param   {string}    licenseKey      Account license key
  * @param   {string}    [service=city]  Account service name
  * @param   {number}    [timeout=5000]  Request time out in milliseconds
- * @return  {function}  doLookup
  */
 
 function setup (userId, licenseKey, service, timeout) {
