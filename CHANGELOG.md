@@ -1,3 +1,36 @@
+#### 1.8.10 (2017-12-12)
+
+##### Chores
+
+* **example:** Minor cleanup ([a0ffca23](https://github.com/fvdm/nodejs-geoip2ws/commit/a0ffca231ded7ed66f9900c1530f655b52ad9d3c))
+* **package:**
+  * Update httpreq dependency ([0b16755b](https://github.com/fvdm/nodejs-geoip2ws/commit/0b16755b2666218bc982588dcc3cda9613e046db))
+  * Reduce dev deps to dotest ([b073691a](https://github.com/fvdm/nodejs-geoip2ws/commit/b073691ad8897b83517a5261aba90ece3123c17a))
+  * Update dependencies ([#30](https://github.com/fvdm/nodejs-geoip2ws/pull/30)) ([52480214](https://github.com/fvdm/nodejs-geoip2ws/commit/524802148645a3dbd669d6990c3307e62d228f29))
+* **develop:** Cleanup .gitignore ([33c56e70](https://github.com/fvdm/nodejs-geoip2ws/commit/33c56e7031beb296794bacd6245c3e893a3a31e7))
+
+##### Documentation Changes
+
+* **readme:** Minor cleanup ([0c481066](https://github.com/fvdm/nodejs-geoip2ws/commit/0c48106622032b163521cfb1ed345cd2f3eb4197))
+
+##### Bug Fixes
+
+* **package:** Fixed json syntax typo ([653f696d](https://github.com/fvdm/nodejs-geoip2ws/commit/653f696dd45caf8d07f2d367802bde8a04f00f29))
+
+##### Code Style Changes
+
+* **test:** Reduced indentation ([f4e2fc19](https://github.com/fvdm/nodejs-geoip2ws/commit/f4e2fc1954bd2635c4a498ca6f012cc192cb7402))
+
+##### Tests
+
+* **main:**
+  * Fixed syntax typos ([3c4a910e](https://github.com/fvdm/nodejs-geoip2ws/commit/3c4a910e311aa0fb4fead6003e54a90fcec6726c))
+  * Fixed syntax typo ([3e9eb859](https://github.com/fvdm/nodejs-geoip2ws/commit/3e9eb8595d92d6a918f000410ee0667c5cf85d92))
+  * Convert syntax to ES6 ([6f4eef63](https://github.com/fvdm/nodejs-geoip2ws/commit/6f4eef632e8c8d874f450a12737304c3463243fc))
+* **config:**
+  * Remove ecmaVersion from .eslintrc ([506c8c06](https://github.com/fvdm/nodejs-geoip2ws/commit/506c8c068790ff901d1fee77383fc78d7df60e97))
+  * Update Travis CI node versions ([4a2c2ecf](https://github.com/fvdm/nodejs-geoip2ws/commit/4a2c2ecfdbce69527973451ecd2084a9d0e0c013))
+
 #### 1.8.9 (2017-6-10)
 
 ##### Chores
