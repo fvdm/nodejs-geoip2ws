@@ -1,4 +1,4 @@
-var geoip = require ('geoip2ws') ({
+const geoip = require ('geoip2ws') ({
   userId: '00000',
   licenseKey: 'abc123',
   service: 'city'
