@@ -52,7 +52,7 @@ You need a Maxmind account ID and license key with enough credits
 for one of their GeoIP *web* services.
 You can find both [*here*](https://www.maxmind.com/en/my_license_key).
 
-`npm i geoip2ws --save`
+`npm i geoip2ws`
 
 
 The functions
