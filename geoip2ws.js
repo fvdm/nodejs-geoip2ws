@@ -21,7 +21,7 @@ let api = {
 };
 
 
-function isService (name) {
+function isService (service) {
   return !!/^(country|city|insights)$/.test (service);
 }
 
