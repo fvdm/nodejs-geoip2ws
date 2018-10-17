@@ -146,8 +146,10 @@ function doLookup (service, ip = null, callback = null) {
       reject (error);
     }
 
-    return doRequest (httpProps)
+    doRequest (httpProps)
       .then (doResponse)
+      .then (resolve)
+      .catch (reject)
     ;
   });
 }
