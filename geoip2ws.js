@@ -36,7 +36,7 @@ function isService (service) {
  * @param   {mixed}   code     `data.code` or `res.statusCode`
  */
 
-function doError (message, err, code) {
+function doError (message, err, code = null) {
   const error = new Error (message);
 
   error.code = code;
@@ -139,7 +139,7 @@ function doLookup (service, ip = null, callback = null) {
     doRequest (httpProps)
       .then (doResponse)
       .then (data => callback (null, data))
-      .catch (callback)
+      .catch (err => doError ('request failed', err, err.code));
     ;
 
     return doLookup;
