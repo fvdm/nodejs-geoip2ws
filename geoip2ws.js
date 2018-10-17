@@ -12,7 +12,7 @@ const { promisify } = require ('util');
 const doRequest = promisify (require ('httpreq').doRequest);
 
 // setup
-const api = {
+let api = {
   userId: null,
   licenseKey: null,
   service: 'city',
@@ -51,19 +51,22 @@ function doError (message, err, code) {
  */
 
 function doResponse (res) {
-  const data = JSON.parse (res.body);
+  return new Promise ((resolve, reject) => {
+    const data = JSON.parse (res.body);
 
-  if (data.error) {
-    return Promise.reject (doError ('API error', err.error, err.code));
-  }
+    if (data.error) {
+      reject (doError ('API error', data.error, data.code));
+      return;
+    }
 
-  if (Array.isArray (data.subdivisions) && data.subdivisions.length) {
-    data.most_specific_subdivision = data.subdivisions [data.subdivisions.length - 1];
-  } else {
-    data.subdivisions = [];
-  }
+    if (Array.isArray (data.subdivisions) && data.subdivisions.length) {
+      data.most_specific_subdivision = data.subdivisions [data.subdivisions.length - 1];
+    } else {
+      data.subdivisions = [];
+    }
 
-  return data;
+    resolve (data);
+  });
 }
 
 
@@ -111,31 +114,23 @@ function doLookup (service, ip = null, callback = null) {
   // check input
   if (!/^(country|city|insights)$/.test (service)) {
     error = new Error ('invalid service');
-
-    if (!callback) {
-      return Promise.reject (error);
-    }
-
-    callback (error);
-    return doLookup;
   }
 
   if (ip !== 'me' && !isIP (ip)) {
     error = new Error ('invalid ip');
-
-    if (!callback) {
-      return Promise.reject (error);
-    }
-
-    callback (error);
-    return doLookup;
   }
 
   // do request
   httpProps.url = `${api.endpoint}${service}/${ip}`;
   httpProps.headers.Accept = `application/vnd.maxmind.com-${service}+json; charset=UTF-8; version=2.1`;
 
+  // do callback
   if (typeof callback === 'function') {
+    if (error) {
+      callback (error);
+      return doLookup;
+    }
+
     doRequest (httpProps)
       .then (doResponse)
       .then (data => callback (null, data))
@@ -144,10 +139,17 @@ function doLookup (service, ip = null, callback = null) {
 
     return doLookup;
   }
-  
-  return doRequest (httpProps)
-    .then (doResponse)
-  ;
+
+  // do promise
+  return new Promise ((resolve, reject) => {
+    if (error) {
+      reject (error);
+    }
+
+    return doRequest (httpProps)
+      .then (doResponse)
+    ;
+  });
 }
 
 
