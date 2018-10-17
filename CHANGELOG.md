@@ -1,3 +1,54 @@
+### 1.9.0 (2018-10-17)
+
+##### Chores
+
+* **main:**  Rewrite example to promise ([974b106b](https://github.com/fvdm/nodejs-geoip2ws/commit/974b106b8e9e339ed155b7deab3cec5b3839c644))
+
+##### Documentation Changes
+
+* **readme:**
+  *  Save flag is no longer needed ([e3be6768](https://github.com/fvdm/nodejs-geoip2ws/commit/e3be6768f45f3f4a2a66316d9fbe528394522f12))
+  *  Updated documentation ([830c58e8](https://github.com/fvdm/nodejs-geoip2ws/commit/830c58e8cc313640bb1385e8938479545befc2c0))
+* **badges:**
+  *  Removed bitHound ([cfe69e16](https://github.com/fvdm/nodejs-geoip2ws/commit/cfe69e16e22c3fe53d286329be8131600debc6f2))
+  *  Add Greenkeeper badge 🌴 ([#31](https://github.com/fvdm/nodejs-geoip2ws/pull/31)) ([2ac9755c](https://github.com/fvdm/nodejs-geoip2ws/commit/2ac9755ceba565f59909ee9ca20da32efabdb5d5))
+
+##### Bug Fixes
+
+* **doLookup:**
+  *  API error call back ([da854a83](https://github.com/fvdm/nodejs-geoip2ws/commit/da854a83efbd4daec8020531281a59bba74fc63a))
+  *  error callback didn't run ([9b4d9e39](https://github.com/fvdm/nodejs-geoip2ws/commit/9b4d9e39956f70acb559bfa2e6e3304a2c3b636b))
+  *  request failed error ([74e82ec5](https://github.com/fvdm/nodejs-geoip2ws/commit/74e82ec5d409df59a6a1f63632b553f088ea0a9c))
+  *  service and ip arguments ([b8621e71](https://github.com/fvdm/nodejs-geoip2ws/commit/b8621e7109f7c9595a7498048fbec4d876fb3787))
+  *  Fixed missing return at promise ([15e1d905](https://github.com/fvdm/nodejs-geoip2ws/commit/15e1d9051bc06a2fcfdc345f48aaeca332a495d8))
+  *  Unhandled promise rejection ([f2d6ef0d](https://github.com/fvdm/nodejs-geoip2ws/commit/f2d6ef0d8b0ab7b64ee91df6c744a94eb1bf6230))
+* **isService:**  Bad argument ref ([45148876](https://github.com/fvdm/nodejs-geoip2ws/commit/451488760176f3d2696ad78f2071c6be23689509))
+*  doLookup arguments ([a3fe04d6](https://github.com/fvdm/nodejs-geoip2ws/commit/a3fe04d6dc393284d335192ca4d94fef429e1038))
+* **main:**
+  *  Add promisify support for node 6 ([7c2f0731](https://github.com/fvdm/nodejs-geoip2ws/commit/7c2f073157c39565276ca3b25fa0b465da7e4be7))
+  *  Promises not correctly defined ([caeb8119](https://github.com/fvdm/nodejs-geoip2ws/commit/caeb8119129a717bb2b6427c14038bc6aaae0f66))
+
+##### Refactors
+
+* **main:**  Rewrite to ES6  and promises ([e3ddb353](https://github.com/fvdm/nodejs-geoip2ws/commit/e3ddb353e6ab28c6c27bd140763c1126eb34d50c))
+
+##### Code Style Changes
+
+* **doLookup:**
+  *  Clean up ([244c7368](https://github.com/fvdm/nodejs-geoip2ws/commit/244c7368ac6524e6ca3c1402a561e52cad436e5d))
+  *  Reduced whitespace ([aaac5734](https://github.com/fvdm/nodejs-geoip2ws/commit/aaac57340d82bb9168177c2eda476cf4938b2b1c))
+* **comment:**  Clean up JSDoc ([b92c3193](https://github.com/fvdm/nodejs-geoip2ws/commit/b92c3193608f0b23042e6fb54671623d73586bac))
+
+##### Tests
+
+* **main:**
+  *  Removed return check on promises ([07b0bc43](https://github.com/fvdm/nodejs-geoip2ws/commit/07b0bc430ccbae0d6fe300d67f94148e1ec232f7))
+  *  Added tests for promises ([07790c0c](https://github.com/fvdm/nodejs-geoip2ws/commit/07790c0c89b8b51c116b69d8ce227d0ef9d5bf90))
+* **config:**
+  *  Fix ES6 in aslant ([91d3c06b](https://github.com/fvdm/nodejs-geoip2ws/commit/91d3c06b8cd1a8690d3a1834e3e56871d59b6348))
+  *  Fixed eslint ([e77aad89](https://github.com/fvdm/nodejs-geoip2ws/commit/e77aad89981dec9200e1d7880d8a916bcc865c05))
+  *  Update Travis node versions ([3c3c244c](https://github.com/fvdm/nodejs-geoip2ws/commit/3c3c244cfd866e549545b0812e4acc9bee04ccb5))
+
 #### 1.8.10 (2017-12-12)
 
 ##### Chores
