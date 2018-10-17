@@ -139,7 +139,7 @@ function doLookup (service, ip = null, callback = null) {
     doRequest (httpProps)
       .then (doResponse)
       .then (data => callback (null, data))
-      .catch (err => doError ('request failed', err, err.code));
+      .catch (err => callback (doError ('request failed', err, err.code)));
     ;
 
     return doLookup;
