@@ -34,7 +34,7 @@ const config = {
  * @return  {void}
  */
 
-function checkSuccess (test, err, data, ret, retPromise) {
+function checkSuccess (test, err, data, ret) {
   const names = data && data.city && data.city.names;
   const dataIP = data && data.traits && data.traits.ip_address;
   const dataSub = data && data.most_specific_subdivision.iso_code;
@@ -48,11 +48,7 @@ function checkSuccess (test, err, data, ret, retPromise) {
     .isExactly ('fail', 'data.most_specific_subdivision', dataSub, 'CA');
 
   if (!err && typeof ret !== 'undefined') {
-    if (retPromise) {
-      test().isInstanceOf ('fail', 'return', ret, Promise);
-    } else {
-      test().isFunction ('fail', 'return', ret);
-    }
+    test().isFunction ('fail', 'return', ret);
   }
 
   test().done();
@@ -123,14 +119,14 @@ doTest.add ('lookup - data.subdivisions array', test => {
 
 // Test promises
 doTest.add ('Promise: resolve', test => {
-  const ret = geo ('74.125.206.100')
-    .then (data => checkSuccess (test, null, data, ret, true))
+  geo ('74.125.206.100')
+    .then (data => checkSuccess (test, null, data))
     .catch (test)
   ;
 });
 
 doTest.add ('Promise: reject', test => {
-  const ret = geo ('invalid input')
+  geo ('invalid input')
     .catch (err => {
       test()
         .isError ('fail', 'catch', err)
