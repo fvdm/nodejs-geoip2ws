@@ -48,12 +48,10 @@ function checkSuccess (test, err, data, ret) {
     .isExactly ('fail', 'data.most_specific_subdivision', dataSub, 'CA');
 
   if (!err && typeof ret !== 'undefined') {
-    test()
-      .isFunction ('fail', 'return', ret);
+    test().isFunction ('fail', 'return', ret);
   }
 
-  test()
-    .done();
+  test().done();
 }
 
 
@@ -116,6 +114,28 @@ doTest.add ('lookup - data.subdivisions array', test => {
       .isExactly ('fail', 'data.traits.ip_address', dataIP, '95.107.128.1')
       .done();
   });
+});
+
+
+// Test promises
+doTest.add ('Promise: resolve', test => {
+  geo ('74.125.206.100')
+    .then (data => checkSuccess (test, null, data))
+    .catch (test)
+  ;
+});
+
+
+doTest.add ('Promise: reject', test => {
+  geo ('invalid input')
+    .catch (err => {
+      test()
+        .isError ('fail', 'catch', err)
+        .isExactly ('fail', 'message', err && err.message, 'invalid ip')
+        .done()
+      ;
+    })
+  ;
 });
 
 

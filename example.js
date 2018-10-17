@@ -4,4 +4,7 @@ const geoip = require ('geoip2ws') ({
   service: 'city'
 });
 
-geoip ('me', console.log);
+geoip ('me')
+  .then (console.log)
+  .catch (console.error)
+;

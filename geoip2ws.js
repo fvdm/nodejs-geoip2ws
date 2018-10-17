@@ -7,17 +7,23 @@ Feedback:       https://github.com/fvdm/nodejs-geoip2ws/issues
 License:        Unlicense (public domain, see LICENSE file)
 */
 
-var httpreq = require ('httpreq');
-var net = require ('net');
+const { isIP } = require ('net');
+const { promisify } = require ('es6-promisify');
+const doRequest = promisify (require ('httpreq').doRequest);
 
 // setup
-var api = {
+let api = {
   userId: null,
   licenseKey: null,
   service: 'city',
   endpoint: 'https://geoip.maxmind.com/geoip/v2.1/',
   requestTimeout: 5000
 };
+
+
+function isService (service) {
+  return !!/^(country|city|insights)$/.test (service);
+}
 
 
 /**
@@ -30,8 +36,8 @@ var api = {
  * @param   {mixed}   code     `data.code` or `res.statusCode`
  */
 
-function doError (message, err, code) {
-  var error = new Error (message);
+function doError (message, err, code = null) {
+  const error = new Error (message);
 
   error.code = code;
   error.error = err;
@@ -40,59 +46,53 @@ function doError (message, err, code) {
 
 
 /**
- * Process HTTP response data
+ * Process response body
  *
- * @callback  callback
- * @return    {void}
+ * @param    {object}    res    httpreq response
  *
- * @param     {Error|null}  err       Instance of `Error` or `null`
- * @param     {object}      res       Response data
- * @param     {function}    callback  `(err, data)`
+ * @return   {promise}
+ * @promise  {object}   resolve  Result data
+ * @promose  {error}    reject   API error
  */
 
-function doResponse (err, res, callback) {
-  var data = res && res.body || null;
-  var error = null;
-
-  try {
-    data = JSON.parse (data);
+function doResponse (res) {
+  return new Promise ((resolve, reject) => {
+    const data = JSON.parse (res.body);
 
     if (data.error) {
-      error = doError ('API error', data.error, data.code);
-    } else if (Array.isArray (data.subdivisions) && data.subdivisions.length) {
+      reject (doError ('API error', data.error, data.code));
+      return;
+    }
+
+    if (Array.isArray (data.subdivisions) && data.subdivisions.length) {
       data.most_specific_subdivision = data.subdivisions [data.subdivisions.length - 1];
     } else {
       data.subdivisions = [];
     }
-  } catch (e) {
-    error = doError ('invalid data', null, res && res.statusCode);
-  }
 
-  if (err) {
-    error = doError ('request failed', err, null);
-  }
-
-  if (error) {
-    callback (error);
-  } else {
-    callback (null, data);
-  }
+    resolve (data);
+  });
 }
 
 
 /**
  * Perform lookup
  *
- * @callback  callback
- * @return    {function}                         doLookup()
+ * @callback  [callback]
+ * @return    {function|promise}                 doLookup()
+ *
+ * @promise   {object}    resolve                Response data
+ * @promise   {error}     reject                 Agent or API error
  *
  * @param     {string}    [service=api.service]  Temporary service override
- * @param     {string}    ip                     IP-address, hostname or `me` to look up
- * @param     {function}  callback               `(err, data)`
+ * @param     {string}    [ip]                   IP-address, hostname or `me` to look up
+ * @param     {function}  [callback]             `(err, data)`
  */
 
-function doLookup (service, ip, callback) {
-  var httpProps = {
+function doLookup (service, ip = null, callback = null) {
+  let error;
+
+  const httpProps = {
     method: 'GET',
     auth: api.userId + ':' + api.licenseKey,
     timeout: api.requestTimeout,
@@ -101,15 +101,14 @@ function doLookup (service, ip, callback) {
     }
   };
 
-  // object input - doLookup (object, callbackFunction)
-  if (service instanceof Object && typeof ip === 'function') {
+  // fix arguments
+  if (service instanceof Object) {
+    // object with details
     callback = ip;
     ip = service.ip;
     service = service.service || api.service;
-  }
-
-  // service is optional - doLookup (ipString, callbackFunction)
-  if (typeof service === 'string' && typeof ip === 'function') {
+  } else if (isIP (service) || (!isService (service) && !isIP (ip))) {
+    // service is optional
     callback = ip;
     ip = service;
     service = api.service;
@@ -117,25 +116,52 @@ function doLookup (service, ip, callback) {
 
   // check input
   if (!/^(country|city|insights)$/.test (service)) {
-    callback (new Error ('invalid service'));
-    return doLookup;
+    error = new Error ('invalid service');
   }
 
-  if (ip !== 'me' && !net.isIP (ip)) {
-    callback (new Error ('invalid ip'));
-    return doLookup;
+  if (ip !== 'me' && !isIP (ip)) {
+    error = new Error ('invalid ip');
   }
 
   // do request
-  httpProps.url = api.endpoint + service + '/' + ip;
-  httpProps.headers.Accept = 'application/vnd.maxmind.com-' + service + '+json; charset=UTF-8; version=2.1';
+  httpProps.url = `${api.endpoint}${service}/${ip}`;
+  httpProps.headers.Accept = `application/vnd.maxmind.com-${service}+json; charset=UTF-8; version=2.1`;
 
-  function httpResponse (err, res) {
-    doResponse (err, res, callback);
+  // do callback
+  if (typeof callback === 'function') {
+    if (error) {
+      callback (error);
+      return doLookup;
+    }
+
+    doRequest (httpProps)
+      .then (doResponse)
+      .then (data => callback (null, data))
+      .catch (err => {
+        if (err.message === 'API error') {
+          callback (err);
+        } else {
+          callback (doError ('request failed', err, err.code));
+        }
+      })
+    ;
+
+    return doLookup;
   }
 
-  httpreq.doRequest (httpProps, httpResponse);
-  return doLookup;
+  // do promise
+  return new Promise ((resolve, reject) => {
+    if (error) {
+      reject (error);
+      return;
+    }
+
+    doRequest (httpProps)
+      .then (doResponse)
+      .then (resolve)
+      .catch (reject)
+    ;
+  });
 }
 
 
@@ -151,13 +177,8 @@ function doLookup (service, ip, callback) {
  */
 
 function setup (userId, licenseKey, service, timeout) {
-  var key;
-
   if (userId instanceof Object) {
-    for (key in userId) {
-      api [key] = userId [key];
-    }
-
+    api = Object.assign (api, userId);
     return doLookup;
   }
 
