@@ -144,6 +144,7 @@ function doLookup (service, ip = null, callback = null) {
   return new Promise ((resolve, reject) => {
     if (error) {
       reject (error);
+      return;
     }
 
     doRequest (httpProps)
