@@ -104,8 +104,7 @@ function doLookup (service, ip = null, callback = null) {
   }
 
   // service is optional - doLookup (ipString, callbackFunction)
-  if (isIP (service)) {
-    callback = ip;
+  else if (!ip) {
     ip = service;
     service = api.service;
   }

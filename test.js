@@ -125,6 +125,7 @@ doTest.add ('Promise: resolve', test => {
   ;
 });
 
+
 doTest.add ('Promise: reject', test => {
   geo ('invalid input')
     .catch (err => {
@@ -136,6 +137,7 @@ doTest.add ('Promise: reject', test => {
     })
   ;
 });
+
 
 // Test errors
 doTest.add ('Error: invalid ip', test => {
