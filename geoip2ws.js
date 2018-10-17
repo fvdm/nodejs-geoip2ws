@@ -21,6 +21,11 @@ let api = {
 };
 
 
+function isService (name) {
+  return !!/^(country|city|insights)$/.test (service);
+}
+
+
 /**
  * Call back an error
  *
@@ -96,17 +101,19 @@ function doLookup (service, ip = null, callback = null) {
     }
   };
 
-  // object input - doLookup (object, callbackFunction)
+  // fix arguments
   if (service instanceof Object) {
+
     callback = ip;
     ip = service.ip;
     service = service.service || api.service;
-  }
 
-  // service is optional - doLookup (ipString, callbackFunction)
-  else if (!ip) {
+  } else if (isIP (service) || (!isService (service) && !isIP (ip))) {
+
+    callback = ip;
     ip = service;
     service = api.service;
+
   }
 
   // check input
