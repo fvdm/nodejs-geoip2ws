@@ -103,17 +103,15 @@ function doLookup (service, ip = null, callback = null) {
 
   // fix arguments
   if (service instanceof Object) {
-
+    // object with details
     callback = ip;
     ip = service.ip;
     service = service.service || api.service;
-
   } else if (isIP (service) || (!isService (service) && !isIP (ip))) {
-
+    // service is optional
     callback = ip;
     ip = service;
     service = api.service;
-
   }
 
   // check input
