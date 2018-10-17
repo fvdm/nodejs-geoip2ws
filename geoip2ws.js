@@ -138,8 +138,6 @@ function doLookup (service, ip = null, callback = null) {
       .then (doResponse)
       .then (data => callback (null, data))
       .catch (err => {
-        let error;
-
         if (err.message === 'API error') {
           callback (err);
         } else {
