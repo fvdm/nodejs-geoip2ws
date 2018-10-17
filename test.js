@@ -34,7 +34,7 @@ const config = {
  * @return  {void}
  */
 
-function checkSuccess (test, err, data, ret) {
+function checkSuccess (test, err, data, ret, retPromise) {
   const names = data && data.city && data.city.names;
   const dataIP = data && data.traits && data.traits.ip_address;
   const dataSub = data && data.most_specific_subdivision.iso_code;
@@ -48,12 +48,14 @@ function checkSuccess (test, err, data, ret) {
     .isExactly ('fail', 'data.most_specific_subdivision', dataSub, 'CA');
 
   if (!err && typeof ret !== 'undefined') {
-    test()
-      .isFunction ('fail', 'return', ret);
+    if (retPromise) {
+      test().isInstanceOf ('fail', 'return', ret, Promise);
+    } else {
+      test().isFunction ('fail', 'return', ret);
+    }
   }
 
-  test()
-    .done();
+  test().done();
 }
 
 
@@ -118,6 +120,26 @@ doTest.add ('lookup - data.subdivisions array', test => {
   });
 });
 
+
+// Test promises
+doTest.add ('Promise: resolve', test => {
+  const ret = geo ('74.125.206.100')
+    .then (data => checkSuccess (test, null, data, ret, true))
+    .catch (test)
+  ;
+});
+
+doTest.add ('Promise: reject', test => {
+  const ret = geo ('invalid input')
+    .catch (err => {
+      test()
+        .isError ('fail', 'catch', err)
+        .isExactly ('fail', 'message', err && err.message, 'invalid ip')
+        .done()
+      ;
+    })
+  ;
+});
 
 // Test errors
 doTest.add ('Error: invalid ip', test => {
