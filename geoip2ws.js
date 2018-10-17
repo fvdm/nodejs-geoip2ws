@@ -137,7 +137,15 @@ function doLookup (service, ip = null, callback = null) {
     doRequest (httpProps)
       .then (doResponse)
       .then (data => callback (null, data))
-      .catch (err => callback (doError ('request failed', err, err.code)));
+      .catch (err => {
+        let error;
+
+        if (err.message === 'API error') {
+          callback (err);
+        } else {
+          callback (doError ('request failed', err, err.code));
+        }
+      })
     ;
 
     return doLookup;
