@@ -1,3 +1,17 @@
+### 1.9.0 (2018-10-17)
+
+##### Documentation Changes
+
+* **badges:**  Add Greenkeeper badge 🌴 ([#31](https://github.com/fvdm/nodejs-geoip2ws/pull/31)) ([2ac9755c](https://github.com/fvdm/nodejs-geoip2ws/commit/2ac9755ceba565f59909ee9ca20da32efabdb5d5))
+
+##### New Features
+
+* **interface:**  Add support for promises ([#32](https://github.com/fvdm/nodejs-geoip2ws/pull/32)) ([210d4699](https://github.com/fvdm/nodejs-geoip2ws/commit/210d4699c3d25c5f61e2d964acea3911d0624034))
+
+##### Code Style Changes
+
+* **comment:**  Clean up JSDoc ([b92c3193](https://github.com/fvdm/nodejs-geoip2ws/commit/b92c3193608f0b23042e6fb54671623d73586bac))
+
 #### 1.8.10 (2017-12-12)
 
 ##### Chores
