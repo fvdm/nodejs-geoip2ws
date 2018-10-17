@@ -8,7 +8,7 @@ License:        Unlicense (public domain, see LICENSE file)
 */
 
 const { isIP } = require ('net');
-const { promisify } = require ('util');
+const { promisify } = require ('es6-promisify');
 const doRequest = promisify (require ('httpreq').doRequest);
 
 // setup
@@ -86,7 +86,6 @@ function doResponse (res) {
 
 function doLookup (service, ip = null, callback = null) {
   let error;
-  let ret;
 
   const httpProps = {
     method: 'GET',
