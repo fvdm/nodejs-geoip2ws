@@ -8,8 +8,7 @@ License:        Unlicense (public domain, see LICENSE file)
 */
 
 const { isIP } = require ('net');
-const { promisify } = require ('es6-promisify');
-const doRequest = promisify (require ('httpreq').doRequest);
+const { doRequest } = require ('httpreq');
 
 // setup
 let api = {
@@ -17,7 +16,7 @@ let api = {
   licenseKey: null,
   service: 'city',
   endpoint: 'https://geoip.maxmind.com/geoip/v2.1/',
-  requestTimeout: 5000
+  requestTimeout: 5000,
 };
 
 
@@ -42,6 +41,23 @@ function doError (message, err, code = null) {
   error.code = code;
   error.error = err;
   return error;
+}
+
+
+/**
+ * Promisify doRequest without deps
+ *
+ * @param   {object}   props  httpreq.doRequest options
+ * @return  {Promise}
+ */
+
+function get (options) {
+  return new Promise ((resolve, reject) => {
+    doRequest (options, (err, res) => {
+      if (err) return reject (err);
+      resolve (res);
+    });
+  });
 }
 
 
@@ -94,11 +110,11 @@ function doLookup (service, ip = null, callback = null) {
 
   const httpProps = {
     method: 'GET',
-    auth: api.userId + ':' + api.licenseKey,
+    auth: `${api.userId}:${api.licenseKey}`,
     timeout: api.requestTimeout,
     headers: {
-      'User-Agent': 'geoip2ws.js (https://github.com/fvdm/nodejs-geoip2ws)'
-    }
+      'User-Agent': 'geoip2ws.js (https://github.com/fvdm/nodejs-geoip2ws)',
+    },
   };
 
   // fix arguments
@@ -123,7 +139,7 @@ function doLookup (service, ip = null, callback = null) {
     error = new Error ('invalid ip');
   }
 
-  // do request
+  // build request
   httpProps.url = `${api.endpoint}${service}/${ip}`;
   httpProps.headers.Accept = `application/vnd.maxmind.com-${service}+json; charset=UTF-8; version=2.1`;
 
@@ -134,7 +150,7 @@ function doLookup (service, ip = null, callback = null) {
       return doLookup;
     }
 
-    doRequest (httpProps)
+    get (httpProps)
       .then (doResponse)
       .then (data => callback (null, data))
       .catch (err => {
@@ -156,7 +172,7 @@ function doLookup (service, ip = null, callback = null) {
       return;
     }
 
-    doRequest (httpProps)
+    get (httpProps)
       .then (doResponse)
       .then (resolve)
       .catch (reject)
