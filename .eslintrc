@@ -22,11 +22,11 @@
       "after": true
     }],
     "comma-style": [2, "last"],
-    "comma-dangle": [2, "never"],
+    "comma-dangle": [2, "always-multiline"],
     "complexity": [1, 8],
     "computed-property-spacing": [2, "never"],
     "consistent-return": 1,
-    "curly": [2, "all"],
+    "curly": [2, "multi"],
     "default-case": 2,
     "dot-notation": [1, {
       "allowKeywords": true
