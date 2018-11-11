@@ -1,3 +1,20 @@
+#### 1.9.1 (2018-11-11)
+
+##### Chores
+
+* **dev:**  Added editorconfig ([52e09a7e](https://github.com/fvdm/nodejs-geoip2ws/commit/52e09a7e3f07282c29a69dda6a0b0b3ca1cbb653))
+
+##### Refactors
+
+* **main:**  Removed es6-promisify dependency ([4db03d94](https://github.com/fvdm/nodejs-geoip2ws/commit/4db03d940209ae3931460db879e6d8170bc897dd))
+
+##### Code Style Changes
+
+* **syntax:**  Consistent comma-dangle ([db0635f2](https://github.com/fvdm/nodejs-geoip2ws/commit/db0635f2880e5bb2fa60a24c6d7bc1a68f3b5dd3))
+* **eslint:**
+  *  Require braces no matter what ([5cfc6a39](https://github.com/fvdm/nodejs-geoip2ws/commit/5cfc6a3984bedd8fe0e56f2de69cfe16bcb0b9f5))
+  *  Allow cleaner syntax ([5a211708](https://github.com/fvdm/nodejs-geoip2ws/commit/5a211708c2dd0ca58e10d81a5158a551cdcb45c3))
+
 ### 1.9.0 (2018-10-17)
 
 ##### Documentation Changes
