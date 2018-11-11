@@ -54,7 +54,11 @@ function doError (message, err, code = null) {
 function get (options) {
   return new Promise ((resolve, reject) => {
     doRequest (options, (err, res) => {
-      if (err) return reject (err);
+      if (err) {
+        reject (err);
+        return;
+      }
+
       resolve (res);
     });
   });
