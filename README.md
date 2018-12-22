@@ -34,7 +34,7 @@ require ('geoip2ws') (userId, licenseKey) (ip, callback);
 
 ```js
 const geo = require ('geoip2ws') ({
-  userId: 12345,
+  userId: '12345',
   licenseKey: 'abc678',
 });
 
@@ -73,7 +73,7 @@ const geo = require ('geoip2ws') (1234, 'abc', 'country', 2000);
 
 // Or with an object
 const geo = require ('geoip2ws') ({
-  userId: 1234,
+  userId: '1234',
   licenseKey: 'abc',
   service: 'country',
   requestTimeout: 2000
