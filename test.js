@@ -43,9 +43,9 @@ function checkSuccess (test, err, data, ret) {
     .isObject ('fail', 'data', data)
     .isObject ('fail', 'data.city', data && data.city)
     .isObject ('fail', 'data.city.names', names)
-    .isExactly ('fail', 'data.city.names.en', names && names.en, 'Mountain View')
-    .isExactly ('fail', 'data.traits.ip_address', dataIP, '74.125.206.100')
-    .isExactly ('fail', 'data.most_specific_subdivision', dataSub, 'CA');
+    .isExactly ('fail', 'data.city.names.en', names && names.en, 'Amsterdam')
+    .isExactly ('fail', 'data.traits.ip_address', dataIP, '194.109.6.66')
+    .isExactly ('fail', 'data.most_specific_subdivision', dataSub, 'NH');
 
   if (!err && typeof ret !== 'undefined') {
     test().isFunction ('fail', 'return', ret);
@@ -85,7 +85,7 @@ doTest.add ('Module', test => {
 
 // Test success
 doTest.add ('lookup - arguments', test => {
-  const ret = geo ('74.125.206.100', (err, data) => {
+  const ret = geo ('194.109.6.66', (err, data) => {
     checkSuccess (test, err, data, ret);
   });
 });
@@ -93,7 +93,7 @@ doTest.add ('lookup - arguments', test => {
 
 doTest.add ('lookup - object', test => {
   const obj = {
-    ip: '74.125.206.100',
+    ip: '194.109.6.66',
     service: config.service,
   };
 
@@ -119,7 +119,7 @@ doTest.add ('lookup - data.subdivisions array', test => {
 
 // Test promises
 doTest.add ('Promise: resolve', test => {
-  geo ('74.125.206.100')
+  geo ('194.109.6.66')
     .then (data => checkSuccess (test, null, data))
     .catch (test)
   ;
@@ -152,7 +152,7 @@ doTest.add ('Error: invalid ip', test => {
 
 
 doTest.add ('Error: invalid service', test => {
-  geo ('invalid service', '74.125.206.100', (err, data) => {
+  geo ('invalid service', '194.109.6.66', (err, data) => {
     test()
       .isError ('fail', 'err', err)
       .isExactly ('fail', 'err.message', err && err.message, 'invalid service')
@@ -180,7 +180,7 @@ doTest.add ('Error: API error', test => {
 doTest.add ('Setup with arguments', test => {
   geo = app (config.userId, config.licenseKey, config.service, config.timeout);
 
-  geo ('74.125.206.100', (err, data) => {
+  geo ('194.109.6.66', (err, data) => {
     checkSuccess (test, err, data);
   });
 });
@@ -189,7 +189,7 @@ doTest.add ('Setup with arguments', test => {
 doTest.add ('Error: request timeout', test => {
   const tmp = app (config.userId, config.licenseKey, 1);
 
-  tmp ('74.125.206.100', (err, data) => {
+  tmp ('194.109.6.66', (err, data) => {
     test()
       .isError ('fail', 'err', err)
       .isExactly ('fail', 'err.message', err && err.message, 'request failed')
