@@ -90,6 +90,10 @@ function doResponse (res) {
       data.subdivisions = [];
     }
 
+    if (!data.most_specific_subdivision) {
+      data.most_specific_subdivision = {};
+    }
+
     resolve (data);
   });
 }
