@@ -139,6 +139,20 @@ doTest.add ('Promise: reject', test => {
 });
 
 
+// Inline config
+doTest.add ('Config in lookup()', test => {
+  const tmpgeo = new app;
+  const params = Object.assign (config, {
+    requestTimeout: 5000,
+    ip: '194.109.6.66',
+  });
+
+  tmpgeo (params, (err, data) => {
+    checkSuccess (test, err, data);
+  });
+});
+
+
 // Test errors
 doTest.add ('Error: invalid ip', test => {
   geo ('invalid input', (err, data) => {
