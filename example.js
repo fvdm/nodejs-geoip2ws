@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 const geoip = require ('geoip2ws') ({
   userId: '00000',
   licenseKey: 'abc123',
@@ -8,3 +10,4 @@ geoip ('me')
   .then (console.log)
   .catch (console.error)
 ;
+
