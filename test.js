@@ -192,9 +192,8 @@ doTest.add ('Error: request timeout', test => {
   tmp ('194.109.6.66', (err, data) => {
     test()
       .isError ('fail', 'err', err)
-      .isExactly ('fail', 'err.message', err && err.message, 'request failed')
-      .isError ('fail', 'err.error', err && err.error)
-      .isExactly ('fail', 'err.error.code', err && err.error && err.error.code, 'TIMEOUT')
+      .isExactly ('fail', 'err.message', err && err.message, 'request timed out')
+      .isExactly ('fail', 'err.code', err && err.code, 'TIMEOUT')
       .isUndefined ('fail', 'data', data)
       .done();
   });
