@@ -26,25 +26,6 @@ function isService (service) {
 
 
 /**
- * Call back an error
- *
- * @return  {Error}            The new error
- *
- * @param   {string}  message  `Error.message`
- * @param   {mixed}   err      `Error.error`
- * @param   {mixed}   code     `data.code` or `res.statusCode`
- */
-
-function doError (message, err, code = null) {
-  const error = new Error (message);
-
-  error.code = code;
-  error.error = err;
-  return error;
-}
-
-
-/**
  * Promisify doRequest without deps
  *
  * @param   {object}   props  httpreq.doRequest options
@@ -78,9 +59,12 @@ function get (options) {
 function doResponse (res) {
   return new Promise ((resolve, reject) => {
     const data = JSON.parse (res.body);
+    let error;
 
     if (data.error) {
-      reject (doError ('API error', data.error, data.code));
+      error = new Error (data.error);
+      error.code = data.code;
+      reject (error);
       return;
     }
 
