@@ -11,7 +11,7 @@
 
   "rules": {
     "array-bracket-spacing": [2, "never"],
-    "brace-style": [2, "1tbs", {
+    "brace-style": [2, "stroustrup", {
       "allowSingleLine": true
     }],
     "camelcase": [2, {
