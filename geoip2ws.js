@@ -20,11 +20,6 @@ let api = {
 };
 
 
-function isService (service) {
-  return !!/^(country|city|insights)$/.test (service);
-}
-
-
 /**
  * Promisify doRequest without deps
  *
