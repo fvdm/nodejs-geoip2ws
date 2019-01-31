@@ -10,8 +10,7 @@ Unofficial Node.js module for the Maxmind GeoIP2 Web Services.
 
 * [Node.js](https://nodejs.org/)
 * [Maxmind GeoIP2 Web Services](https://www.maxmind.com/en/geoip2-precision-services)
-* [API documentation](http://dev.maxmind.com/geoip/geoip2/web-services/)
-* [Development](https://github.com/fvdm/nodejs-geoip2ws/wiki)
+* [API documentation](https://dev.maxmind.com/geoip/geoip2/web-services/)
 
 
 Usage
@@ -44,13 +43,15 @@ geo ('city', '1.2.3.4')
 ;
 ```
 
+- [Example response data](https://dev.maxmind.com/geoip/geoip2/web-services/#Response_Body)
+- [List of API errors](https://dev.maxmind.com/geoip/geoip2/web-services/#Errors)
+
 
 Installation
 ------------
 
-You need a Maxmind account ID and license key with enough credits
-for one of their GeoIP *web* services.
-You can find both [*here*](https://www.maxmind.com/en/my_license_key).
+You need a Maxmind account ID and license key with enough credits for one of
+their GeoIP *web* services. You can find both [*here*](https://www.maxmind.com/en/accounts/current/license-key).
 
 `npm i geoip2ws`
 
@@ -93,8 +94,6 @@ callback  | function | no       | Your callback. Leave out to return a promise.
 geo ('city', '145.53.252.135', myCallback);
 ```
 
-[Example response data](http://dev.maxmind.com/geoip/geoip2/web-services/#Response_Body)
-
 
 #### Errors
 
@@ -107,7 +106,6 @@ request failed          | A request error occured          | `err.error`
 API error               | API error occured                | `err.code` and `err.error`
 
 
-[List of API errors](http://dev.maxmind.com/geoip/geoip2/web-services/#Errors)
 
 
 Unlicense
@@ -136,7 +134,7 @@ OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
-For more information, please refer to <http://unlicense.org/>
+For more information, please refer to <https://unlicense.org/>
 
 
 Author
