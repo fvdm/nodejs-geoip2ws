@@ -21,6 +21,18 @@ let api = {
 
 
 /**
+ * Check if string is a service
+ *
+ * @param   {string}   service  Service name
+ * @return  {boolean}           True if string is a service name
+ */
+
+function isService (service) {
+  return /^(country|city|insights)$/.test (service);
+}
+
+
+/**
  * Promisify doRequest without deps
  *
  * @param   {object}   props  httpreq.doRequest options
@@ -119,7 +131,7 @@ function doLookup (service, ip = null, callback = null) {
   }
 
   // check input
-  if (!/^(country|city|insights)$/.test (service)) {
+  if (!isService (service)) {
     error = new Error ('invalid service');
   }
 
