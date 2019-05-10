@@ -1,3 +1,45 @@
+### 1.10.0 (2019-05-10)
+
+##### Chores
+
+*  Clean up unused code ([5344f215](https://github.com/fvdm/nodejs-geoip2ws/commit/5344f2155a4281fa69a568d1a4e0949a99237ecc))
+*  Lighter eslint on example.js ([385f7410](https://github.com/fvdm/nodejs-geoip2ws/commit/385f7410c8b13e03a88c8bad10caf7f0a84f7a9c))
+
+##### Documentation Changes
+
+* **readme:**
+  *  Update links ([540e807b](https://github.com/fvdm/nodejs-geoip2ws/commit/540e807be11ee385d53868442df4e7f5a2519cfd))
+  *  userId is a string ([#35](https://github.com/fvdm/nodejs-geoip2ws/pull/35)) ([15ef2bac](https://github.com/fvdm/nodejs-geoip2ws/commit/15ef2bacb03bb236d319a1b8cf5200d50da314ee))
+
+##### New Features
+
+*  Accept config in doLookup [#36](https://github.com/fvdm/nodejs-geoip2ws/pull/36) ([5942e363](https://github.com/fvdm/nodejs-geoip2ws/commit/5942e363ef9d3d9d3e1548aa00cb5a942f1bf9c9))
+
+##### Bug Fixes
+
+* **doLookup:**  Missing isService() ([fecb6226](https://github.com/fvdm/nodejs-geoip2ws/commit/fecb6226994aa5d035bbfa1dfecb00a0206b7a73))
+
+##### Other Changes
+
+*  most_specific_subdivision is sometimes missing ([06df33f9](https://github.com/fvdm/nodejs-geoip2ws/commit/06df33f936cf54fbc5ae38136b88d031e9ac23eb))
+
+##### Refactors
+
+* **errors:**  Removed doError ([1d6e3a33](https://github.com/fvdm/nodejs-geoip2ws/commit/1d6e3a3314962cbd8071e85e5a6fdaeea0d0b7d8))
+*  Cleaner error reporting ([4e8833c9](https://github.com/fvdm/nodejs-geoip2ws/commit/4e8833c90b71098bcd1aa0679777beb93b106f75))
+
+##### Code Style Changes
+
+* **lint:**  Cleaner syntax ([002bb173](https://github.com/fvdm/nodejs-geoip2ws/commit/002bb173ac15215d3b0eb866d19e519c7f9da33a))
+* **link:**  Allow cleaner blocks ([22fed563](https://github.com/fvdm/nodejs-geoip2ws/commit/22fed56338234ba376828724c72a181cb81a5690))
+
+##### Tests
+
+* **main:**
+  *  Fixed old error checks ([dc6b6b89](https://github.com/fvdm/nodejs-geoip2ws/commit/dc6b6b89cd620256e8c74bd9d40c26c0a85a5564))
+  *  Fixed fake data endpoint ([4e169a8a](https://github.com/fvdm/nodejs-geoip2ws/commit/4e169a8ab44ecde4f0cac251d01fdbfda8123c29))
+*  Updated test IP ([475ae142](https://github.com/fvdm/nodejs-geoip2ws/commit/475ae142b718a2f9fc004ffd3a1baa5e2e4b8246))
+
 #### 1.9.1 (2018-11-11)
 
 ##### Chores
