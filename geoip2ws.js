@@ -77,7 +77,8 @@ function doResponse (res) {
 
     if (Array.isArray (data.subdivisions) && data.subdivisions.length) {
       data.most_specific_subdivision = data.subdivisions [data.subdivisions.length - 1];
-    } else {
+    }
+    else {
       data.subdivisions = [];
     }
 
@@ -123,7 +124,8 @@ function doLookup (service, ip = null, callback = null) {
     callback = ip;
     ip = service.ip;
     service = service.service;
-  } else if (isIP (service) || (!isService (service) && !isIP (ip))) {
+  }
+  else if (isIP (service) || (!isService (service) && !isIP (ip))) {
     // service is optional
     callback = ip;
     ip = service;
