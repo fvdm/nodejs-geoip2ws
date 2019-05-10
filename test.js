@@ -143,6 +143,8 @@ doTest.add ('Promise: reject', test => {
 doTest.add ('Config in lookup()', test => {
   const tmpgeo = new app;
   const params = Object.assign (config, {
+    userId: config.userId,
+    licenseKey: config.licenseKey,
     requestTimeout: 5000,
     ip: '194.109.6.66',
   });
