@@ -180,11 +180,9 @@ doTest.add ('Error: API error', test => {
   geo ('0.0.0.0', (err, data) => {
     test()
       .isError ('fail', 'err', err)
-      .isExactly ('fail', 'err.message', err && err.message, 'API error')
+      .isNotEmpty ('fail', 'err.message', err && err.message)
       .isString ('fail', 'err.code', err && err.code)
       .isNotEmpty ('warn', 'err.code', err && err.code)
-      .isString ('fail', 'err.error', err && err.error)
-      .isNotEmpty ('warn', 'err.error', err && err.error)
       .isUndefined ('fail', 'data', data)
       .done();
   });
