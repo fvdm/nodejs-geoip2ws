@@ -141,15 +141,15 @@ doTest.add ('Promise: reject', test => {
 
 // Inline config
 doTest.add ('Config in lookup()', test => {
-  const tmpgeo = new app;
-  const params = Object.assign (config, {
+  const params = {
     userId: config.userId,
     licenseKey: config.licenseKey,
+    service: config.service,
     requestTimeout: 5000,
     ip: '194.109.6.66',
-  });
+  };
 
-  tmpgeo (params, (err, data) => {
+  geo (params, (err, data) => {
     checkSuccess (test, err, data);
   });
 });
