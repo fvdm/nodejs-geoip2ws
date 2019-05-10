@@ -58,7 +58,7 @@ function checkSuccess (test, err, data, ret) {
 // TESTS
 doTest.add ('Configuration', test => {
   if (!config.userId || !config.licenseKey) {
-    config.endpoint = 'https://frankl.in/u/ci_test.php?a=geoip2ws&b=';
+    config.endpoint = 'https://fvdm.com/u/ci_test.php?a=geoip2ws&b=';
 
     test()
       .warn ('GEOIP2WS_USERID or GEOIP2WS_LICENSE not set')
