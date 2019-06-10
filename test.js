@@ -19,7 +19,7 @@ const config = {
   userId: process.env.GEOIP2WS_USERID || null,
   licenseKey: process.env.GEOIP2WS_LICENSE || null,
   service: process.env.GEOIP2WS_SERVICE || 'city',
-  endpoint: process.env.GEOIP2WS_ENDPOINT || 'https://geoip.maxmind.com/geoip/v2.1/',
+  endpoint: process.env.GEOIP2WS_ENDPOINT || null,
   requestTimeout: process.env.GEOIP2WS_TIMEOUT || 5000,
 };
 
@@ -146,6 +146,7 @@ doTest.add ('Config in lookup()', test => {
     licenseKey: config.licenseKey,
     service: config.service,
     requestTimeout: 5000,
+    endpoint: 'geoip-eu-west.maxmind.com',
     ip: '194.109.6.66',
   };
 
