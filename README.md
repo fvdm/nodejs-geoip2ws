@@ -22,7 +22,7 @@ When you don't provide a callback function you'll get
 a _promise_ in return.
 
 
-#### One line with callback
+#### Callback function
 
 ```js
 require ('geoip2ws') (userId, licenseKey) (ip, callback);
@@ -59,14 +59,15 @@ their GeoIP *web* services. You can find both [*here*](https://www.maxmind.com/e
 The functions
 -------------
 
-The _first function_ is the setup and takes these settings:
+The _first function_ is the config and takes these settings:
 
-parameter      | type    | required | description
-:--------------|:--------|:---------|:--------------------------------
-userId         | string  | yes      | Your Maxmind account user ID
-licenseKey     | string  | yes      | Your Maxmind account license key
-service        | string  | no       | The service you'd like to use: `insights`, `country`, `city` (default)
-requestTimeout | integer | no       | Socket read timeout in milliseconds to wait for reply from MaxMind
+parameter        | type    | default           | description
+:----------------|:--------|:------------------|:--------------------------------
+[userId]         | string  |                   | Your Maxmind account user ID
+[licenseKey]     | string  |                   | Your Maxmind account license key
+[service]        | string  | city              | The service you'd like to use: `insights`, `country`, `city`
+[endpoint]       | string  | geoip.maxmind.com | Override endpoint hostname or full url
+[requestTimeout] | integer | 5000              | Socket read timeout in milliseconds to wait for reply from MaxMind
 
 ```js
 // With arguments
@@ -82,6 +83,15 @@ const geo = require ('geoip2ws') ({
 ```
 
 
+If you are providing the details in the lookup function,
+then you don't have to set them here but you do need to
+run this config function.
+
+```js
+const geo = require ('geoip2ws')();
+```
+
+
 The _second function_ does the IP-address lookup and takes these arguments:
 
 parameter | type     | required | description
@@ -94,6 +104,19 @@ callback  | function | no       | Your callback. Leave out to return a promise.
 geo ('city', '145.53.252.135', myCallback);
 ```
 
+You can also provide them in an object and include the config parameters.
+
+```js
+geo ({
+  ip: '1.2.3.4',
+  service: 'city',
+  endpoint: 'geoip-eu-west.maxmind.com',
+})
+  .then (processData)
+  .catch (console.error)
+;
+```
+
 
 #### Errors
 
@@ -104,8 +127,6 @@ invalid service         | The service name is invalid      | no credits used
 invalid ip              | The IP-address is invalid        | no credits used
 request failed          | A request error occured          | `err.error`
 API error               | API error occured                | `err.code` and `err.error`
-
-
 
 
 Unlicense
