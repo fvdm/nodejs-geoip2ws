@@ -18,10 +18,19 @@ let geo;
 const config = {
   userId: process.env.GEOIP2WS_USERID || null,
   licenseKey: process.env.GEOIP2WS_LICENSE || null,
-  service: process.env.GEOIP2WS_SERVICE || 'city',
-  endpoint: process.env.GEOIP2WS_ENDPOINT || null,
-  requestTimeout: process.env.GEOIP2WS_TIMEOUT || 5000,
 };
+
+if (process.env.GEOIP2WS_SERVICE) {
+  config.service = process.env.GEOIP2WS_SERVICE;
+}
+
+if (process.env.GEOIP2WS_ENDPOINT) {
+  config.endpoint = process.env.GEOIP2WS_ENDPOINT;
+}
+
+if (process.env.GEOIP2WS_TIMEOUT) {
+  config.requestTimeout = process.env.GEOIP2WS_TIMEOUT;
+}
 
 
 /**
