@@ -1,3 +1,37 @@
+#### 1.10.1 (2019-06-10)
+
+##### Chores
+
+* **package:**
+  *  Update dotest dev dep ([1a96d45d](https://github.com/fvdm/nodejs-geoip2ws/commit/1a96d45d83dab823cdb1f170e06096435e8f062c))
+  *  Update minimal node version ([7f8d33ea](https://github.com/fvdm/nodejs-geoip2ws/commit/7f8d33eac69a28a811932a94a04a49143988cc49))
+  *  Update dev dependencies ([0f8a4074](https://github.com/fvdm/nodejs-geoip2ws/commit/0f8a4074bdd0e43f76bacb5585c3065aedb761bf))
+
+##### Documentation Changes
+
+*  Minor text fix ([68f3fd72](https://github.com/fvdm/nodejs-geoip2ws/commit/68f3fd729a25d1204561a5a78dc2b2f46e822d03))
+*  Describe endpoint param, examples, cleanup ([1fd346fd](https://github.com/fvdm/nodejs-geoip2ws/commit/1fd346fd6394281328804f4f9c442b6c04bd22f5))
+
+##### Bug Fixes
+
+*  doLookup() service config ([f45acad8](https://github.com/fvdm/nodejs-geoip2ws/commit/f45acad8b9cfe36edf3dbf50ab46d6f21ea2fd11))
+
+##### Refactors
+
+*  Endpoint handling, cleaner promises ([62433b8c](https://github.com/fvdm/nodejs-geoip2ws/commit/62433b8c7b84fbc2abc5eb73674cf9d7917b0bfb))
+
+##### Tests
+
+* **config:**
+  *  Update Travis node versions ([92b72260](https://github.com/fvdm/nodejs-geoip2ws/commit/92b72260cdb01f71b35e3e3a98118f9c1af7e9ec))
+  *  Update ES version to 2017 ([b2e0d1d9](https://github.com/fvdm/nodejs-geoip2ws/commit/b2e0d1d9613b6588d3c1a917c67ceadec10c0831))
+*  Fixed endpoint coverage ([5d0ef298](https://github.com/fvdm/nodejs-geoip2ws/commit/5d0ef298eff1e931b99764d38593221d605d3886))
+*  Fixed Promise.reject test ([52c52393](https://github.com/fvdm/nodejs-geoip2ws/commit/52c52393cd099f1e579633234c971ef08dbb2e93))
+*  More strict env config ([d83e0399](https://github.com/fvdm/nodejs-geoip2ws/commit/d83e039931a574b20de358d507d2fd639fb3e078))
+*  Endpoint coverage ([6c71ed33](https://github.com/fvdm/nodejs-geoip2ws/commit/6c71ed33353f5846eeb788e162b44999267bd469))
+*  Cleaner config in lookup test ([990c589c](https://github.com/fvdm/nodejs-geoip2ws/commit/990c589cae8d4919fc9da7e6700f492581f4a28e))
+*  Cover inline config ([0753e3e5](https://github.com/fvdm/nodejs-geoip2ws/commit/0753e3e55c873b556148aeb1bdc7ae530671a53d))
+
 ### 1.10.0 (2019-05-10)
 
 ##### Chores
