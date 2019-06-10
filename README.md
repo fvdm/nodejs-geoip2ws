@@ -66,7 +66,7 @@ parameter        | type    | default           | description
 [userId]         | string  |                   | Your Maxmind account user ID
 [licenseKey]     | string  |                   | Your Maxmind account license key
 [service]        | string  | city              | The service you'd like to use: `insights`, `country`, `city`
-[endpoint]       | string  | geoip.maxmind.com | Override endpoint hostname or full url
+[endpoint]       | string  | geoip.maxmind.com | Override endpoint hostname or url
 [requestTimeout] | integer | 5000              | Socket read timeout in milliseconds to wait for reply from MaxMind
 
 ```js
