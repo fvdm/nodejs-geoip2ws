@@ -112,10 +112,18 @@ function doLookup (service, ip = null, callback = null) {
   let error;
   let userId = api.userId;
   let licenseKey = api.licenseKey;
+  let serviceName = api.service;
   let requestTimeout = api.requestTimeout;
   let endpoint = api.endpoint;
 
+  if (typeof service === 'string' && !isIP (service)) {
+    serviceName = service;
+  }
+
   if (service instanceof Object) {
+    callback = ip;
+    ip = service.ip;
+
     if (service.userId && service.licenseKey) {
       userId = service.userId;
       licenseKey = service.licenseKey;
@@ -129,19 +137,19 @@ function doLookup (service, ip = null, callback = null) {
       endpoint = service.endpoint;
     }
 
-    callback = ip;
-    ip = service.ip;
-    service = service.service;
+    if (service.service) {
+      serviceName = service.service;
+    }
   }
   else if (isIP (service) || (!isService (service) && !isIP (ip))) {
     // service is optional
     callback = ip;
     ip = service;
-    service = api.service;
+    serviceName = api.service;
   }
 
   // check input
-  if (!isService (service)) {
+  if (!isService (serviceName)) {
     error = new Error ('invalid service');
   }
 
@@ -161,10 +169,10 @@ function doLookup (service, ip = null, callback = null) {
     auth: `${userId}:${licenseKey}`,
     timeout: requestTimeout,
     headers: {
-      'Accept': `application/vnd.maxmind.com-${service}+json; charset=UTF-8; version=2.1`,
+      'Accept': `application/vnd.maxmind.com-${serviceName}+json; charset=UTF-8; version=2.1`,
       'User-Agent': 'geoip2ws.js (https://github.com/fvdm/nodejs-geoip2ws)',
     },
-    url: `${endpoint}/${service}/${ip}`,
+    url: `${endpoint}/${serviceName}/${ip}`,
   };
 
   // do callback
