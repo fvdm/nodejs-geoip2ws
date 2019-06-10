@@ -135,16 +135,22 @@ doTest.add ('Promise: resolve', test => {
 });
 
 
-doTest.add ('Promise: reject', test => {
-  geo ('invalid input')
-    .catch (err => {
-      test()
-        .isError ('fail', 'catch', err)
-        .isExactly ('fail', 'message', err && err.message, 'invalid ip')
-        .done()
-      ;
-    })
-  ;
+doTest.add ('Promise: reject', async test => {
+  try {
+    await geo ('invalid input');
+
+    test()
+      .fail ('Promise should not resolve')
+      .done()
+    ;
+  }
+  catch (err) {
+    test()
+      .isError ('fail', 'catch', err)
+      .isExactly ('fail', 'message', err && err.message, 'invalid ip')
+      .done()
+    ;
+  }
 });
 
 
