@@ -160,8 +160,8 @@ doTest.add ('Config in lookup()', test => {
     userId: config.userId,
     licenseKey: config.licenseKey,
     service: config.service,
+    endpoint: config.endpoint,
     requestTimeout: 5000,
-    endpoint: 'geoip-eu-west.maxmind.com',
     ip: '194.109.6.66',
   };
 
