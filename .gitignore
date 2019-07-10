@@ -21,7 +21,6 @@ build/Release
 # Dependencies
 node_modules
 jspm_packages
-package-lock.json
 .npm
 .node_repl_history
 .lock-wscript
