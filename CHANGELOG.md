@@ -1,3 +1,9 @@
+#### 1.10.3 (2019-07-10)
+
+##### Bug Fixes
+
+*  data.most_specific_subdivision was removed ([57eadffe](https://github.com/fvdm/nodejs-geoip2ws/commit/57eadffe8d6b3da9968556e1307f5dd5742e5c33))
+
 #### 1.10.2 (2019-07-10)
 
 ##### Chores
