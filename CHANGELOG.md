@@ -1,3 +1,19 @@
+#### 1.10.2 (2019-07-10)
+
+##### Chores
+
+* **dev:**
+  *  Added package-lock.json ([9997f00e](https://github.com/fvdm/nodejs-geoip2ws/commit/9997f00e7ebc4337a0572785d2c9e91c58cb73f4))
+  *  Removed package-lock from gitignore ([ae55d78e](https://github.com/fvdm/nodejs-geoip2ws/commit/ae55d78e231ef5f1fa45637b42a0a671d2844561))
+
+##### Refactors
+
+*  Always set confidence where expected ([07ed10f2](https://github.com/fvdm/nodejs-geoip2ws/commit/07ed10f2624f417baa1bd44f20940dc80c2ce774))
+
+##### Code Style Changes
+
+*  Reduced doResponse() complexity ([fe122826](https://github.com/fvdm/nodejs-geoip2ws/commit/fe12282621767481bc05d1c6f69ba49cf0365768))
+
 #### 1.10.1 (2019-06-10)
 
 ##### Chores
