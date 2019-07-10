@@ -81,24 +81,10 @@ async function doResponse (res) {
     data.subdivisions = [];
   }
 
-  if (!data.most_specific_subdivision) {
-    data.most_specific_subdivision = {};
-  }
-
-  if (!data.city && !data.city.confidence) {
-    data.city.confidence = 0;
-  }
-
-  if (!data.country && !data.country.confidence) {
-    data.country.confidence = 0;
-  }
-
-  if (!data.postal && !data.postal.confidence) {
-    data.postal.confidence = 0;
-  }
-
-  if (!data.subdivisions && !data.subdivisions.confidence) {
-    data.subdivisions.confidence = 0;
+  for (let key in data) {
+    if (key.match (/^(city|country|postal|subdivisions)$/) && !data[key].confidence) {
+      data[key].confidence = 0;
+    }
   }
 
   return data;
