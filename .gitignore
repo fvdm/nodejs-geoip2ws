@@ -20,6 +20,7 @@ build/Release
 
 # Dependencies
 node_modules
+package-lock.json
 jspm_packages
 .npm
 .node_repl_history
