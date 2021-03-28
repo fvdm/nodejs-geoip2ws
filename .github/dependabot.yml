@@ -8,8 +8,7 @@ updates:
     assignees:
       - "fvdm"
     commit-message:
-      prefix: "Action deps"
-      prefix-development: "Action devdeps"
+      prefix: "Chore(github)"
 
   - package-ecosystem: "npm"
     directory: "/"
@@ -18,5 +17,5 @@ updates:
     assignees:
       - "fvdm"
     commit-message:
-      prefix: "Chore: deps"
-      prefix-development: "Chore: devdeps"
+      prefix: "Chore(deps)"
+      prefix-development: "Chore(devdeps)"
