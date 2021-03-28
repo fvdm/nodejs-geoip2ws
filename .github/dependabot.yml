@@ -1,0 +1,24 @@
+version: 2
+updates:
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    assignees:
+      - "fvdm"
+    commit-message:
+      prefix: "Chore(github): Update action deps "
+      prefix-development: "Chore(github): Update action devdeps "
+      include: "scope"
+
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    assignees:
+      - "fvdm"
+    commit-message:
+      prefix: "Chore(package): Update deps "
+      prefix-development: "Chore(package): Update devdeps "
+      include: "scope"
