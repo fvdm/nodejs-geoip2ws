@@ -4,9 +4,8 @@ geoip2ws
 Unofficial Node.js module for the Maxmind GeoIP2 Web Services.
 
 [![npm](https://img.shields.io/npm/v/geoip2ws.svg?maxAge=3600)](https://github.com/fvdm/nodejs-geoip2ws/blob/master/CHANGELOG.md)
-[![Build Status](https://travis-ci.org/fvdm/nodejs-geoip2ws.svg?branch=master)](https://travis-ci.org/fvdm/nodejs-geoip2ws)
+[![Build Status](https://github.com/fvdm/nodejs-geoip2ws/actions/workflows/node.js.yml/badge.svg?branch=master)](https://github.com/fvdm/nodejs-geoip2ws/actions/workflows/node.js.yml)
 [![Coverage Status](https://coveralls.io/repos/github/fvdm/nodejs-geoip2ws/badge.svg?branch=master)](https://coveralls.io/github/fvdm/nodejs-geoip2ws?branch=master)
-[![Greenkeeper](https://badges.greenkeeper.io/fvdm/nodejs-geoip2ws.svg)](https://greenkeeper.io/)
 
 * [Node.js](https://nodejs.org/)
 * [Maxmind GeoIP2 Web Services](https://www.maxmind.com/en/geoip2-precision-services)
