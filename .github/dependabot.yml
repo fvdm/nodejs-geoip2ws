@@ -8,9 +8,8 @@ updates:
     assignees:
       - "fvdm"
     commit-message:
-      prefix: "Chore(github): Update action deps "
-      prefix-development: "Chore(github): Update action devdeps "
-      include: "scope"
+      prefix: "Action deps"
+      prefix-development: "Action devdeps"
 
   - package-ecosystem: "npm"
     directory: "/"
@@ -19,6 +18,5 @@ updates:
     assignees:
       - "fvdm"
     commit-message:
-      prefix: "Chore(package): Update deps "
-      prefix-development: "Chore(package): Update devdeps "
-      include: "scope"
+      prefix: "Chore: deps"
+      prefix-development: "Chore: devdeps"
