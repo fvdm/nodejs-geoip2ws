@@ -1,7 +1,7 @@
 /*
 Name:           geoip2ws - test.js
 Description:    Maxmind GeoIP2 Web Services for node.js
-Author:         Franklin van de Meent (https://frankl.in)
+Author:         Franklin (https://frankl.in)
 Source & docs:  https://github.com/fvdm/nodejs-geoip2ws
 Feedback:       https://github.com/fvdm/nodejs-geoip2ws/issues
 License:        Unlicense (public domain, see LICENSE file)

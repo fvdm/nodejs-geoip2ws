@@ -160,4 +160,4 @@ For more information, please refer to <https://unlicense.org/>
 Author
 ------
 
-[Franklin van de Meent](https://frankl.in/)
+[Franklin](https://frankl.in/)
