@@ -5,39 +5,31 @@ on:
   pull_request:
     branches: [ main, develop ]
 
+
 jobs:
-  # Here the JSON array is retrieved
   lts_versions:
     name: "Getting LTS versions"
     runs-on: ubuntu-latest
     steps:
       - id: set-matrix
-        # Stored into the set-matrix > json var
-        run: echo "::set-output name=json::$(curl -s https://raw.githubusercontent.com/fvdm/nodejs-versions/main/lts.json)"
-        outputs:
-        # And mapped to the 'lts' output var of the job
-        # see it like a 'return' statement in a function
-          lts: ${{ steps.set-matrix.outputs.json }}
+        run: echo "::set-output name=matrix::$(curl -s https://raw.githubusercontent.com/fvdm/nodejs-versions/main/lts.json)"
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
 
-  # Then the normal build runs
   build:
     name: "Testing on Node.js"
-    # Awaiting the JSON retrieval
     needs: lts_versions
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # And the JSON matrix is inserted here
-        node-version: ${{ fromJson(needs.lts_versions.outputs.lts) }}
-
-    # run the build
+        node-version: ${{ fromJson(needs.lts_versions.outputs.matrix) }}
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-          - run: git fetch --prune --unshallow
-          - run: npm ci
-          - run: npm test
-          - run: npm audit --production
+    - uses: actions/checkout@v2
+    - name: Test on Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: git fetch --prune --unshallow
+    - run: npm ci
+    - run: npm test
+    - run: npm audit --production
