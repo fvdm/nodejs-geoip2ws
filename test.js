@@ -44,15 +44,15 @@ if (process.env.GEOIP2WS_TIMEOUT) {
  */
 
 function checkSuccess (test, err, data, ret) {
-  const names = data && data.city && data.city.names;
+  const names = data && data.country && data.country.names;
   const dataIP = data && data.traits && data.traits.ip_address;
   const dataSub = data && data.most_specific_subdivision.iso_code;
 
   test (err)
     .isObject ('fail', 'data', data)
-    .isObject ('fail', 'data.city', data && data.city)
-    .isObject ('fail', 'data.city.names', names)
-    .isExactly ('fail', 'data.city.names.en', names && names.en, 'Amsterdam')
+    .isObject ('fail', 'data.country', data && data.country)
+    .isObject ('fail', 'data.country.names', names)
+    .isExactly ('fail', 'data.country.names.en', names && names.en, 'Netherlands')
     .isExactly ('fail', 'data.traits.ip_address', dataIP, '194.109.6.66')
     .isExactly ('fail', 'data.most_specific_subdivision', dataSub, 'NH');
 
@@ -119,7 +119,7 @@ doTest.add ('lookup - data.subdivisions array', test => {
 
     test (err)
       .isArray ('fail', 'data.subdivisions', data.subdivisions)
-      .isEmpty ('fail', 'data.subdivisions', data.subdivisions)
+      .isNotEmpty ('warn', 'data.subdivisions', data.subdivisions)
       .isExactly ('fail', 'data.traits.ip_address', dataIP, '95.107.128.1')
       .done();
   });
