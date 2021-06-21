@@ -30,6 +30,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: git fetch --prune --unshallow
-    - run: npm install --production
+    - run: npm install
     - run: npm test
     - run: npm audit --production
