@@ -1,9 +1,10 @@
-name: Node.js CI
+name: "Node.js"
+
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ master, develop ]
   pull_request:
-    branches: [ main, develop ]
+    branches: [ master, develop ]
 
 
 jobs:
@@ -32,4 +33,10 @@ jobs:
     - run: git fetch --prune --unshallow
     - run: npm install
     - run: npm test
+      env:
+        GEOIP2WS_USERID: ${{ secrets.GEOIP2WS_USERID }}
+        GEOIP2WS_LICENSE: ${{ secrets.GEOIP2WS_LICENSE }}
+        GEOIP2WS_SERVICE: ${{ secrets.GEOIP2WS_SERVICE }}
+        GEOIP2WS_ENDPOINT: ${{ secrets.GEOIP2WS_ENDPOINT }}
+        GEOIP2WS_TIMEOUT: ${{ secrets.GEOIP2WS_TIMEOUT }}
     - run: npm audit --production
