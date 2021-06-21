@@ -115,7 +115,11 @@ async function doResponse (res) {
  * @param     {function}       [callback]              `(err, data)`
  */
 
-function doLookup (service, ip = null, callback = null) {
+function doLookup (
+  service,
+  ip = null,
+  callback = null,
+) {
   let error;
   let userId = api.userId;
   let licenseKey = api.licenseKey;
@@ -224,7 +228,7 @@ module.exports = function setup (
   userId,
   licenseKey,
   service = api.service,
-  timeout = api.requestTimeout
+  timeout = api.requestTimeout,
 ) {
   if (userId instanceof Object) {
     api = Object.assign (api, userId);
