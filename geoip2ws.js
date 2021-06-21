@@ -243,4 +243,4 @@ module.exports = function setup (
   api.requestTimeout = timeout;
 
   return doLookup;
-}
+};
