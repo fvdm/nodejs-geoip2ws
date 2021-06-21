@@ -168,11 +168,8 @@ function doLookup (
     error = new Error ('invalid ip');
   }
 
+  endpoint = endpoint.replace (/\/$/, '');
   endpoint = `https://${endpoint}/geoip/v2.1`;
-
-  if (endpoint.indexOf ('/') >= 0) {
-    endpoint = endpoint.replace (/\/$/, '');
-  }
 
   const httpProps = {
     method: 'GET',
