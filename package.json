@@ -1,8 +1,8 @@
 {
   "author": {
     "name": "Franklin",
-    "email": "fr@nkl.in",
-    "url": "https://frankl.in"
+    "email": "info@fvdm.com",
+    "url": "https://fvdm.com"
   },
   "name": "geoip2ws",
   "description": "Maxmind GeoIP2 Web Services (unofficial) - Lookup and geolocate IP-address or hostname",
@@ -23,10 +23,10 @@
     "httpreq": "^0.5.1"
   },
   "devDependencies": {
-    "dotest": "^2.6.1"
+    "dotest": "^2.7.1"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=12.0.0"
   },
   "scripts": {
     "test": "dotest"
