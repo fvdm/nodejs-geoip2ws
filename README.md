@@ -16,16 +16,14 @@ Usage
 -----
 
 There are multiple ways to load and use this module.
+You can wrap the arguments in braces for object-style usage
+and leave the callback function out. This will return a
+_promise_.
 
-When you don't provide a callback function you'll get
-a _promise_ in return.
+Or using legacy-style arguments with a _callback_ function.
 
-
-#### Callback function
-
-```js
-require ('geoip2ws') (userId, licenseKey) (ip, callback);
-```
+**Note:** The legacy arguments are going to be removed in
+a future release.
 
 
 #### Promise
@@ -41,6 +39,14 @@ geo ('city', '1.2.3.4')
   .catch (console.error)
 ;
 ```
+
+
+#### Legacy callbacks
+
+```js
+require ('geoip2ws') (userId, licenseKey) (ip, callback);
+```
+
 
 - [Example response data](https://dev.maxmind.com/geoip/geoip2/web-services/#Response_Body)
 - [List of API errors](https://dev.maxmind.com/geoip/geoip2/web-services/#Errors)
@@ -160,4 +166,5 @@ For more information, please refer to <https://unlicense.org/>
 Author
 ------
 
-[Franklin](https://frankl.in/)
+[Franklin](https://fvdm.com)
+| [Buy me a coffee](https://fvdm.com/donating/)
