@@ -164,11 +164,10 @@ function doLookup (service, ip = null, callback = null) {
     error = new Error ('invalid ip');
   }
 
+  endpoint = `https://${endpoint}/geoip/v2.1`;
+
   if (endpoint.indexOf ('/') >= 0) {
     endpoint = endpoint.replace (/\/$/, '');
-  }
-  else {
-    endpoint = `https://${endpoint}/geoip/v2.1`;
   }
 
   const httpProps = {
@@ -221,7 +220,12 @@ function doLookup (service, ip = null, callback = null) {
  * @param   {number}    [timeout=5000]                Request time out in milliseconds
  */
 
-function setup (userId, licenseKey, service, timeout) {
+module.exports = function setup (
+  userId,
+  licenseKey,
+  service = api.service,
+  timeout = api.requestTimeout
+) {
   if (userId instanceof Object) {
     api = Object.assign (api, userId);
     return doLookup;
@@ -234,10 +238,8 @@ function setup (userId, licenseKey, service, timeout) {
 
   api.userId = userId;
   api.licenseKey = licenseKey;
-  api.service = service || api.service;
-  api.requestTimeout = timeout || api.requestTimeout;
+  api.service = service;
+  api.requestTimeout = timeout;
 
   return doLookup;
 }
-
-module.exports = setup;
