@@ -15,7 +15,7 @@ let api = {
   userId: null,
   licenseKey: null,
   service: 'city',
-  endpoint: 'geoip.maxmind.com',
+  endpoint: 'https://geoip.maxmind.com',
   requestTimeout: 5000,
 };
 
@@ -169,7 +169,7 @@ function doLookup (
   }
 
   endpoint = endpoint.replace (/\/$/, '');
-  endpoint = `https://${endpoint}/geoip/v2.1`;
+  endpoint = `${endpoint}/geoip/v2.1/${serviceName}/${ip}`;
 
   const httpProps = {
     method: 'GET',
@@ -179,7 +179,7 @@ function doLookup (
       'Accept': `application/vnd.maxmind.com-${serviceName}+json; charset=UTF-8; version=2.1`,
       'User-Agent': 'geoip2ws.js (https://github.com/fvdm/nodejs-geoip2ws)',
     },
-    url: `${endpoint}/${serviceName}/${ip}`,
+    url: endpoint,
   };
 
   // do callback
