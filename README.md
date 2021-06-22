@@ -66,13 +66,13 @@ The functions
 
 The _first function_ is the config and takes these settings:
 
-parameter        | type    | default           | description
-:----------------|:--------|:------------------|:--------------------------------
-[userId]         | string  |                   | Your Maxmind account user ID
-[licenseKey]     | string  |                   | Your Maxmind account license key
-[service]        | string  | city              | The service you'd like to use: `insights`, `country`, `city`
-[endpoint]       | string  | geoip.maxmind.com | Override endpoint hostname or url
-[requestTimeout] | integer | 5000              | Socket read timeout in milliseconds to wait for reply from MaxMind
+parameter        | type    | default                   | description
+:----------------|:--------|:--------------------------|:--------------------------------
+[userId]         | string  |                           | Your Maxmind account user ID
+[licenseKey]     | string  |                           | Your Maxmind account license key
+[service]        | string  | city                      | The service you'd like to use: `insights`, `country`, `city`
+[endpoint]       | string  | https://geoip.maxmind.com | Override endpoint hostname or url
+[requestTimeout] | integer | 5000                      | Socket read timeout in milliseconds to wait for reply from MaxMind
 
 ```js
 // With arguments
@@ -99,11 +99,11 @@ const geo = require ('geoip2ws')();
 
 The _second function_ does the IP-address lookup and takes these arguments:
 
-parameter | type     | required | description
-:---------|:---------|:---------|:--------------------------------------------
-service   | string   | no       | The service, same as above
-ip        | string   | yes      | The IPv4 or IPv6 address to lookup
-callback  | function | no       | Your callback. Leave out to return a promise.
+parameter  | type     | description
+:----------|:---------|:--------------------------------------------
+[service]  | string   | The service, same as above
+ip         | string   | The IPv4 or IPv6 address to lookup
+[callback] | function | Your callback. Leave out to return a promise.
 
 ```js
 geo ('city', '145.53.252.135', myCallback);
