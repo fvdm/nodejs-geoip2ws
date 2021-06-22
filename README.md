@@ -22,8 +22,8 @@ _promise_.
 
 Or using legacy-style arguments with a _callback_ function.
 
-**Note:** The legacy arguments are going to be removed in
-a future release.
+**Note:** The legacy arguments and callbacks are going to be
+removed in a future release.
 
 
 #### Promise
