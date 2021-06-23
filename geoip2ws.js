@@ -75,8 +75,9 @@ async function doResponse (res) {
 
   // Fix API inconsistencies
   if (Array.isArray (data.subdivisions) && data.subdivisions.length) {
-    data.most_specific_subdivision = data.subdivisions [data.subdivisions.length - 1];
+    data.most_specific_subdivision = data.subdivisions[data.subdivisions.length - 1];
   }
+
   else {
     data.subdivisions = [];
   }
@@ -101,8 +102,7 @@ async function doResponse (res) {
  * @callback  [callback]
  * @return    {function|promise}                       If `callback` then doLookup(), else promise
  *
- * @promise   {object}         resolve                 Response data
- * @promise   {error}          reject                  Agent or API error
+ * @promise   {Promise<object>}                        Response data
  *
  * @param     {string|object}  [service=api.service]   Temporary service override
  * @param     {string}         [service.userId]        Account user ID
@@ -116,10 +116,14 @@ async function doResponse (res) {
  */
 
 function doLookup (
+
   service,
   ip = null,
   callback = null,
+
 ) {
+
+  // legacy support
   let error;
   let userId = api.userId;
   let licenseKey = api.licenseKey;
@@ -152,8 +156,8 @@ function doLookup (
       serviceName = service.service;
     }
   }
+
   else if (isIP (service) || (!isService (service) && !isIP (ip))) {
-    // service is optional
     callback = ip;
     ip = service;
     serviceName = api.service;
@@ -168,9 +172,11 @@ function doLookup (
     error = new Error ('invalid ip');
   }
 
+  // build url
   endpoint = endpoint.replace (/\/$/, '');
   endpoint = `${endpoint}/geoip/v2.1/${serviceName}/${ip}`;
 
+  // build request
   const httpProps = {
     method: 'GET',
     auth: `${userId}:${licenseKey}`,
@@ -206,6 +212,7 @@ function doLookup (
   return get (httpProps)
     .then (doResponse)
   ;
+
 }
 
 
@@ -222,16 +229,20 @@ function doLookup (
  */
 
 module.exports = function setup (
+
   userId,
   licenseKey,
   service = api.service,
   timeout = api.requestTimeout,
+
 ) {
+
   if (userId instanceof Object) {
     api = Object.assign (api, userId);
     return doLookup;
   }
 
+  // legacy support
   if (typeof service === 'number') {
     timeout = service;
     service = api.service;
@@ -243,4 +254,5 @@ module.exports = function setup (
   api.requestTimeout = timeout;
 
   return doLookup;
+
 };
