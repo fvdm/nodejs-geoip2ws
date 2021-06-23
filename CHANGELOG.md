@@ -1,3 +1,65 @@
+#### 1.10.4 (2021-06-23)
+
+##### Chores
+
+* **package:**
+  *  Minor edits, minimum node v12 ([2154a0a8](https://github.com/fvdm/nodejs-geoip2ws/commit/2154a0a83225c1528f4230c66cc2abb32cff70c5))
+  *  package-lock.json in gitignore ([6e826d7d](https://github.com/fvdm/nodejs-geoip2ws/commit/6e826d7d9a64d9ddb05d08070652325aac03b6c3))
+* **deps:**  Bump httpreq from 0.4.24 to 0.5.1 ([db351f66](https://github.com/fvdm/nodejs-geoip2ws/commit/db351f6692282379e1f1fc9a932a95e0067762c6))
+* **github:**
+  *  Bump actions/setup-node from 1 to 2.1.5 ([14611043](https://github.com/fvdm/nodejs-geoip2ws/commit/14611043d6ed7b42b16d614b8275f7d88abc0c14))
+  *  Bump actions/checkout from 2 to 2.3.4 ([a2ae1b3f](https://github.com/fvdm/nodejs-geoip2ws/commit/a2ae1b3f618308e420ab65b37b8707f0a5a0f3e9))
+  *  Bump actions/setup-node from 2 to 2.1.5 ([99b20ab8](https://github.com/fvdm/nodejs-geoip2ws/commit/99b20ab840f2cd103dbf635206a806d96646f83f))
+  *  Funding updated ([88f28efa](https://github.com/fvdm/nodejs-geoip2ws/commit/88f28efab6c2357ddc0398bf081e63e3e1d8f8ed))
+*  Shorter author name ([b3dda6ef](https://github.com/fvdm/nodejs-geoip2ws/commit/b3dda6efefd1c00f2a5070f9af9602ca369f369d))
+*  Replaced Travis CI with Github actions ([7c089cfd](https://github.com/fvdm/nodejs-geoip2ws/commit/7c089cfdec02b5781a36047ca6700ca7499ea1ec))
+* **dev:**  Update editorconfig for json files ([ba54a5d8](https://github.com/fvdm/nodejs-geoip2ws/commit/ba54a5d874edf794bd364f62b81b1e8c467b572f))
+
+##### Documentation Changes
+
+* **readme:**
+  *  Clean up tables ([dfad81c7](https://github.com/fvdm/nodejs-geoip2ws/commit/dfad81c7ea28e024631a9c093d912b7ad44f2253))
+  *  Improved legacy usage warning ([088f154e](https://github.com/fvdm/nodejs-geoip2ws/commit/088f154ea64f3fcc7cf283da4ccf682954dd419c))
+  *  Warn about legacy usage, minor edits ([8be0e2ff](https://github.com/fvdm/nodejs-geoip2ws/commit/8be0e2ff5f4adbcf737a454d0700f043f9f555e7))
+
+##### Bug Fixes
+
+* **doLookup:**  Prefix endpoint if no protocol ([2e3fd681](https://github.com/fvdm/nodejs-geoip2ws/commit/2e3fd681b66897213a2eb5b1367934fd1768113a))
+*  Endpoint logic ([5848403c](https://github.com/fvdm/nodejs-geoip2ws/commit/5848403cb90bff5a9623afd944e318e25557d6b8))
+*  doLookup() endpoint logic ([4763ec1a](https://github.com/fvdm/nodejs-geoip2ws/commit/4763ec1a39341b33844ae80ec66fb86e3c3cdbe3))
+
+##### Other Changes
+
+*  Bump actions/setup-node from v1 to v2.1.5 ([9e2b3e12](https://github.com/fvdm/nodejs-geoip2ws/commit/9e2b3e12d062997c8f5ab50efcc11b8093473dc7))
+
+##### Refactors
+
+* **package:**  Minimum node v10 ([5a2ef214](https://github.com/fvdm/nodejs-geoip2ws/commit/5a2ef2144598d954c4f97994b89afaf20571bad4))
+
+##### Code Style Changes
+
+*  Whitespace edits and legacy comments ([6c5384a8](https://github.com/fvdm/nodejs-geoip2ws/commit/6c5384a8de874e98196a047a231c91f758bfa92f))
+*  Updated author line ([005b13d5](https://github.com/fvdm/nodejs-geoip2ws/commit/005b13d522d00869dd334aa2e73b262bccc17826))
+*  Minor clean up ([f42fc660](https://github.com/fvdm/nodejs-geoip2ws/commit/f42fc660a79ade7c0712fbd7bf6b6e2736d42920))
+*  Minor clean up ([9dd8ef1c](https://github.com/fvdm/nodejs-geoip2ws/commit/9dd8ef1c71a775596c8f7716d357eae33edf7384))
+* **lint:**  Fixed lint error ([b4eeddba](https://github.com/fvdm/nodejs-geoip2ws/commit/b4eeddba1e2b367b923ff69590c18d6e8d252f2c))
+
+##### Tests
+
+* **config:**
+  *  ESLint allow block padding ([ab2868ec](https://github.com/fvdm/nodejs-geoip2ws/commit/ab2868ec83839f2ef30e3a87b9fc365607aa37cc))
+  *  Modernized ESLint config ([cc6ff2eb](https://github.com/fvdm/nodejs-geoip2ws/commit/cc6ff2ebf960bca437c2929adc66a4108e28c86f))
+  *  Node CI action fixes, env vars ([f1535a9c](https://github.com/fvdm/nodejs-geoip2ws/commit/f1535a9c58d480e2b9158b984e8ed00bf3d515b7))
+  *  Update Travis node versions and env ([b972391c](https://github.com/fvdm/nodejs-geoip2ws/commit/b972391c9708bb2571b15722e031bdbca12f6975))
+*  Fixed data checks ([cd83dd55](https://github.com/fvdm/nodejs-geoip2ws/commit/cd83dd55bc9194685aafdd9f4a8b3ebdafb9e07b))
+*  Clean up CodeQL action ([2085ba44](https://github.com/fvdm/nodejs-geoip2ws/commit/2085ba44e11519652e99d7fe30b1e964a8297108))
+*  Github CodeQL action ([a2362a2b](https://github.com/fvdm/nodejs-geoip2ws/commit/a2362a2b253753f17ca31355e2d15c1a0b273b79))
+*  Added Github CI workflow ([7bce5432](https://github.com/fvdm/nodejs-geoip2ws/commit/7bce5432edd6eb9ea0c644229cb0588786247bd9))
+*  Added Github CI workflow ([b3fc4b1b](https://github.com/fvdm/nodejs-geoip2ws/commit/b3fc4b1bc484a6bb0472cf6edc275fdc34b43b24))
+* **github:**
+  *  Renamed CI action to Build ([0fef4b27](https://github.com/fvdm/nodejs-geoip2ws/commit/0fef4b27c09eec5a393daecf99c8c46cc151bd64))
+  *  Replaced node v15 by v16 ([2d5c6994](https://github.com/fvdm/nodejs-geoip2ws/commit/2d5c69941e445daa38b8f5a2e87c96e9fef54502))
+
 #### 1.10.3 (2019-07-10)
 
 ##### Bug Fixes
