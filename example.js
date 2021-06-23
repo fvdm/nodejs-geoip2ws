@@ -6,8 +6,16 @@ const geoip = require ('geoip2ws') ({
   service: 'city',
 });
 
-geoip ('me')
-  .then (console.log)
-  .catch (console.error)
+geoip ({ ip: 'me' })
+  .then (data => {
+    console.dir (data, {
+      depth: null,
+      colors: true,
+    });
+  })
+  .catch (err => {
+    console.log (err);
+    process.exit (1);
+  })
 ;
 
