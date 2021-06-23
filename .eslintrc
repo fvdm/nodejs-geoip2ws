@@ -130,7 +130,7 @@
     "one-var": ["error", "never"],
     "operator-assignment": ["error", "always"],
     "operator-linebreak": ["error", "before"],
-    "padded-blocks": ["error", "never"],
+    "padded-blocks": "off",
     "quote-props": ["error", "consistent"],
     "quotes": ["error", "single", "avoid-escape"],
     "radix": "error",
