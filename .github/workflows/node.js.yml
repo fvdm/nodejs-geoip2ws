@@ -9,7 +9,7 @@ on:
 
 jobs:
   lts_versions:
-    name: "Getting LTS versions"
+    name: "Get versions"
     runs-on: ubuntu-latest
     steps:
       - id: set-matrix
@@ -18,7 +18,7 @@ jobs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
 
   build:
-    name: "Testing on Node.js"
+    name: "Node"
     needs: lts_versions
     runs-on: ubuntu-latest
     strategy:
@@ -27,7 +27,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Test on Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2.1.5
+      uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
     - run: git fetch --prune --unshallow
@@ -40,3 +40,20 @@ jobs:
         GEOIP2WS_ENDPOINT: ${{ secrets.GEOIP2WS_ENDPOINT }}
         GEOIP2WS_TIMEOUT: ${{ secrets.GEOIP2WS_TIMEOUT }}
     - run: npm audit --production
+    - name: Coveralls Parallel
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        flag-name: node-${{ matrix.node-version }}
+        parallel: true
+
+  finish:
+    name: "Finish"
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Coveralls Finished
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        parallel-finished: true
