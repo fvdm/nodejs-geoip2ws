@@ -176,6 +176,10 @@ function doLookup (
   endpoint = endpoint.replace (/\/$/, '');
   endpoint = `${endpoint}/geoip/v2.1/${serviceName}/${ip}`;
 
+  if (!endpoint.match (/^https?\:\/\//)) {
+    endpoint = `https://${endpoint}`;
+  }
+
   // build request
   const httpProps = {
     method: 'GET',
