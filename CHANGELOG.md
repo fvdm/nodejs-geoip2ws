@@ -1,3 +1,9 @@
+#### 1.10.5 (2021-06-23)
+
+##### Chores
+
+* **example:**  More useful demo ([0ce24fe2](https://github.com/fvdm/nodejs-geoip2ws/commit/0ce24fe2a0b8e36caebb17d8aeccf74e81f68f9c))
+
 #### 1.10.4 (2021-06-23)
 
 ##### Chores
