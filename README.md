@@ -48,8 +48,6 @@ require ('geoip2ws') (userId, licenseKey) (ip, callback);
 ```
 
 
-- [Example response data](https://dev.maxmind.com/geoip/geoip2/web-services/#Response_Body)
-- [List of API errors](https://dev.maxmind.com/geoip/geoip2/web-services/#Errors)
 - [Example response data](https://dev.maxmind.com/geoip/docs/web-services/responses?lang=en#bodies)
 - [List of API errors](https://dev.maxmind.com/geoip/docs/web-services/responses?lang=en#errors)
 
