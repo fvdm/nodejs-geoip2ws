@@ -1,5 +1,4 @@
-geoip2ws
-========
+# geoip2ws
 
 Unofficial Node.js module for the Maxmind GeoIP2 Web Services.
 
@@ -12,21 +11,13 @@ Unofficial Node.js module for the Maxmind GeoIP2 Web Services.
 * [API documentation](https://dev.maxmind.com/geoip/geoip2/web-services/)
 
 
-Usage
------
+## Usage
 
-There are multiple ways to load and use this module.
-You can wrap the arguments in braces for object-style usage
-and leave the callback function out. This will return a
-_promise_.
-
-Or using legacy-style arguments with a _callback_ function.
-
-**Note:** The legacy arguments and callbacks are going to be
-removed in a future release.
+You can provide the configuration in the require function or inline at lookup time.
+The lookup always returns a Promise.
 
 
-#### Promise
+### Normal configuration
 
 ```js
 const geo = require ('geoip2ws') ({
@@ -34,26 +25,37 @@ const geo = require ('geoip2ws') ({
   licenseKey: 'abc678',
 });
 
-geo ('city', '1.2.3.4')
+geo ({
+  service: 'city',
+  ip: '1.2.3.4',
+})
   .then (console.log)
   .catch (console.error)
 ;
 ```
 
 
-#### Legacy callbacks
+### Inline configuration
 
 ```js
-require ('geoip2ws') (userId, licenseKey) (ip, callback);
-```
+const geo = require ('geoip2ws') ();
 
+geo ({
+  userId: '12345',
+  licenseKey: 'abc678',
+  service: 'city',
+  ip: '1.2.3.4',
+})
+  .then (console.log)
+  .catch (console.error)
+;
+```
 
 - [Example response data](https://dev.maxmind.com/geoip/geoip2/web-services/#Response_Body)
 - [List of API errors](https://dev.maxmind.com/geoip/geoip2/web-services/#Errors)
 
 
-Installation
-------------
+## Installation
 
 You need a Maxmind account ID and license key with enough credits for one of
 their GeoIP *web* services. You can find both [*here*](https://www.maxmind.com/en/accounts/current/license-key).
@@ -61,10 +63,12 @@ their GeoIP *web* services. You can find both [*here*](https://www.maxmind.com/e
 `npm i geoip2ws`
 
 
-The functions
--------------
+## The functions
 
-The _first function_ is the config and takes these settings:
+### Setup
+
+The _first function_ is the config and returns the lookup function.
+It takes these settings:
 
 parameter        | type    | default                   | description
 :----------------|:--------|:--------------------------|:--------------------------------
@@ -75,10 +79,6 @@ parameter        | type    | default                   | description
 [requestTimeout] | integer | 5000                      | Socket read timeout in milliseconds to wait for reply from MaxMind
 
 ```js
-// With arguments
-const geo = require ('geoip2ws') (1234, 'abc', 'country', 2000);
-
-// Or with an object
 const geo = require ('geoip2ws') ({
   userId: '1234',
   licenseKey: 'abc',
@@ -87,29 +87,22 @@ const geo = require ('geoip2ws') ({
 });
 ```
 
-
-If you are providing the details in the lookup function,
-then you don't have to set them here but you do need to
-run this config function.
+If you are providing the details in the lookup function, then you don't have to
+set them here but you do need to run this setup function once.
 
 ```js
 const geo = require ('geoip2ws')();
 ```
 
 
-The _second function_ does the IP-address lookup and takes these arguments:
+### Lookup
+
+The _second function_ does the IP-address lookup and takes `ip` and the
+optionally the same settings as above.
 
 parameter  | type     | description
 :----------|:---------|:--------------------------------------------
-[service]  | string   | The service, same as above
 ip         | string   | The IPv4 or IPv6 address to lookup
-[callback] | function | Your callback. Leave out to return a promise.
-
-```js
-geo ('city', '145.53.252.135', myCallback);
-```
-
-You can also provide them in an object and include the config parameters.
 
 ```js
 geo ({
@@ -134,8 +127,7 @@ request failed          | A request error occured          | `err.error`
 API error               | API error occured                | `err.code` and `err.error`
 
 
-Unlicense
----------
+## Unlicense
 
 This is free and unencumbered software released into the public domain.
 
@@ -163,8 +155,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 For more information, please refer to <https://unlicense.org/>
 
 
-Author
-------
+## Author
 
 [Franklin](https://fvdm.com)
 | [Buy me a coffee](https://fvdm.com/donating/)
