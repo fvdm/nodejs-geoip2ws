@@ -6,9 +6,9 @@ Unofficial Node.js module for the Maxmind GeoIP2 Web Services.
 [![Build Status](https://github.com/fvdm/nodejs-geoip2ws/actions/workflows/node.js.yml/badge.svg?branch=master)](https://github.com/fvdm/nodejs-geoip2ws/actions/workflows/node.js.yml)
 [![Coverage Status](https://coveralls.io/repos/github/fvdm/nodejs-geoip2ws/badge.svg?branch=master)](https://coveralls.io/github/fvdm/nodejs-geoip2ws?branch=master)
 
-* [Node.js](https://nodejs.org/)
+* [Node.js](https://nodejs.org)
 * [Maxmind GeoIP2 Web Services](https://www.maxmind.com/en/geoip2-precision-services)
-* [API documentation](https://dev.maxmind.com/geoip/geoip2/web-services/)
+* [API documentation](https://dev.maxmind.com/geoip/docs/web-services)
 
 
 ## Usage
@@ -53,6 +53,8 @@ geo ({
 
 - [Example response data](https://dev.maxmind.com/geoip/geoip2/web-services/#Response_Body)
 - [List of API errors](https://dev.maxmind.com/geoip/geoip2/web-services/#Errors)
+- [Example response data](https://dev.maxmind.com/geoip/docs/web-services/responses?lang=en#bodies)
+- [List of API errors](https://dev.maxmind.com/geoip/docs/web-services/responses?lang=en#errors)
 
 
 ## Installation
