@@ -98,15 +98,16 @@ async function doResponse (res) {
 /**
  * Perform lookup
  *
- * @param     {string}  ip                                    IP-address, hostname or 'me' to look up
+ * @param   {object}  args
  *
- * @param     {string}  [userId]                              Account user ID
- * @param     {string}  [licenseKey]                          Account license key
- * @param     {string}  [service=city]                        Account service name
- * @param     {string}  [endpoint=https://geoip.maxmind.com]  API hostname or url
- * @param     {number}  [timeout=5000]                        Request time out in milliseconds
+ * @param   {string}  args.ip                                    IP-address, hostname or 'me' to look up
+ * @param   {string}  [args.userId]                              Account user ID
+ * @param   {string}  [args.licenseKey]                          Account license key
+ * @param   {string}  [args.service=city]                        Account service name
+ * @param   {string}  [args.endpoint=https://geoip.maxmind.com]  API hostname or url
+ * @param   {number}  [args.timeout=5000]                        Request time out in milliseconds
  *
- * @return    {Promise<object>}
+ * @return  {Promise<object>}
  */
 
 async function doLookup ({
@@ -160,13 +161,15 @@ async function doLookup ({
 /**
  * Module interface
  *
- * @param   {string}  userId                                Account user ID
- * @param   {string}  licenseKey                            Account license key
- * @param   {string}  [service=city]                        Account service name
- * @param   {string}  [endpoint=https://geoip.maxmind.com]  API hostname or url
- * @param   {number}  [timeout=5000]                        Request time out in milliseconds
+ * @param   {object}    args
  *
- * @return  {function}                                      doLookup()
+ * @param   {string}    [args.userId]                                Account user ID
+ * @param   {string}    [args.licenseKey]                            Account license key
+ * @param   {string}    [args.service=city]                          Account service name
+ * @param   {string}    [args.endpoint='https://geoip.maxmind.com']  API hostname or url
+ * @param   {number}    [args.timeout=5000]                          Request time out in milliseconds
+ *
+ * @return  {function}  doLookup
  */
 
 module.exports = function setup ({
