@@ -1,3 +1,20 @@
+## 2.0.0 (2021-07-30)
+
+##### Breaking Changes
+
+*  Removed legacy interface ([#48](https://github.com/fvdm/nodejs-geoip2ws/pull/48)) ([3ea8d249](https://github.com/fvdm/nodejs-geoip2ws/commit/3ea8d249dcea53c7ecac94de3c94539d24f275ed))
+
+##### Documentation Changes
+
+* **fix:**  Fixed bad merge ([ade5780c](https://github.com/fvdm/nodejs-geoip2ws/commit/ade5780c8786497133f636431ac9e4fdedf045ec))
+*  Update links ([1c6852a6](https://github.com/fvdm/nodejs-geoip2ws/commit/1c6852a656ac764bc9ac6c378e83daddad6c51c6))
+
+##### Tests
+
+* **config:**
+  *  Only run PR CI on develop branch ([384e56f5](https://github.com/fvdm/nodejs-geoip2ws/commit/384e56f51bfb84c033795b7d8fa77d75bed67543))
+  *  Added Coveralls to CI, minor edits ([06e3e3d5](https://github.com/fvdm/nodejs-geoip2ws/commit/06e3e3d5afc62ab64be612b30dca110387fd9ebc))
+
 #### 1.10.5 (2021-06-23)
 
 ##### Chores
