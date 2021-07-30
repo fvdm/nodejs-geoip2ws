@@ -23,8 +23,9 @@ let api = {
 /**
  * Check if string is a service
  *
- * @param   {string}   service  Service name
- * @return  {boolean}           True if string is a service name
+ * @param   {string}  service  Service name
+ *
+ * @return  {boolean}          `true` if string is a service name
  */
 
 function isService (service) {
@@ -35,8 +36,9 @@ function isService (service) {
 /**
  * Promisify doRequest without deps
  *
- * @param   {object}   props  httpreq.doRequest options
- * @return  {Promise}
+ * @param   {object}  props  doRequest() options
+ *
+ * @return  {Promise<object>}
  */
 
 async function get (options) {
@@ -56,11 +58,9 @@ async function get (options) {
 /**
  * Process response body
  *
- * @param    {object}    res     httpreq response
+ * @param   {object}  res  doRequest() response
  *
- * @return   {promise}
- * @promise  {object}   resolve  Result data
- * @promose  {error}    reject   API error
+ * @return  {Promise<object>}
  */
 
 async function doResponse (res) {
