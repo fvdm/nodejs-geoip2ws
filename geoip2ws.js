@@ -23,8 +23,9 @@ let api = {
 /**
  * Check if string is a service
  *
- * @param   {string}   service  Service name
- * @return  {boolean}           True if string is a service name
+ * @param   {string}  service  Service name
+ *
+ * @return  {boolean}          `true` if string is a service name
  */
 
 function isService (service) {
@@ -35,8 +36,9 @@ function isService (service) {
 /**
  * Promisify doRequest without deps
  *
- * @param   {object}   props  httpreq.doRequest options
- * @return  {Promise}
+ * @param   {object}  props  doRequest() options
+ *
+ * @return  {Promise<object>}
  */
 
 async function get (options) {
@@ -56,11 +58,9 @@ async function get (options) {
 /**
  * Process response body
  *
- * @param    {object}    res     httpreq response
+ * @param   {object}  res  doRequest() response
  *
- * @return   {promise}
- * @promise  {object}   resolve  Result data
- * @promose  {error}    reject   API error
+ * @return  {Promise<object>}
  */
 
 async function doResponse (res) {
@@ -77,7 +77,6 @@ async function doResponse (res) {
   if (Array.isArray (data.subdivisions) && data.subdivisions.length) {
     data.most_specific_subdivision = data.subdivisions[data.subdivisions.length - 1];
   }
-
   else {
     data.subdivisions = [];
   }
@@ -99,82 +98,41 @@ async function doResponse (res) {
 /**
  * Perform lookup
  *
- * @callback  [callback]
- * @return    {function|promise}                       If `callback` then doLookup(), else promise
+ * @param   {object}  args
  *
- * @promise   {Promise<object>}                        Response data
+ * @param   {string}  args.ip                                    IP-address, hostname or 'me' to look up
+ * @param   {string}  [args.userId]                              Account user ID
+ * @param   {string}  [args.licenseKey]                          Account license key
+ * @param   {string}  [args.service=city]                        Account service name
+ * @param   {string}  [args.endpoint=https://geoip.maxmind.com]  API hostname or url
+ * @param   {number}  [args.timeout=5000]                        Request time out in milliseconds
  *
- * @param     {string|object}  [service=api.service]   Temporary service override
- * @param     {string}         [service.userId]        Account user ID
- * @param     {string}         [service.licenseKey]    Account license key
- * @param     {string}         [service.service=city]  Account service name
- * @param     {string}         [service.endpoint]      API hostname or url
- * @param     {number}         [service.timeout=5000]  Request time out in milliseconds
-
- * @param     {string}         [ip]                    IP-address, hostname or `me` to look up
- * @param     {function}       [callback]              `(err, data)`
+ * @return  {Promise<object>}
  */
 
-function doLookup (
+async function doLookup ({
 
-  service,
-  ip = null,
-  callback = null,
+  ip,
+  userId = api.userId,
+  licenseKey = api.licenseKey,
+  service = api.service,
+  endpoint = api.endpoint,
+  timeout = api.timeout,
 
-) {
-
-  // legacy support
-  let error;
-  let userId = api.userId;
-  let licenseKey = api.licenseKey;
-  let serviceName = api.service;
-  let requestTimeout = api.requestTimeout;
-  let endpoint = api.endpoint;
-
-  if (typeof service === 'string' && !isIP (service)) {
-    serviceName = service;
-  }
-
-  if (service instanceof Object) {
-    callback = ip;
-    ip = service.ip;
-
-    if (service.userId && service.licenseKey) {
-      userId = service.userId;
-      licenseKey = service.licenseKey;
-    }
-
-    if (service.requestTimeout) {
-      requestTimeout = service.requestTimeout;
-    }
-
-    if (service.endpoint) {
-      endpoint = service.endpoint;
-    }
-
-    if (service.service) {
-      serviceName = service.service;
-    }
-  }
-
-  else if (isIP (service) || (!isService (service) && !isIP (ip))) {
-    callback = ip;
-    ip = service;
-    serviceName = api.service;
-  }
+}) {
 
   // check input
-  if (!isService (serviceName)) {
-    error = new Error ('invalid service');
+  if (!isService (service)) {
+    throw new Error ('invalid service');
   }
 
   if (ip !== 'me' && !isIP (ip)) {
-    error = new Error ('invalid ip');
+    throw new Error ('invalid ip');
   }
 
   // build url
   endpoint = endpoint.replace (/\/$/, '');
-  endpoint = `${endpoint}/geoip/v2.1/${serviceName}/${ip}`;
+  endpoint += `/geoip/v2.1/${service}/${ip}`;
 
   if (!endpoint.match (/^https?\:\/\//)) {
     endpoint = `https://${endpoint}`;
@@ -184,35 +142,15 @@ function doLookup (
   const httpProps = {
     method: 'GET',
     auth: `${userId}:${licenseKey}`,
-    timeout: requestTimeout,
+    timeout,
     headers: {
-      'Accept': `application/vnd.maxmind.com-${serviceName}+json; charset=UTF-8; version=2.1`,
+      'Accept': `application/vnd.maxmind.com-${service}+json; charset=UTF-8; version=2.1`,
       'User-Agent': 'geoip2ws.js (https://github.com/fvdm/nodejs-geoip2ws)',
     },
     url: endpoint,
   };
 
-  // do callback
-  if (typeof callback === 'function') {
-    if (error) {
-      callback (error);
-      return doLookup;
-    }
-
-    get (httpProps)
-      .then (doResponse)
-      .then (data => callback (null, data))
-      .catch (callback)
-    ;
-
-    return doLookup;
-  }
-
   // do promise
-  if (error) {
-    throw error;
-  }
-
   return get (httpProps)
     .then (doResponse)
   ;
@@ -223,39 +161,32 @@ function doLookup (
 /**
  * Module interface
  *
- * @return  {function}                                doLookup()
+ * @param   {object}    args
  *
- * @param   {string}    userId                        Account user ID
- * @param   {string}    licenseKey                    Account license key
- * @param   {string}    [service=city]                Account service name
- * @param   {string}    [endpoint=geoip.maxmind.com]  API hostname or url
- * @param   {number}    [timeout=5000]                Request time out in milliseconds
+ * @param   {string}    [args.userId]                                Account user ID
+ * @param   {string}    [args.licenseKey]                            Account license key
+ * @param   {string}    [args.service=city]                          Account service name
+ * @param   {string}    [args.endpoint='https://geoip.maxmind.com']  API hostname or url
+ * @param   {number}    [args.timeout=5000]                          Request time out in milliseconds
+ *
+ * @return  {function}  doLookup
  */
 
-module.exports = function setup (
+module.exports = function setup ({
 
-  userId,
-  licenseKey,
+  userId = null,
+  licenseKey = null,
   service = api.service,
-  timeout = api.requestTimeout,
+  endpoint = api.endpoint,
+  timeout = api.timeout,
 
-) {
-
-  if (userId instanceof Object) {
-    api = Object.assign (api, userId);
-    return doLookup;
-  }
-
-  // legacy support
-  if (typeof service === 'number') {
-    timeout = service;
-    service = api.service;
-  }
+} = {}) {
 
   api.userId = userId;
   api.licenseKey = licenseKey;
   api.service = service;
-  api.requestTimeout = timeout;
+  api.endpoint = endpoint;
+  api.timeout = timeout;
 
   return doLookup;
 
