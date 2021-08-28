@@ -5,7 +5,8 @@ on:
     branches: [ master, develop ]
   pull_request:
     branches: [ develop ]
-
+  schedule:
+    - cron: '42 18 * * 6'
 
 jobs:
   lts_versions:
@@ -39,6 +40,7 @@ jobs:
         GEOIP2WS_SERVICE: ${{ secrets.GEOIP2WS_SERVICE }}
         GEOIP2WS_ENDPOINT: ${{ secrets.GEOIP2WS_ENDPOINT }}
         GEOIP2WS_TIMEOUT: ${{ secrets.GEOIP2WS_TIMEOUT }}
+        DOTEST_NOCOV: ${{ secrets.DOTEST_NOCOV }}
     - run: npm audit --production
     - name: Coveralls Parallel
       uses: coverallsapp/github-action@master
