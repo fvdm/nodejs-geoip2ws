@@ -34,28 +34,6 @@ function isService (service) {
 
 
 /**
- * Promisify doRequest without deps
- *
- * @param   {object}  props  doRequest() options
- *
- * @return  {Promise<object>}
- */
-
-async function get (options) {
-  return new Promise ((resolve, reject) => {
-    doRequest (options, (err, res) => {
-      if (err) {
-        reject (err);
-        return;
-      }
-
-      resolve (res);
-    });
-  });
-}
-
-
-/**
  * Process response body
  *
  * @param   {object}  res  doRequest() response
@@ -151,7 +129,7 @@ async function doLookup ({
   };
 
   // do promise
-  return get (httpProps)
+  return doRequest (httpProps)
     .then (doResponse)
   ;
 
