@@ -16,7 +16,7 @@ let api = {
   licenseKey: null,
   service: 'city',
   endpoint: 'https://geoip.maxmind.com',
-  requestTimeout: 5000,
+  timeout: 5000,
 };
 
 
