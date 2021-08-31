@@ -1,3 +1,17 @@
+#### 2.0.1 (2021-08-31)
+
+##### Bug Fixes
+
+*  Bad ref default timeout setting ([693f6767](https://github.com/fvdm/nodejs-geoip2ws/commit/693f6767cade3911da59a632b4649e2c947e9c56))
+
+##### Refactors
+
+*  httpreq now supports promises ([3aebac4b](https://github.com/fvdm/nodejs-geoip2ws/commit/3aebac4b314c2ba041a696f1c7e254f262585b45))
+
+##### Tests
+
+* **config:**  Run Github action every week ([8e97c756](https://github.com/fvdm/nodejs-geoip2ws/commit/8e97c75683390ab483a5ee7a69e632213e04c32e))
+
 ## 2.0.0 (2021-07-30)
 
 ##### Breaking Changes
