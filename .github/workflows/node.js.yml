@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: set-matrix
-        run: echo "::set-output name=matrix::$(curl -s https://raw.githubusercontent.com/fvdm/nodejs-versions/main/lts.json)"
+        run: echo "::set-output name=matrix::$(curl -s https://raw.githubusercontent.com/fvdm/nodejs-versions/main/lts-current.json)"
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
 
@@ -26,36 +26,46 @@ jobs:
       matrix:
         node-version: ${{ fromJson(needs.lts_versions.outputs.matrix) }}
     steps:
-    - uses: actions/checkout@v2
-    - name: Test on Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: git fetch --prune --unshallow
-    - run: npm install
-    - run: npm test
-      env:
-        GEOIP2WS_USERID: ${{ secrets.GEOIP2WS_USERID }}
-        GEOIP2WS_LICENSE: ${{ secrets.GEOIP2WS_LICENSE }}
-        GEOIP2WS_SERVICE: ${{ secrets.GEOIP2WS_SERVICE }}
-        GEOIP2WS_ENDPOINT: ${{ secrets.GEOIP2WS_ENDPOINT }}
-        GEOIP2WS_TIMEOUT: ${{ secrets.GEOIP2WS_TIMEOUT }}
-        DOTEST_NOCOV: ${{ secrets.DOTEST_NOCOV }}
-    - run: npm audit --production
-    - name: Coveralls Parallel
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        flag-name: node-${{ matrix.node-version }}
-        parallel: true
+      - uses: actions/checkout@v2
+      - name: Test on Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: git fetch --prune --unshallow
+      - run: npm install
+      - run: npm test
+        env:
+          GEOIP2WS_USERID: ${{ secrets.GEOIP2WS_USERID }}
+          GEOIP2WS_LICENSE: ${{ secrets.GEOIP2WS_LICENSE }}
+          GEOIP2WS_SERVICE: ${{ secrets.GEOIP2WS_SERVICE }}
+          GEOIP2WS_ENDPOINT: ${{ secrets.GEOIP2WS_ENDPOINT }}
+          GEOIP2WS_TIMEOUT: ${{ secrets.GEOIP2WS_TIMEOUT }}
+          DOTEST_NOCOV: ${{ secrets.DOTEST_NOCOV }}
+          DOTEST_MINCOV: ${{ secrets.DOTEST_MINCOV }}
+      - run: npm audit --production
+      - name: Coveralls Parallel
+        uses: coverallsapp/github-action@master
+        if: always()
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          flag-name: node-${{ matrix.node-version }}
+          parallel: true
+
+  good_build:
+    name: "Good build"
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Build was sucessfull"
 
   finish:
     name: "Finish"
     needs: build
+    if: always()
     runs-on: ubuntu-latest
     steps:
-    - name: Coveralls Finished
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        parallel-finished: true
+      - name: Coveralls Finished
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          parallel-finished: true
