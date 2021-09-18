@@ -46,6 +46,7 @@ jobs:
       - name: Coveralls Parallel
         uses: coverallsapp/github-action@master
         if: always()
+        continue-on-error: true
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           flag-name: node-${{ matrix.node-version }}
@@ -66,6 +67,7 @@ jobs:
     steps:
       - name: Coveralls Finished
         uses: coverallsapp/github-action@master
+        continue-on-error: true
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           parallel-finished: true
