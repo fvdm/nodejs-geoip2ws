@@ -5,7 +5,7 @@
     "url": "https://fvdm.com"
   },
   "name": "geoip2ws",
-  "description": "Maxmind GeoIP2 Web Services (unofficial) - Lookup and geolocate IP-address or hostname",
+  "description": "Maxmind GeoIP2 Web Services (unofficial) - IP and hostname geolocation",
   "version": "2.0.1",
   "repository": {
     "type": "git",
@@ -15,7 +15,7 @@
     "url": "https://github.com/fvdm/nodejs-geoip2ws/issues"
   },
   "main": "geoip2ws.js",
-  "tonicExampleFilename": "example.js",
+  "runkitExampleFilename": "example.js",
   "files": [
     "example.js"
   ],
@@ -23,7 +23,7 @@
     "httpreq": "^0.5.1"
   },
   "devDependencies": {
-    "dotest": "^2.7.1"
+    "dotest": "^2.10.0"
   },
   "engines": {
     "node": ">=12"
@@ -33,9 +33,9 @@
   },
   "keywords": [
     "api",
-    "geo",
     "geoip",
     "geoip2",
+    "geolocation",
     "geolookup",
     "hostname",
     "ip",
