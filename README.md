@@ -14,9 +14,11 @@ Web Services.
 
 ## Usage
 
-You can provide the configuration in the require
-function or inline at lookup time. The lookup always
-returns a Promise.
+You can provide the configuration in the require function
+or inline at lookup time. The lookup always returns a Promise.
+
+- [Response examples](https://dev.maxmind.com/geoip/docs/web-services/responses?lang=en#bodies)
+- [List of API errors](https://dev.maxmind.com/geoip/docs/web-services/responses?lang=en#errors)
 
 
 ### Normal configuration
@@ -53,14 +55,11 @@ geo ({
 ;
 ```
 
-- [Example response data](https://dev.maxmind.com/geoip/docs/web-services/responses?lang=en#bodies)
-- [List of API errors](https://dev.maxmind.com/geoip/docs/web-services/responses?lang=en#errors)
-
 
 ## Installation
 
-You need a Maxmind account ID and license key with
-enough credits for one of their GeoIP *web* services.
+You need a Maxmind account ID and license key with enough
+credits for one of their GeoIP *web* services.
 You can find both [*here*](https://www.maxmind.com/en/accounts/current/license-key).
 
 `npm i geoip2ws`
@@ -70,16 +69,16 @@ You can find both [*here*](https://www.maxmind.com/en/accounts/current/license-k
 
 ### Setup
 
-The _first function_ is the global config and returns
-the lookup function. It takes these settings:
+The _first function_ is the global config and returns the
+lookup function. It takes these settings:
 
 parameter        | type    | default                   | description
 :----------------|:--------|:--------------------------|:-----------
-[userId]         | string  |                           | Your Maxmind account user ID
-[licenseKey]     | string  |                           | Your Maxmind account license key
-[service]        | string  | city                      | The service you'd like to use: `insights`, `country`, `city`
+[userId]         | string  |                           | User ID
+[licenseKey]     | string  |                           | License key
+[service]        | string  | city                      | `insights`, `country` or `city`
 [endpoint]       | string  | https://geoip.maxmind.com | Override endpoint hostname or url
-[requestTimeout] | integer | 5000                      | Socket read timeout in milliseconds to wait for reply from MaxMind
+[requestTimeout] | integer | 5000                      | Request timeout in ms
 
 ```js
 const geo = require ('geoip2ws') ({
