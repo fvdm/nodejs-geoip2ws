@@ -118,6 +118,25 @@ doTest.add ('lookup - data.subdivisions array', async test => {
 });
 
 
+// IP without subdivisions
+doTest.add ('lookup - IP without subdivisions (Japan)', async test => {
+  try {
+    const data = await geo ({ ip: '111.111.111.111' });
+
+    test()
+      .isArray ('fail', 'data.subdivisions', data.subdivisions)
+      .isEmpty ('fail', 'data.subdivisions', data.subdivisions)
+      .isObject ('fail', 'data.most_specific_subdivision', data.most_specific_subdivision)
+      .isEmpty ('fail', 'data.most_specific_subdivision', data.most_specific_subdivision)
+      .done()
+    ;
+  }
+  catch (err) {
+    test (err).done();
+  }
+});
+
+
 // Test promises
 doTest.add ('Promise: resolve', async test => {
   await geo ({ ip: '194.109.6.66' })
