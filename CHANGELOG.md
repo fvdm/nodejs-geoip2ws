@@ -1,3 +1,24 @@
+#### 2.0.2 (2021-10-11)
+
+##### Chores
+
+* **package:**  Minor edits, update deps ([ec76ad90](https://github.com/fvdm/nodejs-geoip2ws/commit/ec76ad90055193a1a9fb6a89ddb7e69081a1a81c))
+
+##### Documentation Changes
+
+* **license:**  Minor clean up ([5c048e65](https://github.com/fvdm/nodejs-geoip2ws/commit/5c048e653bd6356d73c3cbc0ef01bf823be4bba4))
+*  Minor text clean up ([138b04f9](https://github.com/fvdm/nodejs-geoip2ws/commit/138b04f9c3576c01586db1e6c5a558df04b5d2a5))
+
+##### Tests
+
+* **ci:**
+  *  Added test for IP without subdivisions ([0948ccea](https://github.com/fvdm/nodejs-geoip2ws/commit/0948ccea9aa437cedab15f4cac36f50326a3f4c3))
+  *  Renamed Finish job to Upload coverage ([a89cb7af](https://github.com/fvdm/nodejs-geoip2ws/commit/a89cb7af3436b0e0707e99f4ad8bde919ac1e61a))
+  *  Removed obsolete git fetch ([43bb9253](https://github.com/fvdm/nodejs-geoip2ws/commit/43bb9253a8eba90312fa789bff704800b188e746))
+  *  Ignore Coveralls error ([ad93628f](https://github.com/fvdm/nodejs-geoip2ws/commit/ad93628ff2664e36babd083274554078c130f472))
+* **config:**  Modern ESLint ([7446880a](https://github.com/fvdm/nodejs-geoip2ws/commit/7446880ae5ae4978bcfb0a46d9100f7b3786ce26))
+* **action:**  Update build workflow ([e89aac7e](https://github.com/fvdm/nodejs-geoip2ws/commit/e89aac7e9aa8aadbcbd82b040496756ab89eba24))
+
 #### 2.0.1 (2021-08-31)
 
 ##### Bug Fixes
