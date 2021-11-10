@@ -41,6 +41,7 @@ jobs:
           GEOIP2WS_TIMEOUT: ${{ secrets.GEOIP2WS_TIMEOUT }}
           DOTEST_NOCOV: ${{ secrets.DOTEST_NOCOV }}
           DOTEST_MINCOV: ${{ secrets.DOTEST_MINCOV }}
+          DOTEST_COVFUNCTIONS: 100
       - run: npm audit --production
       - name: Coveralls Parallel
         uses: coverallsapp/github-action@master
