@@ -44,7 +44,8 @@ async function checkSuccess ({ test, data }) {
       .isObject ('fail', 'data.country', data && data.country)
       .isObject ('fail', 'data.country.names', names)
       .isExactly ('fail', 'data.country.names.en', names && names.en, 'Netherlands')
-      .isExactly ('fail', 'data.most_specific_subdivision', dataSub, 'NH')
+      .isString ('fail', 'data.most_specific_subdivision', dataSub)
+      .isNotEmpty ('fail', 'data.most_specific_subdivision', dataSub)
       .done()
     ;
   }
