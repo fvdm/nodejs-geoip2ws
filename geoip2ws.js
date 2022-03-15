@@ -63,12 +63,6 @@ async function doResponse (res) {
     data.most_specific_subdivision = {};
   }
 
-  for (let key in data) {
-    if (key.match (/^(city|country|postal|subdivisions)$/) && !data[key].confidence) {
-      data[key].confidence = 0;
-    }
-  }
-
   return data;
 }
 
