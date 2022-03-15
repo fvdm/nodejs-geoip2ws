@@ -43,10 +43,10 @@ function isService (service) {
 
 async function doResponse (res) {
   const data = JSON.parse (res.body);
-  let error;
 
   if (data.error) {
-    error = new Error (data.error);
+    const error = new Error (data.error);
+
     error.code = data.code;
     throw error;
   }
