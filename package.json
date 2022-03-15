@@ -20,10 +20,10 @@
     "example.js"
   ],
   "dependencies": {
-    "httpreq": "^0.5.1"
+    "httpreq": "^0.5.2"
   },
   "devDependencies": {
-    "dotest": "^2.10.0"
+    "dotest": "^2.12.1"
   },
   "engines": {
     "node": ">=12"
