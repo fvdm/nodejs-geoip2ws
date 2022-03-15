@@ -7,6 +7,7 @@ Web Services.
 [![Build Status](https://github.com/fvdm/nodejs-geoip2ws/actions/workflows/node.js.yml/badge.svg?branch=master)](https://github.com/fvdm/nodejs-geoip2ws/actions/workflows/node.js.yml)
 [![Coverage Status](https://coveralls.io/repos/github/fvdm/nodejs-geoip2ws/badge.svg?branch=master)](https://coveralls.io/github/fvdm/nodejs-geoip2ws?branch=master)
 
+* [Changelog](https://github.com/fvdm/nodejs-geoip2ws/blob/master/CHANGELOG.md)
 * [Node.js](https://nodejs.org)
 * [Maxmind GeoIP2 Web Services](https://www.maxmind.com/en/geoip2-precision-services)
 * [API documentation](https://dev.maxmind.com/geoip/docs/web-services)
