@@ -3,7 +3,7 @@
 Unofficial Node.js module for the Maxmind GeoIP2
 Web Services.
 
-[![npm](https://img.shields.io/npm/v/geoip2ws.svg?maxAge=3600)](https://github.com/fvdm/nodejs-geoip2ws/blob/master/CHANGELOG.md)
+[![npm](https://img.shields.io/npm/v/geoip2ws.svg?maxAge=3600)](https://www.npmjs.com/package/geoip2ws?activeTab=versions)
 [![Build Status](https://github.com/fvdm/nodejs-geoip2ws/actions/workflows/node.js.yml/badge.svg?branch=master)](https://github.com/fvdm/nodejs-geoip2ws/actions/workflows/node.js.yml)
 [![Coverage Status](https://coveralls.io/repos/github/fvdm/nodejs-geoip2ws/badge.svg?branch=master)](https://coveralls.io/github/fvdm/nodejs-geoip2ws?branch=master)
 
