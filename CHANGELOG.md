@@ -1,3 +1,39 @@
+#### 2.0.3 (2022-03-15)
+
+##### Chores
+
+* **package:**  Update dependencies ([6996d5bf](https://github.com/fvdm/nodejs-geoip2ws/commit/6996d5bfefd9af721c5764013fee47d91dfc8318))
+* **github:**
+  *  Bump actions/checkout from 2 to 3 ([#51](https://github.com/fvdm/nodejs-geoip2ws/pull/51)) ([c1f6cbc4](https://github.com/fvdm/nodejs-geoip2ws/commit/c1f6cbc4bcf83fb52021ea3251d84445639eb1f0))
+  *  Bump actions/setup-node from 2 to 3.0.0 ([#50](https://github.com/fvdm/nodejs-geoip2ws/pull/50)) ([6f9b74ab](https://github.com/fvdm/nodejs-geoip2ws/commit/6f9b74ab433e0f2e3f115a226ac1d187ecc26754))
+  *  Limit dependabot to production deps ([dee9454c](https://github.com/fvdm/nodejs-geoip2ws/commit/dee9454c84661edd7fbce9fa9ea2ba29f8385169))
+  *  Fix action deps to major version ([ed03da86](https://github.com/fvdm/nodejs-geoip2ws/commit/ed03da8646458256489300f6898a9e06c9a83fee))
+  *  Bump actions/checkout from 2.3.4 to 2.3.5 ([#49](https://github.com/fvdm/nodejs-geoip2ws/pull/49)) ([5849c465](https://github.com/fvdm/nodejs-geoip2ws/commit/5849c465f5fb1273edb6ef826963544c5855af2a))
+
+##### Documentation Changes
+
+*  Add link to changelog ([ac5b5497](https://github.com/fvdm/nodejs-geoip2ws/commit/ac5b549775fa381aa38beb8241aa761850f525b7))
+* **badges:**  Link npm button to versions ([b88a2876](https://github.com/fvdm/nodejs-geoip2ws/commit/b88a2876f0fbccdaadaf3376cb99d1b78b28e7c7))
+
+##### Other Changes
+
+*  Cleaner element path checks" ([92c5c310](https://github.com/fvdm/nodejs-geoip2ws/commit/92c5c31003a5d68ea6c54efb463334f6fc838d22))
+
+##### Refactors
+
+*  Removed adding missing confidence prop ([a313321c](https://github.com/fvdm/nodejs-geoip2ws/commit/a313321c06d22a6dc18157225df4e0515cf6fb5c))
+
+##### Code Style Changes
+
+*  Minor syntax clean up ([2e7416a6](https://github.com/fvdm/nodejs-geoip2ws/commit/2e7416a6b266fe6723ddf63e412b2e2cb065281b))
+
+##### Tests
+
+*  Replaced IP for subdivisions checks ([420e91ee](https://github.com/fvdm/nodejs-geoip2ws/commit/420e91ee36dfb40563528b765a34420a0ceaf52a))
+*  Cleaner element path checks ([5d511cbc](https://github.com/fvdm/nodejs-geoip2ws/commit/5d511cbc752d5e310e8d32ab13d4eb533b554582))
+*  Less specific value check ([c259db64](https://github.com/fvdm/nodejs-geoip2ws/commit/c259db64967857b0b79bcd15b03de6ef57053434))
+* **ci:**  Require 100% coverage of functions ([72396bbb](https://github.com/fvdm/nodejs-geoip2ws/commit/72396bbb50c02031b9f5606fe6051f4f9891b8ce))
+
 #### 2.0.2 (2021-10-11)
 
 ##### Chores
