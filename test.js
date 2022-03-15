@@ -102,7 +102,7 @@ doTest.add ('lookup - object', async test => {
 // Satellite IPs have no geo location
 doTest.add ('lookup - data.subdivisions array', async test => {
   try {
-    const data = await geo ({ ip: '95.107.128.1' });
+    const data = await geo ({ ip: '194.109.6.93' });
 
     test()
       .isArray ('fail', 'data.subdivisions', data.subdivisions)
