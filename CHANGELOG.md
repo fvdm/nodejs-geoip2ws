@@ -1,3 +1,18 @@
+#### 2.0.4 (2023-03-29)
+
+##### Chores
+
+* **package:**  Minimum supported Node v14 ([2e49e5ee](https://github.com/fvdm/nodejs-geoip2ws/commit/2e49e5ee9799041a8415b62e5deaf8f69f08f498))
+* **github:**  Bump github/codeql-action from 1 to 2 ([#52](https://github.com/fvdm/nodejs-geoip2ws/pull/52)) ([e14e241e](https://github.com/fvdm/nodejs-geoip2ws/commit/e14e241e064e7a55b64875aecdc12b777503e8ed))
+
+##### Code Style Changes
+
+*  Better readable whitespace ([3072e5ef](https://github.com/fvdm/nodejs-geoip2ws/commit/3072e5efe60a9c37d2dc3e9a35d0fa9a56c890f9))
+
+##### Tests
+
+* **ci:**  Use setup-node v3 ([b059401f](https://github.com/fvdm/nodejs-geoip2ws/commit/b059401f2cff7e5522aed0298507e53b64f455c7))
+
 #### 2.0.3 (2022-03-15)
 
 ##### Chores
