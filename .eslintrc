@@ -108,7 +108,7 @@
     "no-sequences": "error",
     "no-shadow": "error",
     "no-shadow-restricted-names": "error",
-    "no-spaced-func": "off",
+    "no-spaced-func": "error",
     "no-sparse-arrays": "warn",
     "no-sync": "warn",
     "no-ternary": "off",
@@ -145,11 +145,14 @@
     }],
     "space-before-blocks": ["error", "always"],
     "space-before-function-paren": ["error", "always"],
-    "space-in-parens": ["error", "never"],
+    "space-in-parens": ["error", "always"],
     "space-infix-ops": "error",
     "space-unary-ops": ["error", {
       "words": true,
-      "nonwords": false
+      "nonwords": false,
+      "overrides": {
+        "!": true,
+      }
     }],
     "spaced-comment": ["error", "always"],
     "use-isnan": "error",

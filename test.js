@@ -7,8 +7,8 @@ Feedback:       https://github.com/fvdm/nodejs-geoip2ws/issues
 License:        Unlicense (public domain, see LICENSE file)
 */
 
-const doTest = require ('dotest');
-const app = require ('./');
+const doTest = require( 'dotest' );
+const app = require( './' );
 
 let geo;
 
@@ -34,252 +34,252 @@ const config = {
  * @return  {void}
  */
 
-async function checkSuccess ({ test, data }) {
+async function checkSuccess ( { test, data } ) {
   try {
     const names = data && data.country && data.country.names;
     const dataSub = data && data.most_specific_subdivision.iso_code;
 
     test()
-      .isObject ('fail', 'data', data)
-      .isObject ('fail', 'data.country', data && data.country)
-      .isObject ('fail', 'data.country.names', names)
-      .isExactly ('fail', 'data.country.names.en', names && names.en, 'Netherlands')
-      .isString ('fail', 'data.most_specific_subdivision', dataSub)
-      .isNotEmpty ('fail', 'data.most_specific_subdivision', dataSub)
+      .isObject( 'fail', 'data', data )
+      .isObject( 'fail', 'data.country', data && data.country )
+      .isObject( 'fail', 'data.country.names', names )
+      .isExactly( 'fail', 'data.country.names.en', names && names.en, 'Netherlands' )
+      .isString( 'fail', 'data.most_specific_subdivision', dataSub )
+      .isNotEmpty( 'fail', 'data.most_specific_subdivision', dataSub )
       .done()
     ;
   }
-  catch (err) {
-    test (err).done();
+  catch ( err ) {
+    test( err ).done();
   }
 }
 
 
 // TESTS
-doTest.add ('Configuration', test => {
-  if (!config.userId || !config.licenseKey) {
+doTest.add( 'Configuration', test => {
+  if ( ! config.userId || ! config.licenseKey ) {
     config.endpoint = 'https://fvdm.com/u/ci_test.php?a=geoip2ws&b=';
 
     test()
-      .warn ('GEOIP2WS_USERID or GEOIP2WS_LICENSE not set')
-      .info ('Using test endpoint with fake data')
+      .warn( 'GEOIP2WS_USERID or GEOIP2WS_LICENSE not set' )
+      .info( 'Using test endpoint with fake data' )
     ;
   }
 
-  geo = app (config);
+  geo = app( config );
 
   test()
-    .info (`config.service:   ${config.service}`)
-    .info (`config.endpoint:  ${config.endpoint}`)
-    .info (`config.timeout:   ${config.timeout}`)
+    .info( `config.service:   ${config.service}` )
+    .info( `config.endpoint:  ${config.endpoint}` )
+    .info( `config.timeout:   ${config.timeout}` )
     .done()
   ;
-});
+} );
 
 
 // Module
-doTest.add ('Module', test => {
+doTest.add( 'Module', test => {
   test()
-    .isFunction ('fail', 'exports', app)
-    .isFunction ('fail', 'interface', geo)
+    .isFunction( 'fail', 'exports', app )
+    .isFunction( 'fail', 'interface', geo )
     .done();
-});
+} );
 
 
 // Test success
-doTest.add ('lookup - object', async test => {
+doTest.add( 'lookup - object', async test => {
   try {
-    const data = await geo ({
+    const data = await geo( {
       ip: '194.109.6.66',
       service: config.service,
-    });
+    } );
 
-    checkSuccess ({ test, data });
+    checkSuccess( { test, data } );
   }
-  catch (err) {
-    test (err).done();
+  catch ( err ) {
+    test( err ).done();
   }
-});
+} );
 
 
 // Satellite IPs have no geo location
-doTest.add ('lookup - data.subdivisions array', async test => {
+doTest.add( 'lookup - data.subdivisions array', async test => {
   try {
-    const data = await geo ({ ip: '194.109.6.93' });
+    const data = await geo( { ip: '194.109.6.93' } );
 
     test()
-      .isArray ('fail', 'data.subdivisions', data.subdivisions)
-      .isNotEmpty ('warn', 'data.subdivisions', data.subdivisions)
+      .isArray( 'fail', 'data.subdivisions', data.subdivisions )
+      .isNotEmpty( 'warn', 'data.subdivisions', data.subdivisions )
       .done()
     ;
   }
-  catch (err) {
-    test (err).done();
+  catch ( err ) {
+    test( err ).done();
   }
-});
+} );
 
 
 // IP without subdivisions
-doTest.add ('lookup - IP without subdivisions (Japan)', async test => {
+doTest.add( 'lookup - IP without subdivisions (Japan)', async test => {
   try {
-    const data = await geo ({ ip: '111.111.111.111' });
+    const data = await geo( { ip: '111.111.111.111' } );
 
     test()
-      .isArray ('fail', 'data.subdivisions', data.subdivisions)
-      .isEmpty ('fail', 'data.subdivisions', data.subdivisions)
-      .isObject ('fail', 'data.most_specific_subdivision', data.most_specific_subdivision)
-      .isEmpty ('fail', 'data.most_specific_subdivision', data.most_specific_subdivision)
+      .isArray( 'fail', 'data.subdivisions', data.subdivisions )
+      .isEmpty( 'fail', 'data.subdivisions', data.subdivisions )
+      .isObject( 'fail', 'data.most_specific_subdivision', data.most_specific_subdivision )
+      .isEmpty( 'fail', 'data.most_specific_subdivision', data.most_specific_subdivision )
       .done()
     ;
   }
-  catch (err) {
-    test (err).done();
+  catch ( err ) {
+    test( err ).done();
   }
-});
+} );
 
 
 // Test promises
-doTest.add ('Promise: resolve', async test => {
-  await geo ({ ip: '194.109.6.66' })
-    .then (data => checkSuccess ({ test, data }))
-    .catch (test)
+doTest.add( 'Promise: resolve', async test => {
+  await geo( { ip: '194.109.6.66' } )
+    .then( data => checkSuccess( { test, data } ) )
+    .catch( test )
   ;
-});
+} );
 
 
-doTest.add ('Promise: reject', async test => {
+doTest.add( 'Promise: reject', async test => {
   let data;
   let error;
 
   try {
-    data = await geo ({ ip: 'invalid input' });
+    data = await geo( { ip: 'invalid input' } );
   }
-  catch (err) {
+  catch ( err ) {
     error = err;
   }
 
   test()
-    .isUndefined ('fail', 'data', data)
-    .isError ('fail', 'catch', error)
-    .isExactly ('fail', 'message', error && error.message, 'invalid ip')
+    .isUndefined( 'fail', 'data', data )
+    .isError( 'fail', 'catch', error )
+    .isExactly( 'fail', 'message', error && error.message, 'invalid ip' )
     .done()
   ;
-});
+} );
 
 
 // Inline config
-doTest.add ('Config in lookup()', async test => {
+doTest.add( 'Config in lookup()', async test => {
   const tmp = new app();
 
   try {
-    const data = await tmp ({
+    const data = await tmp( {
       userId: config.userId,
       licenseKey: config.licenseKey,
       service: config.service,
-      endpoint: config.endpoint.replace (/^https:\/\//, ''),
+      endpoint: config.endpoint.replace( /^https:\/\//, '' ),
       requestTimeout: 5000,
       ip: '194.109.6.66',
-    });
+    } );
 
-    checkSuccess ({ test, data });
+    checkSuccess( { test, data } );
   }
-  catch (err) {
-    test (err).done();
+  catch ( err ) {
+    test( err ).done();
   }
-});
+} );
 
 
 // Test errors
-doTest.add ('Error: invalid ip', async test => {
+doTest.add( 'Error: invalid ip', async test => {
   let data;
   let error;
 
   try {
-    data = await geo ({ ip: 'invalid input' });
+    data = await geo( { ip: 'invalid input' } );
   }
-  catch (err) {
+  catch ( err ) {
     error = err;
   }
 
   test()
-    .isError ('fail', 'catch', error)
-    .isExactly ('fail', 'error.message', error && error.message, 'invalid ip')
-    .isUndefined ('fail', 'data', data)
+    .isError( 'fail', 'catch', error )
+    .isExactly( 'fail', 'error.message', error && error.message, 'invalid ip' )
+    .isUndefined( 'fail', 'data', data )
     .done()
   ;
-});
+} );
 
 
-doTest.add ('Error: invalid service', async test => {
+doTest.add( 'Error: invalid service', async test => {
   let data;
   let error;
 
   try {
-    data = await geo ({
+    data = await geo( {
       service: 'invalid service',
       ip: '194.109.6.66',
-    });
+    } );
   }
-  catch (err) {
+  catch ( err ) {
     error = err;
   }
 
   test()
-    .isError ('fail', 'catch', error)
-    .isExactly ('fail', 'error.message', error && error.message, 'invalid service')
-    .isUndefined ('fail', 'data', data)
+    .isError( 'fail', 'catch', error )
+    .isExactly( 'fail', 'error.message', error && error.message, 'invalid service' )
+    .isUndefined( 'fail', 'data', data )
     .done()
   ;
-});
+} );
 
 
-doTest.add ('Error: API error', async test => {
+doTest.add( 'Error: API error', async test => {
   let data;
   let error;
 
   try {
-    data = await geo ({ ip: '0.0.0.0' });
+    data = await geo( { ip: '0.0.0.0' } );
   }
-  catch (err) {
+  catch ( err ) {
     error = err;
   }
 
   test()
-    .isError ('fail', 'catch', error)
-    .isNotEmpty ('fail', 'error.message', error && error.message)
-    .isString ('fail', 'error.code', error && error.code)
-    .isNotEmpty ('warn', 'error.code', error && error.code)
-    .isUndefined ('fail', 'data', data)
+    .isError( 'fail', 'catch', error )
+    .isNotEmpty( 'fail', 'error.message', error && error.message )
+    .isString( 'fail', 'error.code', error && error.code )
+    .isNotEmpty( 'warn', 'error.code', error && error.code )
+    .isUndefined( 'fail', 'data', data )
     .done()
   ;
-});
+} );
 
 
-doTest.add ('Error: request timeout', async test => {
-  const tmp = app ({
+doTest.add( 'Error: request timeout', async test => {
+  const tmp = app( {
     userId: config.userId,
     licenseKey: config.licenseKey,
     timeout: 1,
-  });
+  } );
 
   let data;
   let error;
 
   try {
-    data = await tmp ({ ip: '194.109.6.66' });
+    data = await tmp( { ip: '194.109.6.66' } );
   }
-  catch (err) {
+  catch ( err ) {
     error = err;
   }
 
   test()
-    .isError ('fail', 'catch', error)
-    .isExactly ('fail', 'error.message', error && error.message, 'request timed out')
-    .isExactly ('fail', 'error.code', error && error.code, 'TIMEOUT')
-    .isUndefined ('fail', 'data', data)
+    .isError( 'fail', 'catch', error )
+    .isExactly( 'fail', 'error.message', error && error.message, 'request timed out' )
+    .isExactly( 'fail', 'error.code', error && error.code, 'TIMEOUT' )
+    .isUndefined( 'fail', 'data', data )
     .done()
   ;
-});
+} );
 
 
 // Start the tests

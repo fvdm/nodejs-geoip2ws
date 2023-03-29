@@ -7,8 +7,8 @@ Feedback:       https://github.com/fvdm/nodejs-geoip2ws/issues
 License:        Unlicense (public domain, see LICENSE file)
 */
 
-const { isIP } = require ('net');
-const { doRequest } = require ('httpreq');
+const { isIP } = require( 'net' );
+const { doRequest } = require( 'httpreq' );
 
 // setup
 let api = {
@@ -28,8 +28,8 @@ let api = {
  * @return  {boolean}          `true` if string is a service name
  */
 
-function isService (service) {
-  return /^(country|city|insights)$/.test (service);
+function isService ( service ) {
+  return /^(country|city|insights)$/.test( service );
 }
 
 
@@ -41,25 +41,25 @@ function isService (service) {
  * @return  {Promise<object>}
  */
 
-async function doResponse (res) {
-  const data = JSON.parse (res.body);
+async function doResponse ( res ) {
+  const data = JSON.parse( res.body );
 
-  if (data.error) {
-    const error = new Error (data.error);
+  if ( data.error ) {
+    const error = new Error( data.error );
 
     error.code = data.code;
     throw error;
   }
 
   // Fix API inconsistencies
-  if (Array.isArray (data.subdivisions) && data.subdivisions.length) {
+  if ( Array.isArray( data.subdivisions ) && data.subdivisions.length ) {
     data.most_specific_subdivision = data.subdivisions[data.subdivisions.length - 1];
   }
   else {
     data.subdivisions = [];
   }
 
-  if (!data.most_specific_subdivision) {
+  if ( ! data.most_specific_subdivision ) {
     data.most_specific_subdivision = {};
   }
 
@@ -82,7 +82,7 @@ async function doResponse (res) {
  * @return  {Promise<object>}
  */
 
-async function doLookup ({
+async function doLookup ( {
 
   ip,
   userId = api.userId,
@@ -91,22 +91,22 @@ async function doLookup ({
   endpoint = api.endpoint,
   timeout = api.timeout,
 
-}) {
+} ) {
 
   // check input
-  if (!isService (service)) {
-    throw new Error ('invalid service');
+  if ( ! isService( service ) ) {
+    throw new Error( 'invalid service' );
   }
 
-  if (ip !== 'me' && !isIP (ip)) {
-    throw new Error ('invalid ip');
+  if ( ip !== 'me' && ! isIP( ip ) ) {
+    throw new Error( 'invalid ip' );
   }
 
   // build url
-  endpoint = endpoint.replace (/\/$/, '');
+  endpoint = endpoint.replace( /\/$/, '' );
   endpoint += `/geoip/v2.1/${service}/${ip}`;
 
-  if (!endpoint.match (/^https?\:\/\//)) {
+  if ( ! endpoint.match( /^https?\:\/\// ) ) {
     endpoint = `https://${endpoint}`;
   }
 
@@ -123,8 +123,8 @@ async function doLookup ({
   };
 
   // do promise
-  return doRequest (httpProps)
-    .then (doResponse)
+  return doRequest( httpProps )
+    .then( doResponse )
   ;
 
 }
@@ -144,7 +144,7 @@ async function doLookup ({
  * @return  {function}  doLookup
  */
 
-module.exports = function setup ({
+module.exports = function setup ( {
 
   userId = null,
   licenseKey = null,
@@ -152,7 +152,7 @@ module.exports = function setup ({
   endpoint = api.endpoint,
   timeout = api.timeout,
 
-} = {}) {
+} = {} ) {
 
   api.userId = userId;
   api.licenseKey = licenseKey;
