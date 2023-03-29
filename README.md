@@ -25,17 +25,17 @@ or inline at lookup time. The lookup always returns a Promise.
 ### Normal configuration
 
 ```js
-const geo = require ('geoip2ws') ({
+const geo = require( 'geoip2ws' )( {
   userId: '12345',
   licenseKey: 'abc678',
-});
+} );
 
-geo ({
+geo( {
   service: 'city',
   ip: '1.2.3.4',
-})
-  .then (console.log)
-  .catch (console.error)
+} )
+  .then( console.log )
+  .catch( console.error )
 ;
 ```
 
@@ -43,16 +43,16 @@ geo ({
 ### Inline configuration
 
 ```js
-const geo = require ('geoip2ws')();
+const geo = require( 'geoip2ws' )();
 
-geo ({
+geo( {
   userId: '12345',
   licenseKey: 'abc678',
   service: 'city',
   ip: '1.2.3.4',
-})
-  .then (console.log)
-  .catch (console.error)
+} )
+  .then( console.log )
+  .catch( console.error )
 ;
 ```
 
@@ -82,12 +82,12 @@ parameter        | type    | default                   | description
 [requestTimeout] | integer | 5000                      | Request timeout in ms
 
 ```js
-const geo = require ('geoip2ws') ({
-  userId: '1234',
-  licenseKey: 'abc',
-  service: 'country',
-  requestTimeout: 2000
-});
+const geo = require( 'geoip2ws' )( {
+  userId:         '1234',
+  licenseKey:     'abc',
+  service:        'country',
+  requestTimeout: 2000,
+} );
 ```
 
 If you are providing the details in the lookup
@@ -95,7 +95,7 @@ function, then you don't have to set them here but
 you do need to run this setup function once.
 
 ```js
-const geo = require ('geoip2ws')();
+const geo = require( 'geoip2ws' )();
 ```
 
 
@@ -109,13 +109,13 @@ parameter  | type     | description
 ip         | string   | The IPv4 or IPv6 address to lookup
 
 ```js
-geo ({
-  ip: '1.2.3.4',
+geo( {
+  ip:       '1.2.3.4',
   service: 'city',
   endpoint: 'geoip-eu-west.maxmind.com',
-})
-  .then (processData)
-  .catch (console.error)
+} )
+  .then( processData )
+  .catch( console.error )
 ;
 ```
 
@@ -127,8 +127,8 @@ error message   | description
 invalid service | The service name is invalid
 invalid ip      | The IP-address is invalid
 
-These two conditions are checked before sending
-the request. Meaning it won't cost you account credits.
+These two conditions are checked before sending the request.
+Meaning it won't cost you account credits.
 
 
 ## Unlicense
