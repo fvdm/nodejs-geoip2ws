@@ -1,3 +1,13 @@
+#### 2.0.5 (2023-03-29)
+
+##### Chores
+
+* **github:**  Removed audit command from CI test ([0e18eec9](https://github.com/fvdm/nodejs-geoip2ws/commit/0e18eec9844f7d0183653b78ef00872e4af45d21))
+
+##### Documentation Changes
+
+* **readme:**  Better readable whitespace ([80b2419f](https://github.com/fvdm/nodejs-geoip2ws/commit/80b2419faa56abf2442d6dbdc6f936bb9b24e292))
+
 #### 2.0.4 (2023-03-29)
 
 ##### Chores
