@@ -10,8 +10,10 @@
 
 ## Reporting a Vulnerability
 
-Mail me at [fr@nkl.in](mailto:fr@nkl.in)
-or using [Keybase](https://keybase.io/fvdm) encrypted chat.
+Mail me from [my website](https://fvdm.com/contact) or by
+going to the repository on GitHub > Security > [Report a
+vulnerability](https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability#privately-reporting-a-security-vulnerability).
+
 
 Please be specific about what you found and how you found it.
 If available, please also include errors, log entries and any
