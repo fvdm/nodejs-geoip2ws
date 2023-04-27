@@ -27,10 +27,9 @@ const config = {
 /**
  * Check common success response
  *
- * @param   {function}    test   Test specific function
- * @param   {Error|null}  err    Callback error
- * @param   {mixed}       data   Callback data
- * @param   {mixed}       [ret]  Method return value
+ * @param   {object}    o
+ * @param   {function}  o.test  Test specific function
+ * @param   {mixed}     o.data  Callback data
  * @return  {void}
  */
 
