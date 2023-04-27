@@ -115,7 +115,7 @@ async function doLookup ( {
     signal: AbortSignal.timeout( timeout ),
     headers: {
       'Accept': `application/vnd.maxmind.com-${service}+json; charset=UTF-8; version=2.1`,
-      'Authorization': 'Basic ' + Buffer.from( `${userId}:${licenseKey}` ).toString( 'base64' ), 
+      'Authorization': 'Basic ' + Buffer.from( `${userId}:${licenseKey}` ).toString( 'base64' ),
       'User-Agent': 'geoip2ws.js (https://github.com/fvdm/nodejs-geoip2ws)',
     },
   } )
