@@ -6,7 +6,7 @@
   },
   "name": "geoip2ws",
   "description": "Maxmind GeoIP2 Web Services (unofficial) - IP and hostname geolocation",
-  "version": "2.0.5",
+  "version": "2.1.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/fvdm/nodejs-geoip2ws.git"
@@ -19,8 +19,7 @@
   "files": [
     "example.js"
   ],
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "dotest": "^2.12.1"
   },
