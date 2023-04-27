@@ -110,20 +110,16 @@ async function doLookup ( {
     endpoint = `https://${endpoint}`;
   }
 
-  // build request
-  const httpProps = {
-    method: 'GET',
-    auth: `${userId}:${licenseKey}`,
-    timeout,
+  // request
+  return fetch( endpoint, {
+    signal: AbortSignal.timeout( timeout ),
     headers: {
       'Accept': `application/vnd.maxmind.com-${service}+json; charset=UTF-8; version=2.1`,
+      'Authorization': 'Basic ' + Buffer.from( `${userId}:${licenseKey}` ).toString( 'base64' ), 
       'User-Agent': 'geoip2ws.js (https://github.com/fvdm/nodejs-geoip2ws)',
     },
-    url: endpoint,
-  };
-
-  // do promise
-  return doRequest( httpProps )
+  } )
+    .then( res => res.json() )
     .then( doResponse )
   ;
 
