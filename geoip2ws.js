@@ -8,7 +8,6 @@ License:        Unlicense (public domain, see LICENSE file)
 */
 
 const { isIP } = require( 'net' );
-const { doRequest } = require( 'httpreq' );
 
 // setup
 let api = {
