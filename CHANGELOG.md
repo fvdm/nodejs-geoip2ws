@@ -1,3 +1,32 @@
+### 2.1.0 (2023-04-27)
+
+##### Chores
+
+* **github:**  Update to new set-output syntax ([3c902cc0](https://github.com/fvdm/nodejs-geoip2ws/commit/3c902cc0810a014a4289ed47d774311724077cd4))
+
+##### Documentation Changes
+
+* **security:**  Updated reporting text ([44861088](https://github.com/fvdm/nodejs-geoip2ws/commit/44861088c95ede63bfc37dbfe71566eeaf3b53a4))
+
+##### Bug Fixes
+
+*  JSON parsing method ([0841fe08](https://github.com/fvdm/nodejs-geoip2ws/commit/0841fe0863b86b509fb949e6e2d3b5d8380ec816))
+*  Removed obsolete dep require ([33b30b11](https://github.com/fvdm/nodejs-geoip2ws/commit/33b30b11920cefcbcca6e487ddea4904fd4011d9))
+
+##### Refactors
+
+*  Replaced dependency with fetch ([8617265f](https://github.com/fvdm/nodejs-geoip2ws/commit/8617265f60c7eb9d21b3345beb8406c21a17b415))
+
+##### Code Style Changes
+
+* **lint:**  Removed trailing whitespace ([22fa77a4](https://github.com/fvdm/nodejs-geoip2ws/commit/22fa77a453e3ac5f7c8df3b9098d801fdce35270))
+
+##### Tests
+
+*  Fixed timeout error check for fetch() ([2787e1d8](https://github.com/fvdm/nodejs-geoip2ws/commit/2787e1d87ebff1197143bdf1e2ed8f84192fd3ee))
+*  Cleanup comment ([dfd794a2](https://github.com/fvdm/nodejs-geoip2ws/commit/dfd794a22bd79c35afc85e6308dbdb461657aefc))
+*  Optional chaining ([0c688868](https://github.com/fvdm/nodejs-geoip2ws/commit/0c68886875a3b91420cb8a48acfc969f0f49214f))
+
 #### 2.0.5 (2023-03-29)
 
 ##### Chores
