@@ -41,7 +41,7 @@ function isService ( service ) {
  */
 
 async function doResponse ( res ) {
-  const data = JSON.parse( res.body );
+  const data = await res.json();
 
   if ( data.error ) {
     const error = new Error( data.error );
@@ -118,7 +118,6 @@ async function doLookup ( {
       'User-Agent': 'geoip2ws.js (https://github.com/fvdm/nodejs-geoip2ws)',
     },
   } )
-    .then( res => res.json() )
     .then( doResponse )
   ;
 
