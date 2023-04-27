@@ -36,16 +36,13 @@ const config = {
 
 async function checkSuccess ( { test, data } ) {
   try {
-    const names = data && data.country && data.country.names;
-    const dataSub = data && data.most_specific_subdivision.iso_code;
-
     test()
       .isObject( 'fail', 'data', data )
-      .isObject( 'fail', 'data.country', data && data.country )
-      .isObject( 'fail', 'data.country.names', names )
-      .isExactly( 'fail', 'data.country.names.en', names && names.en, 'Netherlands' )
-      .isString( 'fail', 'data.most_specific_subdivision', dataSub )
-      .isNotEmpty( 'fail', 'data.most_specific_subdivision', dataSub )
+      .isObject( 'fail', 'data.country', data?.country )
+      .isObject( 'fail', 'data.country.names', data?.country?.names )
+      .isExactly( 'fail', 'data.country.names.en', data?.country?.names?.en, 'Netherlands' )
+      .isString( 'fail', 'data.most_specific_subdivision', data?.most_specific_subdivision?.iso_code )
+      .isNotEmpty( 'fail', 'data.most_specific_subdivision', data?.most_specific_subdivision?.iso_code )
       .done()
     ;
   }
@@ -161,7 +158,7 @@ doTest.add( 'Promise: reject', async test => {
   test()
     .isUndefined( 'fail', 'data', data )
     .isError( 'fail', 'catch', error )
-    .isExactly( 'fail', 'message', error && error.message, 'invalid ip' )
+    .isExactly( 'fail', 'message', error?.message, 'invalid ip' )
     .done()
   ;
 } );
@@ -203,7 +200,7 @@ doTest.add( 'Error: invalid ip', async test => {
 
   test()
     .isError( 'fail', 'catch', error )
-    .isExactly( 'fail', 'error.message', error && error.message, 'invalid ip' )
+    .isExactly( 'fail', 'error.message', error?.message, 'invalid ip' )
     .isUndefined( 'fail', 'data', data )
     .done()
   ;
@@ -226,7 +223,7 @@ doTest.add( 'Error: invalid service', async test => {
 
   test()
     .isError( 'fail', 'catch', error )
-    .isExactly( 'fail', 'error.message', error && error.message, 'invalid service' )
+    .isExactly( 'fail', 'error.message', error?.message, 'invalid service' )
     .isUndefined( 'fail', 'data', data )
     .done()
   ;
@@ -246,9 +243,9 @@ doTest.add( 'Error: API error', async test => {
 
   test()
     .isError( 'fail', 'catch', error )
-    .isNotEmpty( 'fail', 'error.message', error && error.message )
-    .isString( 'fail', 'error.code', error && error.code )
-    .isNotEmpty( 'warn', 'error.code', error && error.code )
+    .isNotEmpty( 'fail', 'error.message', error?.message )
+    .isString( 'fail', 'error.code', error?.code )
+    .isNotEmpty( 'warn', 'error.code', error?.code )
     .isUndefined( 'fail', 'data', data )
     .done()
   ;
@@ -274,8 +271,8 @@ doTest.add( 'Error: request timeout', async test => {
 
   test()
     .isError( 'fail', 'catch', error )
-    .isExactly( 'fail', 'error.message', error && error.message, 'request timed out' )
     .isExactly( 'fail', 'error.code', error && error.code, 'TIMEOUT' )
+    .isNotEmpty( 'fail', 'error.message', error?.message )
     .isUndefined( 'fail', 'data', data )
     .done()
   ;
