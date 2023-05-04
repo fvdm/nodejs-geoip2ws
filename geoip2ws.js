@@ -136,7 +136,7 @@ module.exports = function setup ( {
     endpoint,
     timeout,
   };
- 
+
   return doLookup;
 
 };
