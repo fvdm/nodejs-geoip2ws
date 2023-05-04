@@ -10,7 +10,7 @@ License:        Unlicense (public domain, see LICENSE file)
 const { isIP } = require( 'net' );
 
 // setup
-let api = {
+let config = {
   userId: null,
   licenseKey: null,
   service: 'city',
@@ -58,12 +58,12 @@ async function doResponse ( res ) {
  *
  * @param   {object}  o
  *
- * @param   {string}  o.ip                                    IP-address, hostname or 'me' to look up
- * @param   {string}  [o.userId]                              Account user ID
- * @param   {string}  [o.licenseKey]                          Account license key
- * @param   {string}  [o.service=city]                        Account service name
- * @param   {string}  [o.endpoint=https://geoip.maxmind.com]  API hostname or url
- * @param   {number}  [o.timeout=5000]                        Request time out in milliseconds
+ * @param   {string}  o.ip                          IP-address, hostname or 'me' to look up
+ * @param   {string}  [o.userId=config.userId]      Account user ID
+ * @param   {string}  [o.licenseKey=config.userId]  Account license key
+ * @param   {string}  [o.service=config.service]    Account service name
+ * @param   {string}  [o.endpoint=config.endpoint]  API hostname or url
+ * @param   {number}  [o.timeout=config.timeout]    Request time out in milliseconds
  *
  * @return  {Promise<object>}
  */
@@ -71,11 +71,11 @@ async function doResponse ( res ) {
 async function doLookup ( {
 
   ip,
-  userId = api.userId,
-  licenseKey = api.licenseKey,
-  service = api.service,
-  endpoint = api.endpoint,
-  timeout = api.timeout,
+  userId = config.userId,
+  licenseKey = config.licenseKey,
+  service = config.service,
+  endpoint = config.endpoint,
+  timeout = config.timeout,
 
 } ) {
 
@@ -129,17 +129,17 @@ module.exports = function setup ( {
 
   userId = null,
   licenseKey = null,
-  service = api.service,
-  endpoint = api.endpoint,
-  timeout = api.timeout,
+  service = config.service,
+  endpoint = config.endpoint,
+  timeout = config.timeout,
 
 } = {} ) {
 
-  api.userId = userId;
-  api.licenseKey = licenseKey;
-  api.service = service;
-  api.endpoint = endpoint;
-  api.timeout = timeout;
+  config.userId = userId;
+  config.licenseKey = licenseKey;
+  config.service = service;
+  config.endpoint = endpoint;
+  config.timeout = timeout;
 
   return doLookup;
 
