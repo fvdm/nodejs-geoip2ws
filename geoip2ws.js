@@ -122,10 +122,10 @@ async function doLookup ( {
  * @param   {string}    [o.endpoint='https://geoip.maxmind.com']  API hostname or url
  * @param   {number}    [o.timeout=5000]                          Request time out in milliseconds
  *
- * @return  {function}  doLookup
+ * @return  {AsyncFunction}  doLookup
  */
 
-module.exports = function setup ( {
+module.exports = async function setup ( {
 
   userId = null,
   licenseKey = null,
