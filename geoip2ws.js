@@ -58,12 +58,12 @@ async function doResponse ( res ) {
  *
  * @param   {object}  o
  *
- * @param   {string}  o.ip                          IP-address, hostname or 'me' to look up
- * @param   {string}  [o.userId=config.userId]      Account user ID
- * @param   {string}  [o.licenseKey=config.userId]  Account license key
- * @param   {string}  [o.service=config.service]    Account service name
- * @param   {string}  [o.endpoint=config.endpoint]  API hostname or url
- * @param   {number}  [o.timeout=config.timeout]    Request time out in milliseconds
+ * @param   {string}  o.ip            IP-address, hostname or 'me' to look up
+ * @param   {string}  [o.userId]      Account user ID
+ * @param   {string}  [o.licenseKey]  Account license key
+ * @param   {string}  [o.service]     Account service name
+ * @param   {string}  [o.endpoint]    API hostname or url
+ * @param   {number}  [o.timeout]     Request time out in milliseconds
  *
  * @return  {Promise<object>}
  */
