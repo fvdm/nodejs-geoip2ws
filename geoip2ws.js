@@ -20,19 +20,6 @@ let api = {
 
 
 /**
- * Check if string is a service
- *
- * @param   {string}  service  Service name
- *
- * @return  {boolean}          `true` if string is a service name
- */
-
-function isService ( service ) {
-  return /^(country|city|insights)$/.test( service );
-}
-
-
-/**
  * Process response body
  *
  * @param   {object}  res  doRequest() response
@@ -93,7 +80,7 @@ async function doLookup ( {
 } ) {
 
   // check input
-  if ( ! isService( service ) ) {
+  if ( ! /^(country|city|insights)$/.test( service ) ) {
     throw new Error( 'invalid service' );
   }
 
