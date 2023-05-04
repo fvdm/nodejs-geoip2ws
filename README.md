@@ -79,14 +79,14 @@ parameter        | type    | default                   | description
 [licenseKey]     | string  |                           | License key
 [service]        | string  | city                      | `insights`, `country` or `city`
 [endpoint]       | string  | https://geoip.maxmind.com | Override endpoint hostname or url
-[requestTimeout] | integer | 5000                      | Request timeout in ms
+[timeout]        | integer | 5000                      | Request timeout in ms
 
 ```js
 const geo = require( 'geoip2ws' )( {
-  userId:         '1234',
-  licenseKey:     'abc',
-  service:        'country',
-  requestTimeout: 2000,
+  userId:     '1234',
+  licenseKey: 'abc',
+  service:    'country',
+  timeout:    2000,
 } );
 ```
 
