@@ -26,13 +26,13 @@ or inline at lookup time. The lookup always returns a Promise.
 
 ```js
 const geo = require( 'geoip2ws' )( {
-  userId: '12345',
+  userId:     '12345',
   licenseKey: 'abc678',
 } );
 
 geo( {
   service: 'city',
-  ip: '1.2.3.4',
+  ip:      '1.2.3.4',
 } )
   .then( console.log )
   .catch( console.error )
@@ -46,10 +46,10 @@ geo( {
 const geo = require( 'geoip2ws' )();
 
 geo( {
-  userId: '12345',
+  userId:     '12345',
   licenseKey: 'abc678',
-  service: 'city',
-  ip: '1.2.3.4',
+  service:    'city',
+  ip:         '1.2.3.4',
 } )
   .then( console.log )
   .catch( console.error )
@@ -111,7 +111,7 @@ ip         | string   | The IPv4 or IPv6 address to lookup
 ```js
 geo( {
   ip:       '1.2.3.4',
-  service: 'city',
+  service:  'city',
   endpoint: 'geoip-eu-west.maxmind.com',
 } )
   .then( processData )
