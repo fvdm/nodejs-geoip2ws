@@ -56,14 +56,14 @@ async function doResponse ( res ) {
 /**
  * Perform lookup
  *
- * @param   {object}  args
+ * @param   {object}  o
  *
- * @param   {string}  args.ip                                    IP-address, hostname or 'me' to look up
- * @param   {string}  [args.userId]                              Account user ID
- * @param   {string}  [args.licenseKey]                          Account license key
- * @param   {string}  [args.service=city]                        Account service name
- * @param   {string}  [args.endpoint=https://geoip.maxmind.com]  API hostname or url
- * @param   {number}  [args.timeout=5000]                        Request time out in milliseconds
+ * @param   {string}  o.ip                                    IP-address, hostname or 'me' to look up
+ * @param   {string}  [o.userId]                              Account user ID
+ * @param   {string}  [o.licenseKey]                          Account license key
+ * @param   {string}  [o.service=city]                        Account service name
+ * @param   {string}  [o.endpoint=https://geoip.maxmind.com]  API hostname or url
+ * @param   {number}  [o.timeout=5000]                        Request time out in milliseconds
  *
  * @return  {Promise<object>}
  */
@@ -114,13 +114,13 @@ async function doLookup ( {
 /**
  * Module interface
  *
- * @param   {object}    args
+ * @param   {object}    o
  *
- * @param   {string}    [args.userId]                                Account user ID
- * @param   {string}    [args.licenseKey]                            Account license key
- * @param   {string}    [args.service=city]                          Account service name
- * @param   {string}    [args.endpoint='https://geoip.maxmind.com']  API hostname or url
- * @param   {number}    [args.timeout=5000]                          Request time out in milliseconds
+ * @param   {string}    [o.userId]                                Account user ID
+ * @param   {string}    [o.licenseKey]                            Account license key
+ * @param   {string}    [o.service=city]                          Account service name
+ * @param   {string}    [o.endpoint='https://geoip.maxmind.com']  API hostname or url
+ * @param   {number}    [o.timeout=5000]                          Request time out in milliseconds
  *
  * @return  {function}  doLookup
  */
