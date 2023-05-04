@@ -100,7 +100,7 @@ async function doLookup ( {
     },
   } );
 
-  return doResponse( res ); 
+  return doResponse( res );
 
 }
 
@@ -129,7 +129,14 @@ module.exports = async function setup ( {
 
 } = {} ) {
 
-  config = arguments[0];
+  config = {
+    userId,
+    licenseKey,
+    service,
+    endpoint,
+    timeout,
+  };
+ 
   return doLookup;
 
 };
