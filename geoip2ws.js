@@ -9,14 +9,8 @@ License:        Unlicense (public domain, see LICENSE file)
 
 const { isIP } = require( 'net' );
 
-// setup
-let config = {
-  userId: null,
-  licenseKey: null,
-  service: 'city',
-  endpoint: 'https://geoip.maxmind.com',
-  timeout: 5000,
-};
+// settings store
+let config = {};
 
 
 /**
@@ -114,13 +108,13 @@ async function doLookup ( {
 /**
  * Module interface
  *
- * @param   {object}    o
+ * @param   {object}  o
  *
- * @param   {string}    [o.userId]                                Account user ID
- * @param   {string}    [o.licenseKey]                            Account license key
- * @param   {string}    [o.service=city]                          Account service name
- * @param   {string}    [o.endpoint='https://geoip.maxmind.com']  API hostname or url
- * @param   {number}    [o.timeout=5000]                          Request time out in milliseconds
+ * @param   {string}  [o.userId]      Account user ID
+ * @param   {string}  [o.licenseKey]  Account license key
+ * @param   {string}  [o.service]     Account service name
+ * @param   {string}  [o.endpoint]    API hostname or url
+ * @param   {number}  [o.timeout]     Request time out in milliseconds
  *
  * @return  {AsyncFunction}  doLookup
  */
@@ -129,18 +123,13 @@ module.exports = async function setup ( {
 
   userId = null,
   licenseKey = null,
-  service = config.service,
-  endpoint = config.endpoint,
-  timeout = config.timeout,
+  service = 'city',
+  endpoint = 'https://geoip.maxmind.com',
+  timeout = 5000,
 
 } = {} ) {
 
-  config.userId = userId;
-  config.licenseKey = licenseKey;
-  config.service = service;
-  config.endpoint = endpoint;
-  config.timeout = timeout;
-
+  config = arguments[0];
   return doLookup;
 
 };
