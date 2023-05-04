@@ -116,10 +116,10 @@ async function doLookup ( {
  * @param   {string}  [o.endpoint]    API hostname or url
  * @param   {number}  [o.timeout]     Request time out in milliseconds
  *
- * @return  {AsyncFunction}  doLookup
+ * @return  {function}  doLookup
  */
 
-module.exports = async function setup ( {
+module.exports = function setup ( {
 
   userId = null,
   licenseKey = null,
