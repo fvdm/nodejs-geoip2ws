@@ -21,7 +21,7 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "dotest": "^2.12.1"
+    "dotest": "^2"
   },
   "engines": {
     "node": ">=18"
