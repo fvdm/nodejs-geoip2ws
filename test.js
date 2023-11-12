@@ -37,9 +37,7 @@ async function checkSuccess ( { test, data } ) {
   try {
     test()
       .isObject( 'fail', 'data', data )
-      .isObject( 'fail', 'data.country', data?.country )
-      .isObject( 'fail', 'data.country.names', data?.country?.names )
-      .isExactly( 'fail', 'data.country.names.en', data?.country?.names?.en, 'Netherlands' )
+      .isArray( 'fail', 'data.subdivisions', data?.subdivisions )
       .isString( 'fail', 'data.most_specific_subdivision', data?.most_specific_subdivision?.iso_code )
       .isNotEmpty( 'fail', 'data.most_specific_subdivision', data?.most_specific_subdivision?.iso_code )
       .done()
