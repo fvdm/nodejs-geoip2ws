@@ -1,7 +1,6 @@
 # geoip2ws
 
-Unofficial Node.js module for the Maxmind GeoIP2
-Web Services.
+Unofficial Node.js module for the Maxmind GeoIP2 Web Services.
 
 [![npm](https://img.shields.io/npm/v/geoip2ws.svg?maxAge=3600)](https://www.npmjs.com/package/geoip2ws?activeTab=versions)
 [![Build Status](https://github.com/fvdm/nodejs-geoip2ws/actions/workflows/node.js.yml/badge.svg?branch=master)](https://github.com/fvdm/nodejs-geoip2ws/actions/workflows/node.js.yml)
@@ -15,35 +14,17 @@ Web Services.
 
 ## Usage
 
-You can provide the configuration in the require function
-or inline at lookup time. The lookup always returns a Promise.
+The configuration parameters must be wrapped in an object.
+This allows the use of spread `{ ...config, ip: '1.2.3.4' }`
+if you want to keep the main config in a variable.
+The lookup always returns a Promise.
 
 - [Response examples](https://dev.maxmind.com/geoip/docs/web-services/responses?lang=en#bodies)
 - [List of API errors](https://dev.maxmind.com/geoip/docs/web-services/responses?lang=en#errors)
 
 
-### Normal configuration
-
 ```js
-const geo = require( 'geoip2ws' )( {
-  userId:     '12345',
-  licenseKey: 'abc678',
-} );
-
-geo( {
-  service: 'city',
-  ip:      '1.2.3.4',
-} )
-  .then( console.log )
-  .catch( console.error )
-;
-```
-
-
-### Inline configuration
-
-```js
-const geo = require( 'geoip2ws' )();
+const geo = require( 'geoip2ws' );
 
 geo( {
   userId:     '12345',
@@ -66,23 +47,20 @@ You can find both [*here*](https://www.maxmind.com/en/accounts/current/license-k
 `npm i geoip2ws`
 
 
-## The functions
+## Configuration
 
-### Setup
-
-The _first function_ is the global config and returns the
-lookup function. It takes these settings:
-
-parameter        | type    | default                   | description
-:----------------|:--------|:--------------------------|:-----------
-[userId]         | string  |                           | User ID
-[licenseKey]     | string  |                           | License key
-[service]        | string  | city                      | `insights`, `country` or `city`
-[endpoint]       | string  | https://geoip.maxmind.com | Override endpoint hostname or url
-[timeout]        | integer | 5000                      | Request timeout in ms
+parameter  | type   | default                   | description
+:----------|:-------|:--------------------------|:-----------
+userId     | string |                           | User ID
+licenseKey | string |                           | License key
+[ip]       | string | me                        | The IP address or 'me' for your current IP
+[service]  | string | city                      | `insights`, `country` or `city`
+[endpoint] | string | https://geoip.maxmind.com | Override endpoint hostname or url
+[timeout]  | number | 5000                      | Request timeout in ms
 
 ```js
 const geo = require( 'geoip2ws' )( {
+  ip:         '2a02:abc:def::123',
   userId:     '1234',
   licenseKey: 'abc',
   service:    'country',
@@ -90,45 +68,10 @@ const geo = require( 'geoip2ws' )( {
 } );
 ```
 
-If you are providing the details in the lookup
-function, then you don't have to set them here but
-you do need to run this setup function once.
 
-```js
-const geo = require( 'geoip2ws' )();
-```
+## Errors
 
-
-### Lookup
-
-The _second function_ does the IP-address lookup and
-takes `ip` and optionally the same settings as above.
-
-parameter  | type     | description
-:----------|:---------|:-----------
-ip         | string   | The IPv4 or IPv6 address to lookup
-
-```js
-geo( {
-  ip:       '1.2.3.4',
-  service:  'city',
-  endpoint: 'geoip-eu-west.maxmind.com',
-} )
-  .then( processData )
-  .catch( console.error )
-;
-```
-
-
-#### Errors
-
-error message   | description
-:---------------|:-----------
-invalid service | The service name is invalid
-invalid ip      | The IP-address is invalid
-
-These two conditions are checked before sending the request.
-Meaning it won't cost you account credits.
+Any request or API error is thrown and can be caught with `Promise.reject()`.
 
 
 ## Unlicense
