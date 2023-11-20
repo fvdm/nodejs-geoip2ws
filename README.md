@@ -59,13 +59,13 @@ licenseKey | string |                           | License key
 [timeout]  | number | 5000                      | Request timeout in ms
 
 ```js
-const geo = require( 'geoip2ws' )( {
+{
   ip:         '2a02:abc:def::123',
   userId:     '1234',
   licenseKey: 'abc',
   service:    'country',
   timeout:    2000,
-} );
+}
 ```
 
 
