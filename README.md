@@ -54,7 +54,7 @@ userId     | string |                           | User ID
 licenseKey | string |                           | License key
 [ip]       | string | me                        | The IP address or 'me' for your current IP
 [service]  | string | city                      | `insights`, `country` or `city`
-[endpoint] | string | https://geoip.maxmind.com | Override endpoint hostname or url
+[endpoint] | string | https://geoip.maxmind.com | Override endpoint url, include the protocol prefix
 [timeout]  | number | 5000                      | Request timeout in ms
 
 ```js
@@ -66,6 +66,14 @@ licenseKey | string |                           | License key
   timeout:    2000,
 }
 ```
+
+
+### Endpoint
+
+You can change the `endpoint` to use a http proxy or target a specific datacenter.
+Make sure to prefix the hostname with the protocol, i.e. `https://`.
+
+For the GeoLite2 web service set the `endpoint` to `https://geolite.info`.
 
 
 ## Errors
