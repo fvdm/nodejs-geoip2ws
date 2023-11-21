@@ -37,10 +37,6 @@ module.exports = async ( {
   endpoint = endpoint.replace( /\/$/, '' );
   endpoint += `/geoip/v2.1/${service}/${ip}`;
 
-  if ( ! endpoint.match( /^https?\:\/\// ) ) {
-    endpoint = `https://${endpoint}`;
-  }
-
   const res = await fetch( endpoint, {
     signal: AbortSignal.timeout( timeout ),
     headers: {
