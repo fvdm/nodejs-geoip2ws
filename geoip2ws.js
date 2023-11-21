@@ -23,7 +23,7 @@ License:        Unlicense (public domain, see LICENSE file)
  * @return  {Promise<object>}
  */
 
-module.exports = async ( {
+module.exports = async function geoip2ws ( {
 
   userId,
   licenseKey,
