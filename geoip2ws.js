@@ -15,7 +15,7 @@ License:        Unlicense (public domain, see LICENSE file)
  *
  * @param   {string}  o.userId            Account user ID
  * @param   {string}  o.licenseKey        Account license key
- * @param   {string}  [o.ip='me']         IP-address, hostname or 'me' to look up 
+ * @param   {string}  [o.ip='me']         IP-address, hostname or 'me' to look up
  * @param   {string}  [o.service='city']  Account service name
  * @param   {string}  [o.endpoint]        API hostname or url
  * @param   {number}  [o.timeout=5000]    Request time out in milliseconds
@@ -59,16 +59,16 @@ module.exports = async function geoip2ws ( {
 
   // Fix response inconsistencies
   data.most_specific_subdivision = {};
- 
+
   if ( ! Array.isArray( data.subdivisions ) ) {
     data.subdivisions = [];
-  } 
-  
+  }
+
   if ( data.subdivisions.length ) {
     data.most_specific_subdivision = data.subdivisions[data.subdivisions.length - 1];
   }
 
   // All good
   return data;
- 
+
 };
