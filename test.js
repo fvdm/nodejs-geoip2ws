@@ -147,9 +147,9 @@ doTest.add( 'Error: timeout', async test => {
 
   try {
     data = await pkg( {
-      ...config,
+      userId: config.userId,
+      licenseKey: config.licenseKey,
       timeout: 1,
-      ip: '194.109.6.66',
     } );
   }
   catch ( err ) {
