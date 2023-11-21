@@ -122,7 +122,8 @@ doTest.add( 'Error: from API', async test => {
 
   try {
     data = await pkg( {
-      ...config,
+      userId: config.userId,
+      licenseKey: config.licenseKey,
       ip: '0.0.0.0',
     } );
   }
