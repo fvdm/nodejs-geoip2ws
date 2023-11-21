@@ -51,7 +51,7 @@ module.exports = async ( {
 
   // Process API error
   if ( data.error ) {
-    const error = new Error( data.error );
+    const error = new Error( `API: ${data.error}` );
 
     error.code = data.code;
     throw error;

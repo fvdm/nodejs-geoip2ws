@@ -20,7 +20,6 @@ if you want to keep the main config in a variable.
 The lookup always returns a Promise.
 
 - [Response examples](https://dev.maxmind.com/geoip/docs/web-services/responses?lang=en#bodies)
-- [List of API errors](https://dev.maxmind.com/geoip/docs/web-services/responses?lang=en#errors)
 
 
 ```js
@@ -73,6 +72,10 @@ licenseKey | string |                           | License key
 
 Any request or API error is thrown and can be caught with `Promise.reject()`.
 
+For API errors the message is prefixed with `API: `.
+
+- [List of API errors](https://dev.maxmind.com/geoip/docs/web-services/responses?lang=en#errors)
+ 
 
 ## Unlicense
 
