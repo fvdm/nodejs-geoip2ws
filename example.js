@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+const geoip = require( 'geoip2ws' );
 
 const config = {
   userId: '00000',
