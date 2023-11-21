@@ -133,6 +133,7 @@ doTest.add( 'Error: from API', async test => {
   test()
     .isError( 'fail', 'catch', error )
     .isNotEmpty( 'fail', 'error.message', error?.message )
+    .isRegexpMatch( 'fail', 'error.message starts with \'API: \'', error?.message, /^API: / )
     .isString( 'fail', 'error.code', error?.code )
     .isNotEmpty( 'warn', 'error.code', error?.code )
     .isUndefined( 'fail', 'data', data )
