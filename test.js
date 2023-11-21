@@ -148,6 +148,7 @@ doTest.add( 'Error: timeout', async test => {
   try {
     data = await pkg( {
       ...config,
+      timeout: 1,
       ip: '194.109.6.66',
     } );
   }
