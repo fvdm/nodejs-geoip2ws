@@ -40,7 +40,8 @@ module.exports = async ( {
   const res = await fetch( endpoint, {
     signal: AbortSignal.timeout( timeout ),
     headers: {
-      'Accept': `application/vnd.maxmind.com-${service}+json; charset=UTF-8; version=2.1`,
+      'Accept': 'application/json',
+      'Accept-Charset': 'UTF-8',
       'Authorization': 'Basic ' + Buffer.from( `${userId}:${licenseKey}` ).toString( 'base64' ),
       'User-Agent': 'geoip2ws.js (https://github.com/fvdm/nodejs-geoip2ws)',
     },
