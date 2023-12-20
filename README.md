@@ -78,9 +78,9 @@ For the GeoLite2 web service set the `endpoint` to `https://geolite.info`.
 
 ## Errors
 
-Any request or API error is thrown and can be caught with `Promise.reject()`.
+Errors from the request or API are thrown and can be caught in the Promise.
 
-For API errors the message is prefixed with `API: `.
+For API errors the message is prefixed with `API: ` string.
 
 - [List of API errors](https://dev.maxmind.com/geoip/docs/web-services/responses?lang=en#errors)
  
