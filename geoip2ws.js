@@ -53,7 +53,7 @@ module.exports = async function geoip2ws ( {
   if ( data.error ) {
     const error = new Error( `API: ${data.error}` );
 
-    error.code = data.code;
+    error.reason = data.code;
     throw error;
   }
 
