@@ -1,15 +1,11 @@
 /* eslint-disable no-console */
 const geoip = require( 'geoip2ws' );
 
-const config = {
-  userId: '00000',
-  licenseKey: 'abc123',
-  service: 'city',
-};
-
 geoip( {
-  ...config,
-  ip: 'me',
+  userId:     '00000',
+  licenseKey: 'abc123',
+  service:    'city',
+  ip:         'me',
 } )
   .then( data => {
     console.dir( data, {
