@@ -116,7 +116,7 @@ doTest.add( 'lookup - data.subdivisions array', async test => {
 // IP without subdivisions
 doTest.add( 'lookup - IP without subdivisions (Japan)', async test => {
   try {
-    const data = await geo( { ip: '111.111.111.111' } );
+    const data = await geo( { ip: '117.104.133.1' } );
 
     test()
       .isArray( 'fail', 'data.subdivisions', data.subdivisions )
