@@ -8,9 +8,7 @@ License:        Unlicense (public domain, see LICENSE file)
 */
 
 const doTest = require( 'dotest' );
-const app = require( './' );
-
-let geo;
+const pkg = require( './' );
 
 
 // Setup
@@ -24,31 +22,6 @@ const config = {
 };
 
 
-/**
- * Check common success response
- *
- * @param   {object}    o
- * @param   {function}  o.test  Test specific function
- * @param   {mixed}     o.data  Callback data
- * @return  {void}
- */
-
-async function checkSuccess ( { test, data } ) {
-  try {
-    test()
-      .isObject( 'fail', 'data', data )
-      .isArray( 'fail', 'data.subdivisions', data?.subdivisions )
-      .isString( 'fail', 'data.most_specific_subdivision', data?.most_specific_subdivision?.iso_code )
-      .isNotEmpty( 'fail', 'data.most_specific_subdivision', data?.most_specific_subdivision?.iso_code )
-      .done()
-    ;
-  }
-  catch ( err ) {
-    test( err ).done();
-  }
-}
-
-
 // TESTS
 doTest.add( 'Configuration', test => {
   if ( ! config.userId || ! config.licenseKey ) {
@@ -59,8 +32,6 @@ doTest.add( 'Configuration', test => {
       .info( 'Using test endpoint with fake data' )
     ;
   }
-
-  geo = app( config );
 
   test()
     .info( `config.service:   ${config.service}` )
@@ -74,8 +45,7 @@ doTest.add( 'Configuration', test => {
 // Module
 doTest.add( 'Module', test => {
   test()
-    .isFunction( 'fail', 'exports', app )
-    .isFunction( 'fail', 'interface', geo )
+    .isFunction( 'fail', 'exports', pkg )
     .done();
 } );
 
@@ -83,12 +53,19 @@ doTest.add( 'Module', test => {
 // Test success
 doTest.add( 'lookup - object', async test => {
   try {
-    const data = await geo( {
+    const data = await pkg( {
+      ...config,
       ip: '194.109.6.66',
       service: config.service,
     } );
 
-    checkSuccess( { test, data } );
+    test()
+      .isObject( 'fail', 'data', data )
+      .isArray( 'fail', 'data.subdivisions', data?.subdivisions )
+      .isString( 'fail', 'data.most_specific_subdivision', data?.most_specific_subdivision?.iso_code )
+      .isNotEmpty( 'fail', 'data.most_specific_subdivision', data?.most_specific_subdivision?.iso_code )
+      .done()
+    ;
   }
   catch ( err ) {
     test( err ).done();
@@ -99,7 +76,10 @@ doTest.add( 'lookup - object', async test => {
 // Satellite IPs have no geo location
 doTest.add( 'lookup - data.subdivisions array', async test => {
   try {
-    const data = await geo( { ip: '194.109.6.93' } );
+    const data = await pkg( {
+      ...config,
+      ip: '194.109.6.93',
+    } );
 
     test()
       .isArray( 'fail', 'data.subdivisions', data.subdivisions )
@@ -116,7 +96,10 @@ doTest.add( 'lookup - data.subdivisions array', async test => {
 // IP without subdivisions
 doTest.add( 'lookup - IP without subdivisions (Japan)', async test => {
   try {
-    const data = await geo( { ip: '117.104.133.1' } );
+    const data = await pkg( {
+      ...config,
+      ip: '117.104.133.1',
+    } );
 
     test()
       .isArray( 'fail', 'data.subdivisions', data.subdivisions )
@@ -132,107 +115,17 @@ doTest.add( 'lookup - IP without subdivisions (Japan)', async test => {
 } );
 
 
-// Test promises
-doTest.add( 'Promise: resolve', async test => {
-  await geo( { ip: '194.109.6.66' } )
-    .then( data => checkSuccess( { test, data } ) )
-    .catch( test )
-  ;
-} );
-
-
-doTest.add( 'Promise: reject', async test => {
+// Errors
+doTest.add( 'Error: from API', async test => {
   let data;
   let error;
 
   try {
-    data = await geo( { ip: 'invalid input' } );
-  }
-  catch ( err ) {
-    error = err;
-  }
-
-  test()
-    .isUndefined( 'fail', 'data', data )
-    .isError( 'fail', 'catch', error )
-    .isExactly( 'fail', 'message', error?.message, 'invalid ip' )
-    .done()
-  ;
-} );
-
-
-// Inline config
-doTest.add( 'Config in lookup()', async test => {
-  const tmp = new app();
-
-  try {
-    const data = await tmp( {
+    data = await pkg( {
       userId: config.userId,
       licenseKey: config.licenseKey,
-      service: config.service,
-      endpoint: config.endpoint.replace( /^https:\/\//, '' ),
-      requestTimeout: 5000,
-      ip: '194.109.6.66',
+      ip: '0.0.0.0',
     } );
-
-    checkSuccess( { test, data } );
-  }
-  catch ( err ) {
-    test( err ).done();
-  }
-} );
-
-
-// Test errors
-doTest.add( 'Error: invalid ip', async test => {
-  let data;
-  let error;
-
-  try {
-    data = await geo( { ip: 'invalid input' } );
-  }
-  catch ( err ) {
-    error = err;
-  }
-
-  test()
-    .isError( 'fail', 'catch', error )
-    .isExactly( 'fail', 'error.message', error?.message, 'invalid ip' )
-    .isUndefined( 'fail', 'data', data )
-    .done()
-  ;
-} );
-
-
-doTest.add( 'Error: invalid service', async test => {
-  let data;
-  let error;
-
-  try {
-    data = await geo( {
-      service: 'invalid service',
-      ip: '194.109.6.66',
-    } );
-  }
-  catch ( err ) {
-    error = err;
-  }
-
-  test()
-    .isError( 'fail', 'catch', error )
-    .isExactly( 'fail', 'error.message', error?.message, 'invalid service' )
-    .isUndefined( 'fail', 'data', data )
-    .done()
-  ;
-} );
-
-
-doTest.add( 'Error: API error', async test => {
-  let data;
-  let error;
-
-  try {
-    data = await geo( { ip: '0.0.0.0' } );
   }
   catch ( err ) {
     error = err;
@@ -241,26 +134,25 @@ doTest.add( 'Error: API error', async test => {
   test()
     .isError( 'fail', 'catch', error )
     .isNotEmpty( 'fail', 'error.message', error?.message )
-    .isString( 'fail', 'error.code', error?.code )
-    .isNotEmpty( 'warn', 'error.code', error?.code )
+    .isRegexpMatch( 'fail', 'error.message', error?.message, /^API: .+/ )
+    .isString( 'fail', 'error.reason', error?.reason )
+    .isNotEmpty( 'warn', 'error.reason', error?.reason )
     .isUndefined( 'fail', 'data', data )
     .done()
   ;
 } );
 
 
-doTest.add( 'Error: request timeout', async test => {
-  const tmp = app( {
-    userId: config.userId,
-    licenseKey: config.licenseKey,
-    timeout: 1,
-  } );
-
+doTest.add( 'Error: timeout', async test => {
   let data;
   let error;
 
   try {
-    data = await tmp( { ip: '194.109.6.66' } );
+    data = await pkg( {
+      userId: config.userId,
+      licenseKey: config.licenseKey,
+      timeout: 1,
+    } );
   }
   catch ( err ) {
     error = err;
