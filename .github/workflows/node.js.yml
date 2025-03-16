@@ -7,6 +7,7 @@ on:
     branches: [ develop ]
   schedule:
     - cron: '42 18 * * 6'
+  workflow_dispatch:
 
 jobs:
   lts_versions:
