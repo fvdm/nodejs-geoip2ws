@@ -55,7 +55,7 @@ doTest.add( 'lookup - object', async test => {
   try {
     const data = await pkg( {
       ...config,
-      ip: '194.109.6.66',
+      ip: '12.34.56.78',
       service: config.service,
     } );
 
@@ -78,7 +78,7 @@ doTest.add( 'lookup - data.subdivisions array', async test => {
   try {
     const data = await pkg( {
       ...config,
-      ip: '194.109.6.93',
+      ip: '12.34.56.78',
     } );
 
     test()
