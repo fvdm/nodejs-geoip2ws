@@ -27,7 +27,7 @@ npm install
 npm test
 ```
 
-**CRITICAL ISSUE**: The ESLint configuration file (`eslint.config.mjs`) currently has 409 formatting errors and will cause the test command to fail if you try to lint it directly. However, `npm test` works correctly as it doesn't lint the config file itself.
+**CRITICAL ISSUE RESOLVED**: The ESLint configuration file (`eslint.config.mjs`) has been fixed. Previously it had 409 formatting errors because the file itself didn't follow its own formatting rules (used double quotes and 4-space indentation while requiring single quotes and 2-space indentation).
 
 **Current Test Status**: Tests run successfully with network connectivity. You may see a few minor test assertion failures (2 errors, 2 warnings) and coverage slightly below 85% threshold for branches (80%), but core functionality works correctly.
 
@@ -46,7 +46,7 @@ GEOIP2WS_TIMEOUT=5000
 ```
 
 ### Linting
-Linting is integrated into `npm test` command and works correctly for the main code files. **DO NOT run ESLint directly on the config file** (`eslint.config.mjs`) as it has formatting issues - it will produce 409+ errors due to malformed config file.
+Linting is integrated into `npm test` command and works correctly. ESLint configuration has been fixed and now properly lints all files including the config file itself.
 
 ### Building
 This is a pure JavaScript library - no build step required. The main entry point `geoip2ws.js` is ready to use.
@@ -61,7 +61,7 @@ This is a pure JavaScript library - no build step required. The main entry point
 - **`README.md`** - Comprehensive documentation with usage examples
 
 ### Configuration Files
-- **`eslint.config.mjs`** - ESLint configuration (**BROKEN - has 409 formatting errors**)
+- **`eslint.config.mjs`** - ESLint configuration (now properly formatted and working)
 - **`.editorconfig`** - Code formatting preferences (2-space indentation, LF line endings)
 - **`.gitignore`** - Excludes node_modules, logs, coverage reports
 
@@ -162,9 +162,8 @@ If tests fail with `fetch failed` or `ENOTFOUND`:
 
 ## Critical Issues to Address
 
-1. **ESLint Configuration**: The `eslint.config.mjs` file is completely malformed and needs to be fixed before any linting will work
-2. **Minor Test Issues**: Some tests may have minor assertion failures but core functionality works
-3. **Deprecation Warnings**: While not critical, there are deprecation warnings in the dependency chain
+1. **Minor Test Issues**: Some tests may have minor assertion failures but core functionality works correctly
+2. **Deprecation Warnings**: While not critical, there are deprecation warnings in the dependency chain
 
 ## Trust These Instructions
 
