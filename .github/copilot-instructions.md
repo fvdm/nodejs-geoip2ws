@@ -27,8 +27,6 @@ npm install
 npm test
 ```
 
-**CRITICAL ISSUE RESOLVED**: The ESLint configuration file (`eslint.config.mjs`) has been fixed. Previously it had 409 formatting errors because the file itself didn't follow its own formatting rules (used double quotes and 4-space indentation while requiring single quotes and 2-space indentation).
-
 **Current Test Status**: Tests run successfully with network connectivity. You may see a few minor test assertion failures (2 errors, 2 warnings) and coverage slightly below 85% threshold for branches (80%), but core functionality works correctly.
 
 **Test Environment Requirements:**
@@ -46,7 +44,7 @@ GEOIP2WS_TIMEOUT=5000
 ```
 
 ### Linting
-Linting is integrated into `npm test` command and works correctly. ESLint configuration has been fixed and now properly lints all files including the config file itself.
+Linting is integrated into `npm test` command and works correctly.
 
 ### Building
 This is a pure JavaScript library - no build step required. The main entry point `geoip2ws.js` is ready to use.
@@ -61,7 +59,7 @@ This is a pure JavaScript library - no build step required. The main entry point
 - **`README.md`** - Comprehensive documentation with usage examples
 
 ### Configuration Files
-- **`eslint.config.mjs`** - ESLint configuration (now properly formatted and working)
+- **`eslint.config.mjs`** - ESLint configuration
 - **`.editorconfig`** - Code formatting preferences (2-space indentation, LF line endings)
 - **`.gitignore`** - Excludes node_modules, logs, coverage reports
 
@@ -102,7 +100,7 @@ The GitHub Actions workflow (`.github/workflows/node.js.yml`) performs:
 1. **Always run `npm install` first** after cloning
 2. Make your changes to `geoip2ws.js` or other files
 3. **Update tests** in `test.js` if adding new functionality
-4. Run `npm test` to validate (expect ESLint errors from config file)
+4. Run `npm test` to validate changes
 5. **Manually verify** functionality using `require('./')` to load the local module
 
 **Testing the module locally:**
@@ -136,15 +134,13 @@ If tests fail with `fetch failed` or `ENOTFOUND`:
 
 ## Code Style and Standards
 
-**Enforced by ESLint** (when config is fixed):
+**Enforced by ESLint**:
 - Single quotes for strings
 - 2-space indentation  
 - Semicolons required
 - camelCase variables
 - Stroustrup brace style
 - No trailing spaces
-
-**Current Issue**: ESLint config file itself violates these rules with 409 errors.
 
 ## Key Dependencies and APIs
 
