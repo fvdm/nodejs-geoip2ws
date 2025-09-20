@@ -27,7 +27,7 @@ npm install
 npm test
 ```
 
-**Current Test Status**: Tests run successfully with network connectivity. You may see a few minor test assertion failures (2 errors, 2 warnings) and coverage slightly below 85% threshold for branches (80%), but core functionality works correctly.
+**Current Test Status**: Tests run successfully with network connectivity. You may see a few minor test assertion failures and coverage slightly below the 85% threshold for branches, but core functionality works correctly.
 
 **Test Environment Requirements:**
 - Tests expect to connect to external test endpoint (`https://fvdm.com/u/ci_test.php`)
