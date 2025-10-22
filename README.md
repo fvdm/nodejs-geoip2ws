@@ -115,5 +115,5 @@ For more information, please refer to <https://unlicense.org/>
 
 ## Author
 
-[Franklin](https://fvdm.com)
+[Franklin](https://frankl.in)
 | [Buy me a coffee](https://fvdm.com/donating/)
