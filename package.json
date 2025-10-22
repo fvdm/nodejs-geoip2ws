@@ -1,8 +1,8 @@
 {
   "author": {
     "name": "Franklin",
-    "email": "info@fvdm.com",
-    "url": "https://fvdm.com"
+    "email": "fr@nkl.in",
+    "url": "https://frankl.in"
   },
   "name": "geoip2ws",
   "description": "Maxmind GeoIP2 Web Services (unofficial) - IP and hostname geolocation",
@@ -31,6 +31,7 @@
   },
   "keywords": [
     "api",
+    "geoint",
     "geoip",
     "geoip2",
     "geolocation",
