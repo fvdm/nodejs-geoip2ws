@@ -13,8 +13,8 @@ License:        Unlicense (public domain, see LICENSE file)
  *
  * @param   {object}  o
  *
- * @param   {string}  o.userId            Account user ID
- * @param   {string}  o.licenseKey        Account license key
+ * @param   {string}  [o.userId]          Account user ID
+ * @param   {string}  [o.licenseKey]      Account license key
  * @param   {string}  [o.ip='me']         IP-address, hostname or 'me' to look up
  * @param   {string}  [o.service='city']  Account service name
  * @param   {string}  [o.endpoint]        API hostname or url
@@ -25,8 +25,8 @@ License:        Unlicense (public domain, see LICENSE file)
 
 module.exports = async function geoip2ws ( {
 
-  userId,
-  licenseKey,
+  userId = null,
+  licenseKey = null,
   ip = 'me',
   service = 'city',
   endpoint = 'https://geoip.maxmind.com',
@@ -37,16 +37,20 @@ module.exports = async function geoip2ws ( {
   endpoint = endpoint.replace( /\/$/, '' );
   endpoint += `/geoip/v2.1/${service}/${ip}`;
 
-  const res = await fetch( endpoint, {
+  const options = {
     signal: AbortSignal.timeout( timeout ),
     headers: {
       'Accept': 'application/json',
       'Accept-Charset': 'UTF-8',
-      'Authorization': 'Basic ' + Buffer.from( `${userId}:${licenseKey}` ).toString( 'base64' ),
       'User-Agent': 'fvdm/nodejs-geoip2ws',
     },
-  } );
+  };
 
+  if ( userId && licenseKey ) {
+    options.headers.Authorization = 'Basic ' + Buffer.from( `${userId}:${licenseKey}` ).toString( 'base64' );
+  }
+
+  const res = await fetch( endpoint, options );
   const data = await res.json();
 
   // Process API error

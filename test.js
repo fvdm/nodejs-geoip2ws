@@ -94,11 +94,11 @@ doTest.add( 'lookup - data.subdivisions array', async test => {
 
 
 // IP without subdivisions
-doTest.add( 'lookup - IP without subdivisions (Japan)', async test => {
+doTest.add( 'lookup - IP without subdivisions (datacenter)', async test => {
   try {
     const data = await pkg( {
       ...config,
-      ip: '117.104.133.1',
+      ip: '4.3.2.1',
     } );
 
     test()
@@ -106,6 +106,27 @@ doTest.add( 'lookup - IP without subdivisions (Japan)', async test => {
       .isEmpty( 'fail', 'data.subdivisions', data.subdivisions )
       .isObject( 'fail', 'data.most_specific_subdivision', data.most_specific_subdivision )
       .isEmpty( 'fail', 'data.most_specific_subdivision', data.most_specific_subdivision )
+      .done()
+    ;
+  }
+  catch ( err ) {
+    test( err ).done();
+  }
+} );
+
+
+// Optional credentials
+doTest.add( 'lookup - Without userId and licenseKey', async test => {
+  try {
+    const data = await pkg( {
+      endpoint: 'https://fvdm.com/u/ci_test.php?a=geoip2ws&b=',
+      timeout: config.timeout,
+    } );
+
+    test()
+      .info( 'Not using real data for this test' )
+      .isObject( 'fail', 'data', data )
+      .isObject( 'fail', 'data', data?.country )
       .done()
     ;
   }
