@@ -115,6 +115,27 @@ doTest.add( 'lookup - IP without subdivisions (Japan)', async test => {
 } );
 
 
+// Optional credentials
+doTest.add( 'lookup - Without userId and licenseKey', async test => {
+  try {
+    const data = await pkg( {
+      endpoint: 'https://fvdm.com/u/ci_test.php?a=geoip2ws&b=',
+      timeout: config.timeout,
+    } );
+
+    test()
+      .info( 'Not using real data for this test' )
+      .isObject( 'fail', 'data', data )
+      .isObject( 'fail', 'data', data?.country )
+      .done()
+    ;
+  }
+  catch ( err ) {
+    test( err ).done();
+  }
+} );
+
+
 // Errors
 doTest.add( 'Error: from API', async test => {
   let data;
