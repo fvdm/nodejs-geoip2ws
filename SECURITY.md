@@ -10,7 +10,7 @@
 
 ## Reporting a Vulnerability
 
-Mail me from [my website](https://fvdm.com/contact) or by
+Mail me from [my website](https://frankl.in/contact) or by
 going to the repository on GitHub > Security > [Report a
 vulnerability](https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability#privately-reporting-a-security-vulnerability).
 
