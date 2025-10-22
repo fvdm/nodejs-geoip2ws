@@ -1,4 +1,4 @@
-/* eslint-disable no-console, key-spacing */
+/* eslint-disable key-spacing */
 const geoip = require( 'geoip2ws' );
 
 geoip( {
