@@ -94,11 +94,11 @@ doTest.add( 'lookup - data.subdivisions array', async test => {
 
 
 // IP without subdivisions
-doTest.add( 'lookup - IP without subdivisions (Japan)', async test => {
+doTest.add( 'lookup - IP without subdivisions (datacenter)', async test => {
   try {
     const data = await pkg( {
       ...config,
-      ip: '117.104.133.1',
+      ip: '4.3.2.1',
     } );
 
     test()
