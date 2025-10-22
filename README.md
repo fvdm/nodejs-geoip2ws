@@ -48,14 +48,14 @@ You can find both [*here*](https://www.maxmind.com/en/accounts/current/license-k
 
 ## Configuration
 
-parameter  | type   | default                   | description
-:----------|:-------|:--------------------------|:-----------
-userId     | string |                           | User ID
-licenseKey | string |                           | License key
-[ip]       | string | me                        | The IP address or 'me' for your current IP
-[service]  | string | city                      | `insights`, `country` or `city`
-[endpoint] | string | https://geoip.maxmind.com | Override endpoint url, include the protocol prefix
-[timeout]  | number | 5000                      | Request timeout in ms
+parameter    | type   | default                   | description
+:------------|:-------|:--------------------------|:-----------
+[userId]     | string |                           | User ID, optional for proxy endpoints
+[licenseKey] | string |                           | License key, optional for proxy endpoints
+[ip]         | string | me                        | The IP address or 'me' for your current IP
+[service]    | string | city                      | `insights`, `country` or `city`
+[endpoint]   | string | https://geoip.maxmind.com | Override endpoint url, include the protocol prefix
+[timeout]    | number | 5000                      | Request timeout in ms
 
 ```js
 {
