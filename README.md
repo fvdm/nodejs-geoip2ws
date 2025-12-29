@@ -46,6 +46,15 @@ You can find both [*here*](https://www.maxmind.com/en/accounts/current/license-k
 `npm i geoip2ws`
 
 
+### Semantic version
+
+This package has semantic versioning: `major.minor.patch` and
+there are never breaking interface changes in point releases.
+
+You can safely pin the version to the current major, i.e. `^3` without
+risk of updates changing the interface.
+
+
 ## Configuration
 
 parameter    | type   | default                   | description
