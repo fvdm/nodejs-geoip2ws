@@ -121,6 +121,15 @@ OTHER DEALINGS IN THE SOFTWARE.
 For more information, please refer to <https://unlicense.org/>
 
 
+## Attribution (non-binding request)
+
+This project is released under the Unlicense (public domain equivalent).
+Attribution is not legally required, but the author kindly asks that,
+where reasonable, you keep a note such as:
+
+> geoip2ws by Franklin – https://frankl.in
+
+
 ## Author
 
 [Franklin](https://frankl.in)
