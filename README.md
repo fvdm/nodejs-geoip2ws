@@ -116,4 +116,4 @@ For more information, please refer to <https://unlicense.org/>
 ## Author
 
 [Franklin](https://frankl.in)
-| [Buy me a coffee](https://frankl.in/donating/)
+| [Buy me a coffee](https://frankl.in/tip
