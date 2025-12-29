@@ -39,19 +39,18 @@ geo( {
 
 ## Installation
 
+`npm i geoip2ws`
+
 You need a Maxmind account ID and license key with enough
 credits for one of their GeoIP *web* services.
 You can find both [*here*](https://www.maxmind.com/en/accounts/current/license-key).
 
-`npm i geoip2ws`
 
-
-### Semantic version
-
-This package has semantic versioning: `major.minor.patch` and
+> [!TIP]
+> This package has semantic versioning: `major.minor.patch` and
 there are never breaking interface changes in point releases.
-
-You can safely pin the version to the current major, i.e. `^3` without
+>
+> You can safely pin the version to the current major, i.e. `^3` without
 risk of updates changing the interface.
 
 
@@ -125,4 +124,4 @@ For more information, please refer to <https://unlicense.org/>
 ## Author
 
 [Franklin](https://frankl.in)
-| [Buy me a coffee](https://frankl.in/tip
+| [Buy me a coffee](https://frankl.in/tip)
