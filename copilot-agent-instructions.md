@@ -173,13 +173,15 @@ endpoint = endpoint.replace(/\/$/, '');
 ### Credential Handling
 
 ```javascript
-// ✅ GOOD: Proper Basic Auth encoding
+// ✅ GOOD: Proper Basic Auth encoding with conditional assignment
 const options = {
   headers: {
     'Accept': 'application/json',
+    'User-Agent': 'fvdm/nodejs-geoip2ws',
   },
 };
 
+// Add authentication if credentials are provided
 if (userId && licenseKey) {
   options.headers.Authorization = 
     'Basic ' + Buffer.from(`${userId}:${licenseKey}`).toString('base64');
@@ -471,7 +473,7 @@ Use these prompts when working with Copilot:
 
 ### Node.js Version
 - **Minimum:** Node.js 18+
-- **Target:** Node.js 20+ LTS or later
+- **Target:** Node.js 20+ LTS
 
 ### Key Files
 - `geoip2ws.js` - Main module (single file)
