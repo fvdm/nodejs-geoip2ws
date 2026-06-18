@@ -27,7 +27,7 @@ jobs:
       matrix:
         node-version: ${{ fromJson(needs.lts_versions.outputs.matrix) }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Test on Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v6
         with:
