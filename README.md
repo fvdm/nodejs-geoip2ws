@@ -8,8 +8,8 @@ Unofficial Node.js module for the Maxmind GeoIP2 Web Services.
 
 * [Changelog](https://github.com/fvdm/nodejs-geoip2ws/releases)
 * [Node.js](https://nodejs.org)
-* [Maxmind GeoIP2 Web Services](https://www.maxmind.com/en/geoip2-precision-services)
-* [API documentation](https://dev.maxmind.com/geoip/docs/web-services)
+* [Maxmind GeoIP2 Web Services](https://www.maxmind.com/en/geoip-api-web-services)
+* [API documentation](https://dev.maxmind.com/geoip/docs/web-services/)
 
 
 ## Usage
@@ -19,7 +19,7 @@ This allows the use of spread `{ ...config, ip: '1.2.3.4' }`
 if you want to keep the main config in a variable.
 The lookup always returns a Promise.
 
-- [Response examples](https://dev.maxmind.com/geoip/docs/web-services/responses?lang=en#bodies)
+- [Response examples](https://dev.maxmind.com/geoip/docs/web-services/responses/?lang=en#example-response-bodies)
 
 
 ```js
@@ -90,7 +90,7 @@ Errors from the request or API are thrown and can be caught in the Promise.
 
 For API errors the message is prefixed with `API: ` string.
 
-- [List of API errors](https://dev.maxmind.com/geoip/docs/web-services/responses?lang=en#errors)
+- [List of API errors](https://dev.maxmind.com/geoip/docs/web-services/responses/?lang=en#errors)
  
 
 ## Unlicense
